@@ -1,0 +1,106 @@
+name: OrangeHRM & Allure Report
+
+on:
+  push:
+    branches: [ "main", "master" ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'LICENSE'
+  pull_request:
+    branches: [ "main", "master" ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 21 and Maven Memory
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+        env:
+          MAVEN_OPTS: '-Xmx2g -XX:+TieredCompilation'
+
+      - name: Resolve Dependencies
+        run: mvn dependency:resolve
+
+      - name: Build and Compile
+        run: mvn clean compile -B
+
+      - name: Download Allure History
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Run Tests (Ignore Failure)
+        id: run_tests
+        run: |
+          mvn test -B \
+            -Dsurefire.suiteXmlFiles=testng.xml \
+            -Dheadless=true \
+            -Dsurefire.rerunFailingTests=1 \
+            -Dmaven.test.failure.ignore=true
+
+      - name: Generate Allure Report
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        with:
+
+          allure_results: target/allure-results
+          allure_history: gh-pages
+          keep_reports: 30
+
+      - name: Upload Report Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-data
+          path: allure-report
+          retention-days: 10
+
+  deploy:
+    needs: test
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+      contents: write
+
+    steps:
+      - name: Download Allure Report Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-data
+          path: deploy-report
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: deploy-report
+          force_orphan: true
