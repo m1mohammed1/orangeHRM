@@ -89,7 +89,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .typeInDynamicField("Name", duplicateSkill)
                 .clickSave()
                 .verifyFieldErrorMessage("Name", "Already exists")
-                .clickCancelAdd();
+                .clickToCancel();
         adminPage
                 .deleteSpecificValue(duplicateSkill);
     }
@@ -156,7 +156,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .typeInDynamicField("Level", duplicateEdu)
                 .clickSave()
                 .verifyFieldErrorMessage("Level", "Already exists")
-                .clickCancelAdd();
+                .clickToCancel();
 
         adminPage
                 .deleteSpecificValue(duplicateEdu)
@@ -224,7 +224,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .typeInDynamicField("Name", duplicateLicense)
                 .clickSave()
                 .verifyFieldErrorMessage("Name", "Already exists")
-                .clickCancelAdd();
+                .clickToCancel();
         adminPage
                 .deleteSpecificValue(duplicateLicense)
                 .verifySuccessMessage();
@@ -293,7 +293,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .typeInDynamicField("Name", duplicateLang)
                 .clickSave()
                 .verifyFieldErrorMessage("Name", "Already exists")
-                .clickCancelAdd();
+                .clickToCancel();
 
         adminPage
                 .deleteSpecificValue(duplicateLang)
@@ -361,7 +361,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .typeInDynamicField("Name", duplicateMember)
                 .clickSave()
                 .verifyFieldErrorMessage("Name", "Already exists")
-                .clickCancelAdd();
+                .clickToCancel();
 
         adminPage
                 .deleteSpecificValue(duplicateMember)
