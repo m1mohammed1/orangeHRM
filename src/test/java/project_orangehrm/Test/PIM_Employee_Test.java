@@ -102,11 +102,12 @@ public class PIM_Employee_Test extends BaseTest {
                 .verifySuccessMessage();
         pimPage
                 .clickSideBarEmp("Job")
-                .clickToSection("Assigned Supervisors")
                 .clickTremEmp()
-                .selectDate("Termination Date","2024-07-30")
-                .clickAndSelectDropdown("Termination Reason","Other")
-                .clickSave();
+                .selectDate("Termination Date", "2024-09-30")
+                .closePopups()
+                .clickAndSelectDropdown("Termination Reason", "Other")
+                .clickSave()
+                .verifySuccessMessage();
     }
 
     @Test(priority = 4, description = "TC04 - Verify Add Employee Validation")

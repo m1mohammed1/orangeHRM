@@ -93,6 +93,11 @@ public class AdminPage extends CommonPage {
         return this;
     }
 
+    public AdminPage deleteIfExists(String value) {
+        super.deleteIfExists(value);
+        return this;
+    }
+
     public AdminPage deleteSpecificUnit(String value) {
         deleteUnit(value);
         return this;

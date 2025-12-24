@@ -33,16 +33,14 @@ public class PerformanceTestCleaning extends BaseTest {
                 .navigateToSection("Configure","KPIs")
                 .clickAndSelectDropdown("Job Title","QA Engineer")
                 .searchUser()
-                .deleteSpecificValue("Zero Production Bugs")
-                .verifySuccessMessage();
+                .deleteIfExists("Zero Production Bugs");
     }
 
     @Test(priority = 2, description = "Cleanup Tracker - Quality Tracker 2025")
     public void cleanUpTracker_QualityTracker2025() {
         performancePage
                 .navigateToSection("Configure", "Trackers")
-                .deleteSpecificValue("Quality Tracker 2025")
-                .verifySuccessMessage();
+                .deleteIfExists("Quality Tracker 2025");
     }
 }
 

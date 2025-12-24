@@ -5,13 +5,12 @@ import org.openqa.selenium.WebDriver;
 
 public class PIMPage extends CommonPage {
 
+    private final By TERMINATE_EMPLOYMENT = By.xpath("//button[normalize-space()='Terminate Employment']");
 
 
-    private final By TERMINATE_EMPLOYMENT = By.xpath("Terminate Employment");
-    String DYNAMIC_NAME_FILED = "//label[normalize-space()='%s']/../following-sibling::div//input[@placeholder='%s']";
-    String DYNAMIC_SIDEBAR_EMPLOYEE = "//div[contains(@class, 'orangehrm-tabs')]//a[contains(text(), '%s')]";
-    String DYNAMIC_SECTION_ADD_BUTTON = "//h6[contains(., '%s')]/following-sibling::button[contains(., 'Add')]";
-
+    private final String DYNAMIC_NAME_FILED = "//label[normalize-space()='%s']/../following-sibling::div//input[@placeholder='%s']";
+    private final String DYNAMIC_SIDEBAR_EMPLOYEE = "//div[contains(@class, 'orangehrm-tabs')]//a[contains(text(), '%s')]";
+    private final String DYNAMIC_SECTION_ADD_BUTTON = "//h6[contains(., '%s')]/following-sibling::button[contains(., 'Add')]";
 
     public PIMPage(WebDriver driver) {
         super(driver);
@@ -70,6 +69,7 @@ public class PIMPage extends CommonPage {
         return this;
     }
 
+
     public PIMPage clickSave() {
         save();
         return this;
@@ -77,6 +77,11 @@ public class PIMPage extends CommonPage {
 
     public PIMPage clickTremEmp() {
         clickWhenReady(TERMINATE_EMPLOYMENT);
+        return this;
+    }
+
+    public PIMPage closePopups() {
+        close();
         return this;
     }
 
@@ -122,6 +127,11 @@ public class PIMPage extends CommonPage {
 
     public PIMPage deleteSpecificValue(String value) {
         delete(value);
+        return this;
+    }
+
+    public PIMPage deleteIfExists(String value) {
+        super.deleteIfExists(value);
         return this;
     }
 

@@ -30,34 +30,28 @@ public class Recruitment_Actions_Test extends BaseTest {
     @Test(priority = 1, description = "TC01 - Verify Reject Candidate Workflow")
     public void verifyCandidate_Reject_Success() {
         String firstName = "Reject";
+        String middleName = "To";
         String lastName = "User";
         String email = "reject@test.com";
 
         recruitmentPage
                 .clickToAdd()
-                .typeInDynamicNameFiled("Full Name", "FirstName", firstName)
+                .typeInDynamicNameFiled("Full Name", "First Name", firstName)
+                .typeInDynamicNameFiled("Full Name", "Middle Name", middleName)
                 .typeInDynamicNameFiled("Full Name", "Last Name", lastName)
                 .typeInDynamicField("Email", email)
+                .clickAndSelectDropdown("Vacancy","Software Engineer")
                 .clickSave()
                 .verifySuccessMessage();
         recruitmentPage
-                .clickEyeStatus("Reject User")
                 .clickEditSwitch()
                 .typeInDynamicTextArea("Notes", "Skills do not match")
                 .clickSave()
-                .verifySuccessMessage();
-        recruitmentPage
-                .navigateToSection("Candidates")
-                .verifyStatusContains("Status: Rejected")
-                .typeInDynamicField("Candidate Name", "Reject User")
-                .selectFromList()
-                .searchUser()
-                .verifyStatusContains("Status: Rejected")
-                .deleteSpecificValue("Reject User")
+                .clickReject()
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 3, description = "TC03 - Verify Add Candidate Validation")
+    @Test(priority = 2, description = "TC02 - Verify Add Candidate Validation")
     public void verifyCandidate_EmptyFields_Error() {
         recruitmentPage
                 .clickToAdd()

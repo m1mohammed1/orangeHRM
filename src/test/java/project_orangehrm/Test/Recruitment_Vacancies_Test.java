@@ -80,7 +80,7 @@ public class Recruitment_Vacancies_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Vacancy Validation Errors")
+    @Test(priority = 3, description = "TC03 - Verify Vacancy Validation Errors")
     public void verifyVacancy_EmptyFields_Error() {
         recruitmentPage
                 .navigateToSection("Vacancies")

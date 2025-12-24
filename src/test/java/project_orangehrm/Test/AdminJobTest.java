@@ -337,7 +337,7 @@ public class AdminJobTest extends BaseTest {
                 .typeInDynamicField("From", "09:00 AM")
                 .typeInDynamicField("To", "05:00 PM")
                 .clickToSave()
-                .verifyFieldErrorMessage("Shift Name", "Required");
+                .verifyFieldErrorMessage("Shift Name", "Already exists");
 
         adminPage
                 .navigateToSection("Job", "Work Shifts")

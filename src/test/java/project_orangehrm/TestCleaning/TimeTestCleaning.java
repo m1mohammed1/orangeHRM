@@ -33,8 +33,7 @@ public class TimeTestCleaning extends BaseTest {
                 .navigateToSection("Attendance", "My Records")
                 .selectDate("Date", "2024-12-15")
                 .clickToSubmit()
-                .deleteSpecificValue("Started working on Automation")
-                .verifySuccessMessage();
+                .deleteIfExists("Started working on Automation");
     }
 
     @Test(priority = 2, description = "Cleanup Attendance Record - Leaving for the day")
@@ -43,7 +42,13 @@ public class TimeTestCleaning extends BaseTest {
                 .navigateToSection("Attendance", "My Records")
                 .selectDate("Date", "2024-12-30")
                 .clickToSubmit()
-                .deleteSpecificValue("Leaving for the day")
-                .verifySuccessMessage();
+                .deleteIfExists("Leaving for the day");
+    }
+
+    @Test(priority = 3, description = "Cleanup Customer - Auto Test Customer")
+    public void cleanUpCustomer_AutoTestCustomer() {
+        timePage
+                .navigateToSection("Project Info", "Customers")
+                .deleteIfExists("Auto Test Customer");
     }
 }

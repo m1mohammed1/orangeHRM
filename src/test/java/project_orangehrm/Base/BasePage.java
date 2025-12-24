@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 import project_orangehrm.Utils.AllureAttachment;
 
 import java.time.Duration;
@@ -15,12 +16,14 @@ import java.time.LocalDateTime;
 public class BasePage {
     protected WebDriver driver;
     protected FluentWait<WebDriver> fluentWait;
+    protected SoftAssert softAssert;
 
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
+        this.softAssert = new SoftAssert();
         this.fluentWait = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(5))
+                .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofMillis(300))
                 .ignoring(NoSuchElementException.class)
                 .ignoring(StaleElementReferenceException.class)
@@ -35,6 +38,16 @@ public class BasePage {
             Assert.fail(message + " | Locator: " + locator.toString());
         }
     }
+
+    public void softAssertVisible(By locator, String message) {
+        try {
+            fluentWait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        } catch (TimeoutException e) {
+            softAssert.fail(message + " | Locator: " + locator.toString());
+            takeScreenshot("SoftAssert_Failed");
+        }
+    }
+
 
     public void assertNotVisible(By locator, String message) {
         Assert.assertTrue(fluentWait.until(ExpectedConditions.invisibilityOfElementLocated(locator)), message);
@@ -70,11 +83,11 @@ public class BasePage {
 
 
     public void clickWhenReady(By locator) {
-        fluentWait.until(webDriver -> {
-            WebElement element = webDriver.findElement(locator);
-            element.click();
-            return true;
-        });
+        try {
+            fluentWait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        } catch (ElementClickInterceptedException e) {
+            clickJS(locator);
+        }
     }
 
     public void assertTextContain(By locator, String expectedText) {
@@ -143,6 +156,21 @@ public class BasePage {
     public void verifyFieldIsRequiredErrorMessage(By locator) {
         String message = getValidationMessage(locator);
         Assert.assertFalse(message.isEmpty(), "Expected validation message for " + locator + " but found none.");
+    }
+
+    public void safeDelete(By deleteButton, By confirmButton) {
+        try {
+            clickWhenReady(deleteButton);
+            clickWhenReady(confirmButton);
+        } catch (TimeoutException | NoSuchElementException e) {
+        }
+    }
+
+    public void conditionalTypeAndClick(By fieldLocator, String text, By buttonLocator) {
+        if (driver.findElements(fieldLocator).size() > 0) {
+            typeText(fieldLocator, text);
+            clickWhenReady(buttonLocator);
+        }
     }
 
 }

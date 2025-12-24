@@ -10,6 +10,13 @@ public class ClaimPage extends CommonPage {
     private final By ACTIVATE_BTN = By.xpath("//button[normalize-space()='Activate']");
     private final By ADD_LOG_BTN = By.xpath("//button[normalize-space()='Add Log']");
     private final By DOWNLOAD_BTN = By.xpath("//button[normalize-space()='Download']");
+    private final By APPROVE_BTN = By.xpath("//button[normalize-space()='Approve']");
+    private final By REJECT_BTN = By.xpath("//button[normalize-space()='Reject']");
+    private final By PAY_BTN = By.xpath("//button[normalize-space()='Pay']");
+    private final By CANCEL_BTN = By.xpath("//button[normalize-space()='Cancel']");
+    private final By VIEW_BTN = By.xpath("//button[i[contains(@class, 'bi-eye')]]");
+
+    private final String VIEW_CLAIM_BTN = "//div[contains(text(),'%s')]/ancestor::div[@role='row']//button[i[contains(@class, 'bi-eye')]]";
 
     public ClaimPage(WebDriver driver) {
         super(driver);
@@ -60,6 +67,31 @@ public class ClaimPage extends CommonPage {
         return this;
     }
 
+    public ClaimPage clickViewClaim() {
+        clickWhenReady(VIEW_BTN);
+        return this;
+    }
+
+    public ClaimPage clickApproveClaim() {
+        clickWhenReady(APPROVE_BTN);
+        return this;
+    }
+
+    public ClaimPage clickRejectClaim() {
+        clickWhenReady(REJECT_BTN);
+        return this;
+    }
+
+    public ClaimPage clickPayClaim() {
+        clickWhenReady(PAY_BTN);
+        return this;
+    }
+
+    public ClaimPage clickCancelClaim() {
+        clickWhenReady(CANCEL_BTN);
+        return this;
+    }
+
     public ClaimPage clickActionStatus(String actionName) {
         clickAction(actionName);
         return this;
@@ -70,15 +102,6 @@ public class ClaimPage extends CommonPage {
         return this;
     }
 
-    public double getClaimTotalAmount() {
-        try {
-            String totalText = driver.findElement(
-                    By.xpath("//span[contains(@class,'oxd-text--subtitle-1')]")).getText();
-            return Double.parseDouble(totalText.replaceAll("[^0-9.]", ""));
-        } catch (Exception e) {
-            return 0.0;
-        }
-    }
 
     public ClaimPage uploadReceipt(String filePath) {
         upload(filePath);
@@ -125,6 +148,11 @@ public class ClaimPage extends CommonPage {
         return this;
     }
 
+    public ClaimPage clickToReset() {
+        reset();
+        return this;
+    }
+
     public ClaimPage verifyBodyContains(String expectedText) {
         assertTextContain(org.openqa.selenium.By.tagName("body"), expectedText);
         return this;
@@ -142,6 +170,11 @@ public class ClaimPage extends CommonPage {
 
     public ClaimPage deleteSpecificValue(String value) {
         delete(value);
+        return this;
+    }
+
+    public ClaimPage deleteIfExists(String value) {
+        super.deleteIfExists(value);
         return this;
     }
 
@@ -172,6 +205,11 @@ public class ClaimPage extends CommonPage {
 
     public ClaimPage verifySearchTable() {
         verifyFilterVisible();
+        return this;
+    }
+
+    public ClaimPage verifyElementVisible(String elementText) {
+        verifyElementVisible(elementText);
         return this;
     }
 

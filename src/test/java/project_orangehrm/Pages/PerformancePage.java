@@ -6,7 +6,13 @@ import org.openqa.selenium.WebDriver;
 
 public class PerformancePage extends CommonPage {
 
+    // Specific Locators for Performance Page
     private final By VERIFY_ADMINISTRATOR_CARD = By.cssSelector(".orangehrm-card-container");
+    private final By VIEW_TRACKER_BTN = By.xpath("//button[i[contains(@class,'bi-eye')]]");
+    private final By ACTIVATE_BTN = By.xpath("//button[normalize-space()='Activate']");
+    private final By SUBMIT_RATING_BTN = By.xpath("//button[normalize-space()='Submit']");
+
+    private final String VIEW_REVIEW_BTN = "//div[@role='row']//button[i[contains(@class,'bi-eye')]]";
 
     public PerformancePage(WebDriver driver) {
         super(driver);
@@ -19,6 +25,11 @@ public class PerformancePage extends CommonPage {
 
     public PerformancePage navigateToSection(String mainCategory, String subCategory) {
         super.navigateToSection(mainCategory, subCategory);
+        return this;
+    }
+
+    public PerformancePage navigateToSection(String mainCategory) {
+        super.navigateToSection(mainCategory);
         return this;
     }
 
@@ -52,6 +63,26 @@ public class PerformancePage extends CommonPage {
         return this;
     }
 
+    public PerformancePage clickViewTracker() {
+        clickWhenReady(VIEW_TRACKER_BTN);
+        return this;
+    }
+
+    public PerformancePage clickViewReview() {
+        clickWhenReady(By.xpath(VIEW_REVIEW_BTN));
+        return this;
+    }
+
+    public PerformancePage clickActivateReview() {
+        clickWhenReady(ACTIVATE_BTN);
+        return this;
+    }
+
+    public PerformancePage submitFinalRating() {
+        clickWhenReady(SUBMIT_RATING_BTN);
+        return this;
+    }
+
     public PerformancePage searchUser() {
         submit();
         return this;
@@ -72,6 +103,11 @@ public class PerformancePage extends CommonPage {
         return this;
     }
 
+    public PerformancePage selectDate(String fieldName, String dateValue) {
+        typeInField(fieldName, dateValue);
+        return this;
+    }
+
     public PerformancePage clickSave() {
         save();
         return this;
@@ -82,6 +118,11 @@ public class PerformancePage extends CommonPage {
         return this;
     }
 
+    public PerformancePage clickToReset() {
+        reset();
+        return this;
+    }
+
     public PerformancePage selectFromList() {
         selectFirstOption();
         return this;
@@ -89,6 +130,11 @@ public class PerformancePage extends CommonPage {
 
     public PerformancePage deleteSpecificValue(String value) {
         delete(value);
+        return this;
+    }
+
+    public PerformancePage deleteIfExists(String value) {
+        super.deleteIfExists(value);
         return this;
     }
 

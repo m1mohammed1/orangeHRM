@@ -81,7 +81,7 @@ public class Performance_Configuration_Test extends BaseTest {
                 .verifyFieldErrorMessage("Job Title", "Required");
     }
 
-    @Test(priority = 3, description = "TC03 - Verify Tracker Lifecycle: Create")
+    @Test(priority = 4, description = "TC04 - Verify Tracker Lifecycle: Create")
     public void verifyTracker_Lifecycle_Success() {
         String trackerName = "Quality Tracker 2025";
         String employeeName = "Script Automation Tester";
@@ -98,7 +98,7 @@ public class Performance_Configuration_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 4, description = "TC04 - Verify KPI Validation Errors")
+    @Test(priority = 5, description = "TC05 - Verify Tracker Validation Errors")
     public void verifyTracker_EmptyFields_Error() {
         performancePage
                 .navigateToSection("Configure", "Trackers")

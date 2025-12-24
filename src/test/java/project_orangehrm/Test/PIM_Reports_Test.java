@@ -45,7 +45,17 @@ public class PIM_Reports_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Report Lifecycle: Create, Verify, Edit, Delete")
+    @Test(priority = 2, description = "TC02 - Generate Employee Report")
+    public void verifyReport_Generate_Success() {
+        String reportName = "QA Employee Audit Report";
+        pimPage
+                .navigateToSection("Reports")
+                .clickToEdit(reportName)
+                .searchUser()
+                .verifySearchTable();
+    }
+
+    @Test(priority = 3, description = "TC03 - Verify Report Lifecycle: Create, Verify, Edit, Delete")
     public void verifyReport_Lifecycle_Edit() {
         String reportName = "QA Automation Employee Audit Report";
         pimPage
@@ -72,7 +82,7 @@ public class PIM_Reports_Test extends BaseTest {
     }
 
 
-    @Test(priority = 3, description = "TC03 - Verify Report Validation Error")
+    @Test(priority = 4, description = "TC04 - Verify Report Validation Error")
     public void verifyReport_EmptyFields_ShowError() {
         pimPage
                 .navigateToSection("Reports")

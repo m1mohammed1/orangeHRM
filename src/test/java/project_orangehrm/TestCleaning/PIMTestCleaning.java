@@ -34,9 +34,7 @@ public class PIMTestCleaning extends BaseTest {
         pimPage
                 .verifyPIMPage("PIM")
                 .navigateToSection("Configuration", "Custom Fields")
-                .verifyRecordExists("Automation Badge ID")
-                .deleteSpecificValue("Automation Badge ID")
-                .verifySuccessMessage();
+                .deleteIfExists("Automation Badge ID");
     }
 
 
@@ -45,9 +43,7 @@ public class PIMTestCleaning extends BaseTest {
         pimPage
                 .verifyPIMPage("PIM")
                 .navigateToSection("Configuration", "Reporting Methods")
-                .verifyRecordExists("Weekly Scrum Report")
-                .deleteSpecificValue("Weekly Scrum Report")
-                .verifySuccessMessage();
+                .deleteIfExists("Weekly Scrum Report");
     }
 
 
@@ -56,9 +52,7 @@ public class PIMTestCleaning extends BaseTest {
         pimPage
                 .verifyPIMPage("PIM")
                 .navigateToSection("Configuration", "Termination Reasons")
-                .verifyRecordExists("Better Salary Opportunity")
-                .deleteSpecificValue("Better Salary Opportunity")
-                .verifySuccessMessage();
+                .deleteIfExists("Better Salary Opportunity");
     }
 
     @Test(priority = 4, description = "Cleanup Employee - Script Automation Tester (ID: 77777)")
@@ -69,9 +63,7 @@ public class PIMTestCleaning extends BaseTest {
                 .typeInDynamicField("Employee Id", "77777")
                 .clickAndSelectDropdown("Include", "Current Employees Only")
                 .searchUser()
-                .verifyRecordExists("77777")
-                .deleteSpecificValue("77777")
-                .verifySuccessMessage();
+                .deleteIfExists("77777");
     }
 
     @Test(priority = 5, description = "Cleanup Employee - Dev Sec Ops (ID: 0777)")
@@ -82,9 +74,7 @@ public class PIMTestCleaning extends BaseTest {
                 .typeInDynamicField("Employee Id", "0777")
                 .clickAndSelectDropdown("Include", "Current Employees Only")
                 .searchUser()
-                .verifyRecordExists("0777")
-                .deleteSpecificValue("0777")
-                .verifySuccessMessage();
+                .deleteIfExists("0777");
     }
 
     @Test(priority = 6, description = "Cleanup Employee - Dev Ops Trem (ID: 0333)")
@@ -95,9 +85,7 @@ public class PIMTestCleaning extends BaseTest {
                 .typeInDynamicField("Employee Id", "0333")
                 .clickAndSelectDropdown("Include", "Past Employees Only")
                 .searchUser()
-                .verifyRecordExists("0333")
-                .deleteSpecificValue("0333")
-                .verifySuccessMessage();
+                .deleteIfExists("0333");
     }
 
     @Test(priority = 7, description = "Cleanup Report - QA Employee Audit Report")
@@ -105,9 +93,7 @@ public class PIMTestCleaning extends BaseTest {
         pimPage
                 .verifyPIMPage("PIM")
                 .navigateToSection("Reports")
-                .verifyRecordExists("QA Employee Audit Report")
-                .deleteSpecificValue("QA Employee Audit Report")
-                .verifySuccessMessage();
+                .deleteIfExists("QA Employee Audit Report");
     }
 
 

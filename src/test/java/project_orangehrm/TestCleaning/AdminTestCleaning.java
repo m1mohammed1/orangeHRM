@@ -33,9 +33,7 @@ public class AdminTestCleaning extends BaseTest {
         adminPage
                 .verifyAdminPage("Admin")
                 .navigateToSection("Job","Job Titles")
-                .verifyRecordExists("Principal SDET Engineer")
-                .deleteSpecificValue("Principal SDET Engineer")
-                .verifySuccessMessage();
+                .deleteIfExists("Principal SDET Engineer");
     }
 
     @Test(priority = 2, description = "Validate and Cleanup Pay Grade")
@@ -43,9 +41,7 @@ public class AdminTestCleaning extends BaseTest {
         adminPage
                 .verifyAdminPage("Admin")
                 .navigateToSection("Job", "Pay Grades")
-                .verifyRecordExists("Grade 5 - Executive")
-                .deleteSpecificValue("Grade 5 - Executive")
-                .verifySuccessMessage();
+                .deleteIfExists("Grade 5 - Executive");
     }
 
     @Test(priority = 2, description = "Cleanup Employment Status - Freelance - Project Based")
@@ -53,9 +49,7 @@ public class AdminTestCleaning extends BaseTest {
         adminPage
                 .verifyAdminPage("Admin")
                 .navigateToSection("Job", "Employment Status")
-                .verifyRecordExists("Freelance - Project Based")
-                .deleteSpecificValue("Freelance - Project Based")
-                .verifySuccessMessage();
+                .deleteIfExists("Freelance - Project Based");
     }
 
     @Test(priority = 3, description = "Cleanup Job Category - Professionals - QA Engineer")
@@ -63,9 +57,7 @@ public class AdminTestCleaning extends BaseTest {
         adminPage
                 .verifyAdminPage("Admin")
                 .navigateToSection("Job", "Job Categories")
-                .verifyRecordExists("Professionals - َQA Engineer")
-                .deleteSpecificValue("Professionals - َQA Engineer")
-                .verifySuccessMessage();
+                .deleteIfExists("Professionals - َQA Engineer");
     }
 
     @Test(priority = 4, description = "Cleanup Work Shift - Night Shift - B")
@@ -73,9 +65,7 @@ public class AdminTestCleaning extends BaseTest {
         adminPage
                 .verifyAdminPage("Admin")
                 .navigateToSection("Job", "Work Shifts")
-                .verifyRecordExists("Night Shift - B")
-                .deleteSpecificValue("Night Shift - B")
-                .verifySuccessMessage();
+                .deleteIfExists("Night Shift - B");
     }
 
     @Test(priority = 6, description = "Validate and Cleanup Location")
@@ -85,36 +75,15 @@ public class AdminTestCleaning extends BaseTest {
                 .navigateToSection("Organization","Locations")
                 .typeInDynamicField("Name", "Cairo Innovation Hub")
                 .searchUser()
-                .verifyRecordExists("Cairo Innovation Hub");
-        adminPage
-                .deleteSpecificValue("Cairo Innovation Hub")
-                .verifySuccessMessage();
+                .deleteIfExists("Cairo Innovation Hub");
     }
-
-/** wait to Edit (Structure) notable to use dynamic locator
-    @Test(priority = 7)
-    public void test8() {
-        adminPage
-                .verifyAdminPage("Admin")
-                .navigateToSection("Organization","Locations")
-                .typeInDynamicField("Name", "Cairo Innovation Hub")
-                .searchUser()
-                .verifyRecordExists("Cairo Innovation Hub");
-        adminPage
-                .deleteSpecificValue("Cairo Innovation Hub")
-                .verifySuccessMessage();
-    }
-    **/
-
 
     @Test(priority =8, description = "Validate and Cleanup Skill - Java Automation")
     public void cleanUpSkill() {
         adminPage
                 .verifyAdminPage("Admin")
                 .navigateToSection("Qualifications", "Skills")
-                .verifyRecordExists("Java Automation")
-                .deleteSpecificValue("Java Automation")
-                .verifySuccessMessage();
+                .deleteIfExists("Java Automation");
     }
 
     @Test(priority = 9, description = "Cleanup Education - Master of Science")
@@ -122,9 +91,7 @@ public class AdminTestCleaning extends BaseTest {
         adminPage
                 .verifyAdminPage("Admin")
                 .navigateToSection("Qualifications", "Education")
-                .verifyRecordExists("Master of Science")
-                .deleteSpecificValue("Master of Science")
-                .verifySuccessMessage();
+                .deleteIfExists("Master of Science");
     }
 
     @Test(priority = 10, description = "Cleanup License - ISTQB Foundation")
@@ -132,9 +99,7 @@ public class AdminTestCleaning extends BaseTest {
         adminPage
                 .verifyAdminPage("Admin")
                 .navigateToSection("Qualifications", "Licenses")
-                .verifyRecordExists("ISTQB Foundation")
-                .deleteSpecificValue("ISTQB Foundation")
-                .verifySuccessMessage();
+                .deleteIfExists("ISTQB Foundation");
     }
 
     @Test(priority = 11, description = "Cleanup Language - German-Arabic")
@@ -142,9 +107,7 @@ public class AdminTestCleaning extends BaseTest {
         adminPage
                 .verifyAdminPage("Admin")
                 .navigateToSection("Qualifications", "Languages")
-                .verifyRecordExists("German-Arabic")
-                .deleteSpecificValue("German-Arabic")
-                .verifySuccessMessage();
+                .deleteIfExists("German-Arabic");
     }
 
     @Test(priority = 12, description = "Cleanup Membership - IEEE Member")
@@ -152,9 +115,7 @@ public class AdminTestCleaning extends BaseTest {
         adminPage
                 .verifyAdminPage("Admin")
                 .navigateToSection("Qualifications", "Memberships")
-                .verifyRecordExists("IEEE Member")
-                .deleteSpecificValue("IEEE Member")
-                .verifySuccessMessage();
+                .deleteIfExists("IEEE Member");
     }
 
     @Test(priority = 13, description = "Cleanup Email Subscription - Automation Subscriber")
@@ -163,8 +124,14 @@ public class AdminTestCleaning extends BaseTest {
                 .verifyAdminPage("Admin")
                 .navigateToSection("Configuration", "Email Subscriptions")
                 .clickToSubscribe("Leave Applications")
-                .verifyRecordExists("Automation Subscriber")
-                .deleteSpecificValue("Automation Subscriber")
-                .verifySuccessMessage();
+                .deleteIfExists("Automation Subscriber");
+    }
+
+    @Test(priority = 14, description = "Cleanup Nationality - Automation Tester Nationality")
+    public void cleanUpNationality() {
+        adminPage
+                .verifyAdminPage("Admin")
+                .navigateToSection("Nationalities")
+                .deleteIfExists("Automation Tester Nationality");
     }
 }

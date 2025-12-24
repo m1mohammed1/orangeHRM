@@ -21,7 +21,7 @@ public class Time_BusinessLogic_Test extends BaseTest {
         timePage = new TimePage(driver);
         loginPage
                 .enterUsername("Admin")
-                .enterPassword("admin")
+                .enterPassword("admin123")
                 .clickLogin();
         dashboardPage
                 .navigateToModule("Time");
@@ -34,7 +34,6 @@ public class Time_BusinessLogic_Test extends BaseTest {
                 .clickToEdit("Edit")
                 .typeInTimesheetGrid("ACME Project", "Mon", "25:00")
                 .clickSave();
-                //.verifyErrorMessage("Should be less than 24");
     }
 
     @Test(priority = 2, description = "TC02 - Verify Cannot Punch In Future Date")
@@ -43,6 +42,5 @@ public class Time_BusinessLogic_Test extends BaseTest {
                 .navigateToSection("Attendance", "Punch In/Out")
                 .selectDate("Date", "2029-01-01")
                 .clickPunchIn();
-               // .verifyErrorMessage("Cannot punch in for future date");
     }
 }

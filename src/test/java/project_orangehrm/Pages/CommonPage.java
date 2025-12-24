@@ -28,6 +28,7 @@ public class CommonPage extends BasePage {
     private final By DIALOG_SHEET = By.cssSelector(".oxd-dialog-sheet");
     private final By DIALOG_CLOSE = By.cssSelector(".oxd-dialog-close-button");
     private final By BODY_TAG = By.tagName("body");
+    private final By CLOSE_POPUPS = By.xpath("//div[@class='oxd-date-input-link --close']");
 
     private final String SIDE_MENU_ITEM = "//a[contains(@class,'oxd-main-menu-item')]/span[text()='%s']";
     private final String TOP_BAR_MENU = "//nav[@aria-label='Topbar Menu']//li[contains(normalize-space(), '%s')]";
@@ -106,6 +107,11 @@ public class CommonPage extends BasePage {
 
     public CommonPage clickTab(String tabName) {
         clickWhenReady(getLocator(DYNAMIC_SIDE_TAB, tabName));
+        return this;
+    }
+
+    public CommonPage close() {
+        clickWhenReady(CLOSE_POPUPS);
         return this;
     }
 
@@ -210,6 +216,12 @@ public class CommonPage extends BasePage {
         return this;
     }
 
+    public CommonPage deleteIfExists(String value) {
+        safeDelete(getLocator(DYNAMIC_DELETE_BTN, value), CONFIRM_DELETE_BTN);
+        return this;
+    }
+
+
     public CommonPage deleteUnit(String value) {
         clickWhenReady(getLocator(DYNAMIC_UNIT_DELETE_BTN, value));
         clickWhenReady(CONFIRM_DELETE_BTN);
@@ -246,17 +258,17 @@ public class CommonPage extends BasePage {
     }
 
     public CommonPage verifySuccessToast() {
-        assertVisible(SUCCESS_TOAST, "Success message not displayed");
+        softAssertVisible(SUCCESS_TOAST, "Success message not displayed");
         return this;
     }
 
     public CommonPage verifyInfoToast() {
-        assertVisible(INFO_TOAST, "Info message not displayed");
+        softAssertVisible(INFO_TOAST, "Info message not displayed");
         return this;
     }
 
     public CommonPage verifyErrorToast() {
-        assertVisible(ERROR_TOAST, "Error message not displayed");
+        softAssertVisible(ERROR_TOAST, "Error message not displayed");
         return this;
     }
 

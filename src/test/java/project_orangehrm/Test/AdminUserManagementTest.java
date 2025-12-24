@@ -99,4 +99,102 @@ public class AdminUserManagementTest extends BaseTest {
                 .verifyFieldErrorMessage("Password", "Required");
     }
 
+    @Test(priority = 6, description = "TC06 - Verify Edit User: Change Status from Enabled to Disabled")
+    public void verifyUserManagement_EditUser_Success() {
+        String username = "EditTest_User";
+        adminPage
+                .verifyAdminPage("Admin")
+                .clickToAdd()
+                .clickAndSelectDropdown("User Role", "ESS")
+                .typeInDynamicField("Employee Name", "Script Automation Test")
+                .selectFromList()
+                .clickAndSelectDropdown("Status", "Enabled")
+                .typeInDynamicField("Username", username)
+                .typeInDynamicField("Password", "Password123!")
+                .typeInDynamicField("Confirm Password", "Password123!")
+                .clickToSave()
+                .verifySuccessMessage();
+        adminPage
+                .typeInDynamicField("Username", username)
+                .searchUser()
+                .clickToEdit(username)
+                .clickAndSelectDropdown("Status", "Disabled")
+                .clickToSave()
+                .verifySuccessMessage();
+        adminPage
+                .typeInDynamicField("Username", username)
+                .clickAndSelectDropdown("Status", "Disabled")
+                .searchUser()
+                .verifyRecordExists(username)
+                .deleteSpecificValue(username)
+                .verifySuccessMessage();
+    }
+
+    @Test(priority = 7, description = "TC07 - Verify Delete User Functionality")
+    public void verifyUserManagement_DeleteUser_Success() {
+        String username = "DeleteTest_User";
+        adminPage
+                .verifyAdminPage("Admin")
+                .clickToAdd()
+                .clickAndSelectDropdown("User Role", "ESS")
+                .typeInDynamicField("Employee Name", "Script Automation Test")
+                .selectFromList()
+                .clickAndSelectDropdown("Status", "Enabled")
+                .typeInDynamicField("Username", username)
+                .typeInDynamicField("Password", "Password123!")
+                .typeInDynamicField("Confirm Password", "Password123!")
+                .clickToSave()
+                .verifySuccessMessage();
+        adminPage
+                .typeInDynamicField("Username", username)
+                .searchUser()
+                .deleteSpecificValue(username)
+                .verifySuccessMessage()
+                .verifyRecordDeleted(username);
+    }
+
+    @Test(priority = 8, description = "TC08 - Verify Search by User Role Filter")
+    public void verifyUserManagement_SearchByRole_Success() {
+        adminPage
+                .verifyAdminPage("Admin")
+                .clickAndSelectDropdown("User Role", "Admin")
+                .searchUser()
+                .verifyRecordExists("Admin");
+    }
+
+    @Test(priority = 9, description = "TC09 - Verify Search by Status Filter")
+    public void verifyUserManagement_SearchByStatus_Success() {
+        adminPage
+                .verifyAdminPage("Admin")
+                .clickAndSelectDropdown("Status", "Enabled")
+                .searchUser()
+                .verifySearchTable();
+    }
+
+    @Test(priority = 10, description = "TC10 - Verify Duplicate Username Error")
+    public void verifyUserManagement_DuplicateUsername_ShowError() {
+        adminPage
+                .verifyAdminPage("Admin")
+                .clickToAdd()
+                .clickAndSelectDropdown("User Role", "Admin")
+                .typeInDynamicField("Employee Name", "Script Automation Test")
+                .selectFromList()
+                .clickAndSelectDropdown("Status", "Enabled")
+                .typeInDynamicField("Username", "Admin")
+                .typeInDynamicField("Password", "Password123!")
+                .typeInDynamicField("Confirm Password", "Password123!")
+                .clickToSave()
+                .verifyFieldErrorMessage("Username", "Already exists");
+    }
+
+    @Test(priority = 11, description = "TC11 - Verify Reset Search Filters")
+    public void verifyUserManagement_ResetFilter_Success() {
+        adminPage
+                .verifyAdminPage("Admin")
+                .typeInDynamicField("Username", "TestUser")
+                .clickAndSelectDropdown("User Role", "Admin")
+                .clickAndSelectDropdown("Status", "Enabled")
+                .clickToReset()
+                .verifySearchTable();
+    }
 }

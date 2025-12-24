@@ -8,7 +8,6 @@ public class MaintenancePage extends CommonPage {
 
     private final By ACCESS_PASSWORD_FIELD = By.name("password");
     private final By VERIFY_BTN = By.xpath("//button[normalize-space()='Confirm']");
-   // private final By INVALID_CREDENTIALS_MSG = By.xpath("//p[contains(text(),'Invalid credentials')]");
     private final By FIRST_CHECK_BOX_BTN = By.cssSelector(".oxd-table-card .oxd-checkbox-input");
     private final By ALL_CHECK_BOX_BTN = By.cssSelector(".oxd-table-header .oxd-checkbox-input");
 
@@ -24,18 +23,9 @@ public class MaintenancePage extends CommonPage {
     }
 
     public MaintenancePage verifyAccessPassword(String password) {
-        if (driver.findElements(ACCESS_PASSWORD_FIELD).size() > 0) {
-            type(ACCESS_PASSWORD_FIELD, password);
-            clickWhenReady(VERIFY_BTN);
-        }
+        conditionalTypeAndClick(ACCESS_PASSWORD_FIELD, password, VERIFY_BTN);
         return this;
     }
-/*
-    public MaintenancePage verifyErrorMessage(String expectedMessage) {
-        assertVisible(INVALID_CREDENTIALS_MSG, "Invalid credentials message is not displayed");
-        return this;
-    }
- */
 
     public MaintenancePage clickCancelPassword() {
         cancel();

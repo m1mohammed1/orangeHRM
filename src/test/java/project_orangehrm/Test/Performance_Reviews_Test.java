@@ -43,10 +43,8 @@ public class Performance_Reviews_Test extends BaseTest {
                 .typeInDynamicField("Due Date", "2025-01-15")
                 .clickSave()
                 .verifySuccessMessage();
-        // performancePage.searchByEmployee(employeeName);
         performancePage
                 .verifyRecordExists(employeeName);
-
         performancePage
                 .deleteSpecificValue(employeeName)
                 .verifySuccessMessage();

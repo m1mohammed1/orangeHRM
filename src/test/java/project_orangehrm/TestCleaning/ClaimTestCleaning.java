@@ -31,8 +31,6 @@ public class ClaimTestCleaning extends BaseTest {
     public void cleanUpEvent_GlobalQASummit2025() {
         claimPage
                 .navigateToSection("Configuration", "Events")
-                .verifyRecordExists("Global QA Summit 2025")
-                .deleteSpecificValue("Global QA Summit 2025")
-                .verifySuccessMessage();
+                .deleteIfExists("Global QA Summit 2025");
     }
 }

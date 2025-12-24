@@ -34,8 +34,7 @@ public class RecruitmentTestCleaning extends BaseTest {
                 .typeInDynamicField("Candidate Name","E2E")
                 .selectFromList()
                 .searchUser()
-                .deleteSpecificValue("E2E Candidate")
-                .verifySuccessMessage();
+                .deleteIfExists("E2E Candidate");
     }
 
     @Test(priority = 2, description = "Cleanup Candidate - Decline Candidate")
@@ -45,8 +44,7 @@ public class RecruitmentTestCleaning extends BaseTest {
                 .typeInDynamicField("Candidate Name","Decline")
                 .selectFromList()
                 .searchUser()
-                .deleteSpecificValue("Decline Candidate")
-                .verifySuccessMessage();
+                .deleteIfExists("Decline Candidate");
     }
 
     @Test(priority = 3, description = "Cleanup Vacancy - Senior Java SDET")
@@ -55,7 +53,26 @@ public class RecruitmentTestCleaning extends BaseTest {
                 .navigateToSection("Vacancies")
                 .clickAndSelectDropdown("Vacancy","Senior Java SDET")
                 .searchUser()
-                .deleteSpecificValue("Senior Java SDET")
-                .verifySuccessMessage();
+                .deleteIfExists("Senior Java SDET");
+    }
+
+    @Test(priority = 4, description = "Cleanup Candidate - Workflow Candidate")
+    public void cleanUpCandidate_WorkflowCandidate() {
+        recruitmentPage
+                .navigateToSection("Candidates")
+                .typeInDynamicField("Candidate Name", "Workflow")
+                .selectFromList()
+                .searchUser()
+                .deleteIfExists("Workflow Candidate");
+    }
+
+    @Test(priority = 5, description = "Cleanup Candidate - Failed Candidate")
+    public void cleanUpCandidate_FailedCandidate() {
+        recruitmentPage
+                .navigateToSection("Candidates")
+                .typeInDynamicField("Candidate Name", "Failed")
+                .selectFromList()
+                .searchUser()
+                .deleteIfExists("Failed Candidate");
     }
 }

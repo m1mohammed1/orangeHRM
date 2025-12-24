@@ -111,6 +111,11 @@ public class TimePage extends CommonPage {
         return this;
     }
 
+    public TimePage deleteIfExists(String value) {
+        super.deleteIfExists(value);
+        return this;
+    }
+
     public TimePage clickCheckbox(String labelText) {
         clickOnCheckbox(labelText);
         return this;

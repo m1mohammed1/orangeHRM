@@ -29,28 +29,16 @@ public class BuzzTestCleaning extends BaseTest {
 
     @Test(priority = 1, description = "Cleanup Post - Engagement")
     public void cleanUpPost_Engagement() {
-        buzzPage
-                .clickPostOptions("Engagement")
-                .clickDeleteOption()
-                .confirmDelete()
-                .verifySuccessMessage();
+        buzzPage.deleteIfExists("Engagement");
     }
 
     @Test(priority = 2, description = "Cleanup Post - Updated Text")
     public void cleanUpPost_UpdatedText() {
-        buzzPage
-                .clickPostOptions("Updated Text")
-                .clickDeleteOption()
-                .confirmDelete()
-                .verifySuccessMessage();
+        buzzPage.deleteIfExists("Updated Text");
     }
 
     @Test(priority = 3, description = "Cleanup Post - Safety Check")
     public void cleanUpPost_SafetyCheck() {
-        buzzPage
-                .clickPostOptions("Safety Check")
-                .clickDeleteOption()
-                .confirmDelete()
-                .verifySuccessMessage();
+        buzzPage.deleteIfExists("Safety Check");
     }
 }

@@ -10,7 +10,7 @@ public class RecruitmentPage extends CommonPage {
 
     private final By STATUS_FILED = By.cssSelector(".oxd-text--subtitle-2");
     private final By VERIFY_BODY = By.tagName("body");
-    private final By DYNAMIC_BTN = By.xpath("//button[normalize-space()='%s']");
+    private final By DYNAMIC_BTN = By.xpath("//button[normalize-space()='Reject']");
 
     String DYNAMIC_NAME_FILED = "//label[normalize-space()='%s']/../following-sibling::div//input[@placeholder='%s']";
 
@@ -61,6 +61,11 @@ public class RecruitmentPage extends CommonPage {
         return this;
     }
 
+    public RecruitmentPage clickReject() {
+        clickWhenReady(DYNAMIC_BTN);
+        return this;
+    }
+
     public RecruitmentPage clickSave() {
         save();
         return this;
@@ -96,6 +101,11 @@ public class RecruitmentPage extends CommonPage {
         return this;
     }
 
+    public RecruitmentPage selectDate(String filed, String day) {
+        String DYNAMIC_GRID_CELL = "//div[contains(text(),'%s')]/ancestor::div[@class='oxd-sheet']//input[@placeholder='%s']";
+        return this;
+    }
+
     public RecruitmentPage clickEditSwitch() {
         toggleEdit();
         return this;
@@ -103,6 +113,11 @@ public class RecruitmentPage extends CommonPage {
 
     public RecruitmentPage deleteSpecificValue(String value) {
         delete(value);
+        return this;
+    }
+
+    public RecruitmentPage deleteIfExists(String value) {
+        super.deleteIfExists(value);
         return this;
     }
 

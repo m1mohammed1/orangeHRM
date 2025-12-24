@@ -53,7 +53,7 @@ public class PIM_Configuration_Test extends BaseTest {
 
     @Test(priority = 2, description = "TC02 - Verify Custom Field Lifecycle: Create, Verify, Edit, Delete")
     public void verifyCustomField_Lifecycle_Edit() {
-        String fieldName = "Automation Badge ID";
+        String fieldName = "Automation Badge ID Edit";
         pimPage
                 .navigateToSection("Configuration", "Custom Fields")
                 .clickToAdd()
@@ -63,10 +63,13 @@ public class PIM_Configuration_Test extends BaseTest {
                 .clickSave()
                 .verifySuccessMessage()
                 .clickToEdit(fieldName)
-                .typeInDynamicField("Field Name","Ai Automation Badge")
-                .deleteSpecificValue("Automation Badge ID")
+                .typeInDynamicField("Field Name", "Ai Automation Badge")
+                .clickSave()
                 .verifySuccessMessage()
-                .verifyRecordDeleted("Automation Badge ID");
+                .verifyRecordExists("Ai Automation Badge")
+                .deleteSpecificValue("Ai Automation Badge")
+                .verifySuccessMessage()
+                .verifyRecordDeleted("Ai Automation Badge");
     }
 
     @Test(priority = 3, description = "TC03 - Verify Custom Field Validation Errors")
@@ -155,15 +158,17 @@ public class PIM_Configuration_Test extends BaseTest {
 
     @Test(priority = 7, description = "TC07 - Verify Termination Reason Lifecycle: Create, Verify, Edit, Delete")
     public void verifyTerminationReason_Lifecycle_Edit() {
-        String reasonName = "Better Salary Opportunity";
+        String reasonName = "Better Salary Opportunity Edit";
         pimPage
                 .navigateToSection("Configuration", "Termination Reasons")
                 .clickToAdd()
                 .typeInDynamicField("Name", reasonName)
                 .clickSave()
                 .verifySuccessMessage()
-                .clickToEdit("Better Salary Opportunity")
-                .typeInDynamicField("Name","Better Job Opportunity")
+                .clickToEdit(reasonName)
+                .typeInDynamicField("Name", "Better Job Opportunity")
+                .clickSave()
+                .verifySuccessMessage()
                 .verifyRecordExists("Better Job Opportunity")
                 .deleteSpecificValue("Better Job Opportunity")
                 .verifySuccessMessage()

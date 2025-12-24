@@ -5,6 +5,12 @@ import org.openqa.selenium.WebDriver;
 
 public class LeavePage extends CommonPage {
 
+    private final By APPROVE_BTN = By.xpath("//button[i[contains(@class, 'bi-check')]]");
+    private final By REJECT_BTN = By.xpath("//button[i[contains(@class, 'bi-x')]]");
+    private final By CANCEL_BTN = By.xpath("//button[i[contains(@class, 'bi-slash-circle')]]");
+    private final By VIEW_DETAILS_BTN = By.xpath("//button[i[contains(@class, 'bi-eye')]]");
+    private final By ADD_COMMENT_BTN = By.xpath("//button[i[contains(@class, 'bi-chat-text')]]");
+
     public LeavePage(WebDriver driver) {
         super(driver);
     }
@@ -64,6 +70,11 @@ public class LeavePage extends CommonPage {
         return this;
     }
 
+    public LeavePage searchUser() {
+        submit();
+        return this;
+    }
+
     public LeavePage selectFromList() {
         selectFirstOption();
         return this;
@@ -116,6 +127,41 @@ public class LeavePage extends CommonPage {
 
     public LeavePage verifySearchTable() {
         verifyFilterVisible();
+        return this;
+    }
+
+    public LeavePage clickApproveLeave() {
+        clickWhenReady(APPROVE_BTN);
+        return this;
+    }
+
+    public LeavePage clickRejectLeave() {
+        clickWhenReady(REJECT_BTN);
+        return this;
+    }
+
+    public LeavePage clickCancelLeave() {
+        clickWhenReady(CANCEL_BTN);
+        return this;
+    }
+
+    public LeavePage clickViewDetails() {
+        clickWhenReady(VIEW_DETAILS_BTN);
+        return this;
+    }
+
+    public LeavePage clickAddComment() {
+        clickWhenReady(ADD_COMMENT_BTN);
+        return this;
+    }
+
+    public LeavePage clickSave() {
+        save();
+        return this;
+    }
+
+    public LeavePage verifyElementVisible(String elementText) {
+        super.verifyElementVisible(elementText);
         return this;
     }
 
