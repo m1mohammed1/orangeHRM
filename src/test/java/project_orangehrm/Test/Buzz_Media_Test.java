@@ -19,8 +19,12 @@ public class Buzz_Media_Test extends BaseTest {
         dashboardPage = new DashboardPage(driver);
         buzzPage = new BuzzPage(driver);
 
-        loginPage.enterUsername("Admin").enterPassword("admin123").clickLogin();
-        dashboardPage.navigateToModule("Buzz");
+        loginPage
+                .enterUsername("Admin")
+                .enterPassword("admin123")
+                .clickLogin();
+        dashboardPage
+                .navigateToModule("Buzz");
     }
 
     @Test(priority = 1, description = "TC01 - Verify Posting with Photo Upload")

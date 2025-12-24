@@ -38,7 +38,7 @@ public class Admin_Configuration_Test extends BaseTest {
                 .clickToAdd()
                 .typeInDynamicField("Name", subscriberName)
                 .typeInDynamicField("Email", subscriberEmail)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .verifyRecordExists(subscriberName);
     }
@@ -55,13 +55,13 @@ public class Admin_Configuration_Test extends BaseTest {
         adminPage
                 .typeInDynamicField("Name", subscriberName)
                 .typeInDynamicField("Email", subscriberEmail)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
         adminPage
                 .verifyRecordExists(subscriberName)
                 .clickToEdit(subscriberName)
                 .typeInDynamicField("Email",subscriberEmailSec)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
         adminPage
                 .deleteSpecificValue(subscriberName)
@@ -75,7 +75,7 @@ public class Admin_Configuration_Test extends BaseTest {
                 .navigateToSection("Configuration", "Email Subscriptions")
                 .clickToSubscribe("Leave Applications")
                 .clickToAdd()
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Name", "Required")
                 .verifyFieldErrorMessage("Email", "Required");
     }
@@ -86,14 +86,14 @@ public class Admin_Configuration_Test extends BaseTest {
                 .navigateToSection("Configuration", "Email Configuration");
         adminPage
                 .typeInDynamicField("Mail Sent As", "Admin")
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Mail Sent As", "Expected format: admin@example.com");
         adminPage
                 .typeInDynamicField("Mail Sent As", "admin@test.com")
                 .clickToRadioButton("SECURE SMTP")
                 .typeInDynamicField("SMTP Host", "smtp.gmail.com")
                 .typeInDynamicField("SMTP Port", "587")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
     }
 
@@ -104,7 +104,7 @@ public class Admin_Configuration_Test extends BaseTest {
         adminPage
                 .clickAndSelectDropdown("Language", "English")
                 .clickAndSelectDropdown("Date Format", "yyyy-mm-dd")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
     }
 
@@ -115,7 +115,7 @@ public class Admin_Configuration_Test extends BaseTest {
                 .navigateToSection("Configuration", "Language Packages")
                 .clickToAdd()
                 .clickAndSelectDropdown("Name", langName)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .deleteSpecificValue(langName)
                 .verifySuccessMessage()
@@ -131,7 +131,7 @@ public class Admin_Configuration_Test extends BaseTest {
                 .typeInDynamicField("Provider URL", "https://api.sandbox-auth.com/v1/oauth2/token")
                 .typeInDynamicField("Client ID", "qa-tester-9921-XyZ")
                 .typeInDynamicField("Client Secret", "sec_7f92kLp93mQn01vR_TEST_ONLY")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .deleteSpecificValue("Test Provider")
                 .verifySuccessMessage();
@@ -142,7 +142,7 @@ public class Admin_Configuration_Test extends BaseTest {
     public void verifyModules_Configuration_Save() {
         adminPage
                 .navigateToSection("Configuration", "Modules")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
     }
 
@@ -152,7 +152,7 @@ public class Admin_Configuration_Test extends BaseTest {
                 .navigateToSection("Configuration", "Social Media Authentication")
                 .clickToAdd()
                 .typeInDynamicField("Name", "Test Provider")
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Provider URL", "Required")
                 .verifyFieldErrorMessage("Client ID", "Required");
     }
@@ -169,7 +169,7 @@ public class Admin_Configuration_Test extends BaseTest {
                 .typeInDynamicField("Name", clientId)
                 .typeInDynamicField("Redirect URI", redirectUri)
                 .toggleEditMode()
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 /**There**/
                 .navigateToSection("Configuration", "Register OAuth Client")
@@ -184,7 +184,7 @@ public class Admin_Configuration_Test extends BaseTest {
         adminPage
                 .navigateToSection("Configuration", "Register OAuth Client")
                 .clickToAdd()
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Name", "Required")
                 .verifyFieldErrorMessage("Redirect URI", "Required");
     }
@@ -197,7 +197,7 @@ public class Admin_Configuration_Test extends BaseTest {
                 .typeInDynamicField("Port", " ")
                 .typeInDynamicField("Distinguished Name", " ")
                 .typeInDynamicField("Base Distinguished Name", " ")
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Host", "Required")
                 .verifyFieldErrorMessage("Port", "Required")
                 .verifyFieldErrorMessage("Distinguished Name", "Required")
@@ -215,7 +215,7 @@ public class Admin_Configuration_Test extends BaseTest {
                 .typeInDynamicField("Distinguished Name", "adminorangehrm.com")
                 .typeInDynamicField("Password", "SecretPass123")
                 .typeInDynamicField("Base Distinguished Name", "Admin")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
     }
 }

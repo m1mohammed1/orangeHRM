@@ -53,7 +53,7 @@ public class Time_Timesheets_Test extends BaseTest {
 
     @Test(priority = 3, description = "TC03 - Verify Employee Timesheet Approval (Admin Action)")
     public void verifyEmployeeTimesheet_Approve() {
-        String employeeName = "Paul Collings";
+        String employeeName = "Script Automation Test";
 
         timePage
                 .navigateToSection("Timesheets", "Employee Timesheets")

@@ -27,56 +27,35 @@ public class Maintenance_Safety_Test extends BaseTest {
                 .navigateToModule("Maintenance");
     }
 
-    // ==================================================================================
-    // SCENARIO 1: CANCEL ACCESS (Navigation Safety)
-    // ==================================================================================
-
     @Test(priority = 1, description = "TC01 - Verify Cancel Button on Password Screen")
     public void verifyAccess_Cancel_Redirection() {
         maintenancePage.clickCancelPassword();
         dashboardPage.verifyDashboard("Dashboard");
     }
 
-    // ==================================================================================
-    // SCENARIO 2: PURGE CONFIRMATION (Prevent Accidental Delete)
-    // ==================================================================================
-
     @Test(priority = 2, description = "TC02 - Verify Canceling Purge Action in Modal")
     public void verifyPurge_Modal_Cancel() {
         String employeeName = "Terminated";
 
-        // 1. Pass Authentication
-        maintenancePage.verifyAccessPassword("admin123");
 
-        // 2. Go to Purge Employee
+        maintenancePage
+                .verifyAccessPassword("admin123");
         maintenancePage
                 .navigateToSection("Purge Records", "Employee Records")
                 .typeInDynamicField("Employee Name", employeeName)
                 .searchUser();
-
-        // 3. Select a record and Click Delete
         maintenancePage
                 .clickFirstCheckbox()
-                .clickEmployeeModel("Delete Selected");
-
-        // 4. Verify Modal Appears
-        maintenancePage.verifyDialogContains("Are you sure?");
-
-        // 5. Click CANCEL in Modal
-        maintenancePage.clickEmployeeModel("No, Cancel");
-
-        // 6. Verify Record STILL Exists (Not Deleted)
-        maintenancePage.verifySearchTable();
+                .clickEmployeeModel("Delete Selected")
+                .verifyDialogContains("Are you sure?");
+        maintenancePage
+                .clickEmployeeModel("No, Cancel")
+                .verifySearchTable();
     }
-
-    // ==================================================================================
-    // SCENARIO 3: BULK SELECTION (Usability)
-    // ==================================================================================
 
     @Test(priority = 3, description = "TC03 - Verify Select All Checkbox")
     public void verifyPurge_SelectAll_Functionality() {
         maintenancePage.verifyAccessPassword("admin123");
-
         maintenancePage
                 .navigateToSection("Purge Records", "Candidate Records")
                 .searchUser()

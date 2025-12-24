@@ -43,7 +43,7 @@ public class AdminOrganizationTest extends BaseTest {
                 .typeInDynamicTextArea("Address", "Building 5, Tech Park")
                 .typeInDynamicField("Zip/Postal Code", "11835")
                 .typeInDynamicField("Phone", "+201000000000")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessToast();
         adminPage
                 .typeInDynamicField("Name", locName)
@@ -62,7 +62,7 @@ public class AdminOrganizationTest extends BaseTest {
                 .clickToAdd()
                 .typeInDynamicField("Name", oldName)
                 .clickAndSelectDropdown("Country", "Egypt")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
         adminPage
                 .typeInDynamicField("Name", oldName)
@@ -72,7 +72,7 @@ public class AdminOrganizationTest extends BaseTest {
                 .typeInDynamicField("Name", newName)
                 .typeInDynamicField("State/Province", "Sheikh Zayed")
                 .typeInDynamicField("Zip/Postal Code", "77777")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
         adminPage
                 .typeInDynamicField("Name", newName)
@@ -86,7 +86,7 @@ public class AdminOrganizationTest extends BaseTest {
         adminPage
                 .navigateToSection("Organization", "Locations")
                 .clickToAdd()
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Name", "Required")
                 .verifyFieldErrorMessage("Country", "Required");
     }
@@ -99,13 +99,13 @@ public class AdminOrganizationTest extends BaseTest {
                 .clickToAdd()
                 .typeInDynamicField("Name", duplicateName)
                 .clickAndSelectDropdown("Country", "Egypt")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
         adminPage
                 .clickToAdd()
                 .typeInDynamicField("Name", duplicateName)
                 .clickAndSelectDropdown("Country", "Egypt")
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Name", "Required");
         adminPage
                 .navigateToSection("Organization", "Locations")
@@ -122,7 +122,7 @@ public class AdminOrganizationTest extends BaseTest {
                 .typeInDynamicField("Name", "Filter Test Location")
                 .clickAndSelectDropdown("Country", searchCountry)
                 .typeInDynamicField("City", searchCity)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
         adminPage
                 .typeInDynamicField("City", searchCity)
@@ -157,7 +157,7 @@ public class AdminOrganizationTest extends BaseTest {
                 .typeInDynamicField("Unit Id", unitId)
                 .typeInDynamicField("Name", unitName)
                 .typeInDynamicTextArea("Description", "Handling all Testing Activities")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
         adminPage
                 .deleteSpecificUnit("QA-UNIT-01: Quality Assurance Dept")
@@ -170,7 +170,7 @@ public class AdminOrganizationTest extends BaseTest {
                 .navigateToSection("Organization", "Structure")
                 .toggleEditMode()
                 .clickToAdd()
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Name", "Required");
     }
 
@@ -184,13 +184,13 @@ public class AdminOrganizationTest extends BaseTest {
                 .clickToAdd()
                 .typeInDynamicField("Unit Id", unitId)
                 .typeInDynamicField("Name", unitName)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
         adminPage
                 .clickToAdd()
                 .typeInDynamicField("Unit Id", unitId)
                 .typeInDynamicField("Name", unitName)
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Name", "Organization unit name should be unique")
                 .clickToCancel();
         adminPage

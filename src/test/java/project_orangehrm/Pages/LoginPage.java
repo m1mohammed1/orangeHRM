@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends CommonPage {
 
-    // ==================== Page-Specific Locators ====================
+
     private final By USERNAME_FIELD = By.cssSelector("input[placeholder='Username']");
     private final By PASSWORD_FIELD = By.cssSelector("input[placeholder='Password']");
     private final By LOGIN_BTN = By.cssSelector("button[type='submit']");

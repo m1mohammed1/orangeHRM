@@ -19,28 +19,23 @@ public class Buzz_Features_Test extends BaseTest {
         dashboardPage = new DashboardPage(driver);
         buzzPage = new BuzzPage(driver);
 
-        loginPage.enterUsername("Admin").enterPassword("admin123").clickLogin();
-        dashboardPage.navigateToModule("Buzz");
+        loginPage
+                .enterUsername("Admin")
+                .enterPassword("admin123")
+                .clickLogin();
+        dashboardPage
+                .navigateToModule("Buzz");
     }
 
     @Test(priority = 1, description = "TC01 - Verify 'Most Liked Posts' Widget")
     public void verifyMostLiked_Widget() {
-        // This widget is usually on the right sidebar
-        // We verify it exists and is not empty if there are liked posts
-        buzzPage.verifyElementVisible("Most Liked Posts");
-
-        // Verify list inside it
-        // buzzPage.verifyMostLikedListNotEmpty();
+        buzzPage
+                .verifyElementVisible("Most Liked Posts");
     }
 
     @Test(priority = 2, description = "TC02 - Verify Empty Post Validation")
     public void verifyEmptyPost_Error() {
-        // Try to post without text or image
-        buzzPage.clickPostButton();
-
-        // Usually buttons is disabled or toast error appears
-        // Assuming system doesn't allow click, or shows nothing happen
-        // We can check if new post is NOT created, or verify error message if any.
-        // In OrangeHRM, the button might just do nothing.
+        buzzPage
+                .createPost("");
     }
 }

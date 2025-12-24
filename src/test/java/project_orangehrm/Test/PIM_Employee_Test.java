@@ -19,9 +19,14 @@ public class PIM_Employee_Test extends BaseTest {
         dashboardPage = new DashboardPage(driver);
         pimPage = new PIMPage(driver);
 
-        loginPage.enterUsername("Admin").enterPassword("admin123").clickLogin();
-        dashboardPage.verifyDashboard("Dashboard");
-        dashboardPage.navigateToModule("PIM");
+        loginPage
+                .enterUsername("Admin")
+                .enterPassword("admin123")
+                .clickLogin();
+        dashboardPage
+                .verifyDashboard("Dashboard");
+        dashboardPage
+                .navigateToModule("PIM");
     }
 
     @Test(priority = 1, description = "TC01 - Verify Add Employee Lifecycle: Create, Search")

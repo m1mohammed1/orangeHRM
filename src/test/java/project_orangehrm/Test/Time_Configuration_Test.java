@@ -19,16 +19,18 @@ public class Time_Configuration_Test extends BaseTest {
         dashboardPage = new DashboardPage(driver);
         timePage = new TimePage(driver);
 
-        loginPage.enterUsername("Admin").enterPassword("admin123").clickLogin();
-        dashboardPage.navigateToModule("Time");
+        loginPage.
+                enterUsername("Admin")
+                .enterPassword("admin123")
+                .clickLogin();
+        dashboardPage
+                .navigateToModule("Time");
     }
 
     @Test(priority = 1, description = "TC01 - Verify Attendance Configuration Updates")
     public void verifyAttendanceConfig_Update_Success() {
         timePage
                 .navigateToSection("Attendance", "Configuration")
-                // These are usually checkboxes. We click to toggle them.
-                // Assuming method clickCheckbox works by label name
                 .clickCheckbox("Employee can change current time when punching in/out")
                 .clickCheckbox("Employee can edit/delete their own attendance records")
                 .clickSave()

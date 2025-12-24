@@ -1,30 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="OrangeHRM" parallel="classes" thread-count="4">
+<suite name="OrangeHRM_Full_System_Suite">
 
     <parameter name="browser" value="Edge"/>
 
-    <test name="Core Functionality Tests">
+    <test name="Phase 1: Foundation and PIM Setup" preserve-order="true">
         <classes>
             <class name="project_orangehrm.Test.LoginTest"/>
-            <class name="project_orangehrm.Test.Dashboard_Advanced_Test"/>
-            <class name="project_orangehrm.Test.Dashboard_UserActions_Test"/>
-            <class name="project_orangehrm.Test.Dashboard_Widgets_Test"/>
-        </classes>
-    </test>
-
-    <test name="Admin Management">
-        <classes>
             <class name="project_orangehrm.Test.Admin_Configuration_Test"/>
-            <class name="project_orangehrm.Test.Admin_Qualifications_Test"/>
             <class name="project_orangehrm.Test.AdminJobTest"/>
             <class name="project_orangehrm.Test.AdminOrganizationTest"/>
             <class name="project_orangehrm.Test.AdminUserManagementTest"/>
-        </classes>
-    </test>
-
-    <test name="PIM Employee Management">
-        <classes>
+            <class name="project_orangehrm.Test.Admin_Qualifications_Test"/>
             <class name="project_orangehrm.Test.PIM_Configuration_Test"/>
             <class name="project_orangehrm.Test.PIM_Employee_Test"/>
             <class name="project_orangehrm.Test.PIM_EmployeeDetails_Test"/>
@@ -32,23 +19,29 @@
         </classes>
     </test>
 
-    <test name="Leave and Time Management">
+    <test name="Phase 2: Dashboard and Buzz Modules" parallel="classes" thread-count="2">
+        <classes>
+            <class name="project_orangehrm.Test.Dashboard_Advanced_Test"/>
+            <class name="project_orangehrm.Test.Dashboard_UserActions_Test"/>
+            <class name="project_orangehrm.Test.Dashboard_Widgets_Test"/>
+            <class name="project_orangehrm.Test.Buzz_Features_Test"/>
+            <class name="project_orangehrm.Test.Buzz_Media_Test"/>
+            <class name="project_orangehrm.Test.Buzz_Newsfeed_Test"/>
+        </classes>
+    </test>
+
+    <test name="Phase 3: Operational Modules (Leave, Time, Recruitment, Performance)">
         <classes>
             <class name="project_orangehrm.Test.Leave_Configuration_Test"/>
             <class name="project_orangehrm.Test.Leave_Entitlements_Test"/>
             <class name="project_orangehrm.Test.Leave_Operations_Test"/>
             <class name="project_orangehrm.Test.Leave_Reports_Test"/>
+            <class name="project_orangehrm.Test.Time_Configuration_Test"/>
             <class name="project_orangehrm.Test.Time_Attendance_Test"/>
             <class name="project_orangehrm.Test.Time_BusinessLogic_Test"/>
-            <class name="project_orangehrm.Test.Time_Configuration_Test"/>
             <class name="project_orangehrm.Test.Time_ProjectInfo_Test"/>
             <class name="project_orangehrm.Test.Time_Reports_Test"/>
             <class name="project_orangehrm.Test.Time_Timesheets_Test"/>
-        </classes>
-    </test>
-
-    <test name="Recruitment and Performance">
-        <classes>
             <class name="project_orangehrm.Test.Recruitment_Actions_Test"/>
             <class name="project_orangehrm.Test.Recruitment_Candidate_E2E_Test"/>
             <class name="project_orangehrm.Test.Recruitment_Search_And_Data_Test"/>
@@ -60,19 +53,11 @@
         </classes>
     </test>
 
-    <test name="Buzz and Claims Modules">
+    <test name="Phase 4: Claims and Maintenance">
         <classes>
-            <class name="project_orangehrm.Test.Buzz_Features_Test"/>
-            <class name="project_orangehrm.Test.Buzz_Media_Test"/>
-            <class name="project_orangehrm.Test.Buzz_Newsfeed_Test"/>
             <class name="project_orangehrm.Test.Claim_Advanced_Test"/>
             <class name="project_orangehrm.Test.Claim_Configuration_Test"/>
             <class name="project_orangehrm.Test.Claim_Operations_Test"/>
-        </classes>
-    </test>
-
-    <test name="System Maintenance">
-        <classes>
             <class name="project_orangehrm.Test.Maintenance_AccessRecords_Test"/>
             <class name="project_orangehrm.Test.Maintenance_Authentication_Test"/>
             <class name="project_orangehrm.Test.Maintenance_PurgeRecords_Test"/>

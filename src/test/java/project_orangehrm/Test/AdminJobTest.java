@@ -36,7 +36,7 @@ public class AdminJobTest extends BaseTest {
                 .typeInDynamicField("Job Title", "Principal SDET Engineer")
                 .typeInDynamicTextArea("Job Description", "Responsible for Test Architecture")
                 .typeInDynamicTextArea("Note", "Created by Auto-Test")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .verifyRecordExists("Principal SDET Engineer")
                 .deleteSpecificValue("Principal SDET Engineer")
@@ -48,7 +48,7 @@ public class AdminJobTest extends BaseTest {
         adminPage
                 .navigateToSection("Job", "Job Titles")
                 .clickToAdd()
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Job Title", "Required");
     }
 
@@ -58,12 +58,12 @@ public class AdminJobTest extends BaseTest {
                 .navigateToSection("Job", "Job Titles")
                 .clickToAdd()
                 .typeInDynamicField("Job Title", "Duplicate Job Title")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
         adminPage
                 .clickToAdd()
                 .typeInDynamicField("Job Title", "Duplicate Job Title")
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Job Title", "Required");
         adminPage
                 .navigateToSection("Job", "Job Titles")
@@ -76,13 +76,13 @@ public class AdminJobTest extends BaseTest {
                 .navigateToSection("Job", "Pay Grades")
                 .clickToAdd()
                 .typeInDynamicField("Name", "Grade 5 - Executive")
-                .clickSave()
+                .clickToSave()
                 .verifyInfoMessage()
                 .clickToAdd()
                 .clickAndSelectDropdown("Currency", "EUR - Euro")
                 .typeInDynamicField("Minimum Salary", "4000")
                 .typeInDynamicField("Maximum Salary", "8000")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
     }
 
@@ -91,7 +91,7 @@ public class AdminJobTest extends BaseTest {
         adminPage
                 .navigateToSection("Job", "Pay Grades")
                 .clickToAdd()
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Name", "Required");
     }
 
@@ -101,14 +101,14 @@ public class AdminJobTest extends BaseTest {
                 .navigateToSection("Job", "Pay Grades")
                 .clickToAdd()
                 .typeInDynamicField("Name", "Duplicate Grade")
-                .clickSave()
+                .clickToSave()
                 .verifyInfoMessage();
 
         adminPage
                 .navigateToSection("Job", "Pay Grades")
                 .clickToAdd()
                 .typeInDynamicField("Name", "Duplicate Grade")
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Name", "Required");
 
         adminPage
@@ -122,7 +122,7 @@ public class AdminJobTest extends BaseTest {
                 .navigateToSection("Job", "Employment Status")
                 .clickToAdd()
                 .typeInDynamicField("Name", "Freelance - Project Based")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .verifyRecordExists("Freelance - Project Based");
     }
@@ -132,7 +132,7 @@ public class AdminJobTest extends BaseTest {
         adminPage
                 .navigateToSection("Job", "Employment Status")
                 .clickToAdd()
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Name", "Required");
     }
 
@@ -142,13 +142,13 @@ public class AdminJobTest extends BaseTest {
                 .navigateToSection("Job", "Employment Status")
                 .clickToAdd()
                 .typeInDynamicField("Name", "Duplicate Status")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
 
         adminPage
                 .clickToAdd()
                 .typeInDynamicField("Name", "Duplicate Status")
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Name", "Required");
 
         adminPage
@@ -162,12 +162,12 @@ public class AdminJobTest extends BaseTest {
                 .navigateToSection("Job", "Job Titles")
                 .clickToAdd()
                 .typeInDynamicField("Job Title", "Junior QA Automation Tester")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
         adminPage
                 .clickToEdit("Junior QA Automation Tester")
                 .typeInDynamicField("Job Title", "Senior QA Automation Tester")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
         adminPage
                 .verifyRecordExists("Senior QA Automation Tester")
@@ -180,19 +180,19 @@ public class AdminJobTest extends BaseTest {
                 .navigateToSection("Job", "Pay Grades")
                 .clickToAdd()
                 .typeInDynamicField("Name", "Grade Update Test")
-                .clickSave()
+                .clickToSave()
                 .verifyInfoMessage();
         adminPage
                 .clickToAdd()
                 .clickAndSelectDropdown("Currency", "CAD - Canadian Dollar")
                 .typeInDynamicField("Minimum Salary", "2000")
                 .typeInDynamicField("Maximum Salary", "4000")
-                //.clickSecSave()
+                 .clickToSecSave()
                 .verifySuccessMessage();
         adminPage
                 .clickToEdit("Canadian Dollar")
                 .typeInDynamicField("Minimum Salary", "3000")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
         adminPage
                 .navigateToSection("Job", "Pay Grades")
@@ -208,11 +208,11 @@ public class AdminJobTest extends BaseTest {
                 .navigateToSection("Job", "Employment Status")
                 .clickToAdd()
                 .typeInDynamicField("Name", oldStatus)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .clickToEdit(oldStatus)
                 .typeInDynamicField("Name", newStatus)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .verifyRecordDeleted(oldStatus)
                 .verifyRecordExists(newStatus)
@@ -225,7 +225,7 @@ public class AdminJobTest extends BaseTest {
                 .navigateToSection("Job", "Job Categories")
                 .clickToAdd()
                 .typeInDynamicField("Name", "Professionals - َQA Engineer")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .verifyRecordExists("Professionals - َQA Engineer");
     }
@@ -236,11 +236,11 @@ public class AdminJobTest extends BaseTest {
                 .navigateToSection("Job", "Job Categories")
                 .clickToAdd()
                 .typeInDynamicField("Name", "Solutions Architect")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .clickToEdit("Solutions Architect")
                 .typeInDynamicField("Name", "Skilled Solutions Architect")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .verifyRecordDeleted("Solutions Architect")
                 .verifyRecordExists("Skilled Solutions Architect")
@@ -252,27 +252,27 @@ public class AdminJobTest extends BaseTest {
         adminPage
                 .navigateToSection("Job", "Job Categories")
                 .clickToAdd()
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Name", "Required");
     }
 
     @Test(priority = 16, description = "TC16 - Verify error when creating a duplicate Job Category")
     public void verifyJobCategory_DuplicateEntry_ShowError() {
-        String duplicateName = "Operatives";
+        String duplicateName = "Cyber Operatives";
         adminPage
                 .navigateToSection("Job", "Job Categories")
                 .clickToAdd()
-                .typeInDynamicField("Name", "Operatives")
-                .clickSave()
+                .typeInDynamicField("Name", duplicateName)
+                .clickToSave()
                 .verifySuccessMessage();
         adminPage
                 .clickToAdd()
-                .typeInDynamicField("Name", "Operatives")
-                .clickSave()
+                .typeInDynamicField("Name", duplicateName)
+                .clickToSave()
                 .verifyFieldErrorMessage("Name", "Required");
         adminPage
                 .navigateToSection("Job", "Job Categories")
-                .deleteSpecificValue("Operatives");
+                .deleteSpecificValue(duplicateName);
     }
 
     @Test(priority = 17, description = "TC17 - Verify Work Shift Lifecycle: Create, Verify, and Delete")
@@ -283,7 +283,7 @@ public class AdminJobTest extends BaseTest {
                 .typeInDynamicField("Shift Name", "Night Shift - B")
                 // .typeInDynamicField("From", "09:00 PM")
                 // .typeInDynamicField("To", "05:00 AM")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .verifyRecordExists("Night Shift - B");
 
@@ -300,11 +300,11 @@ public class AdminJobTest extends BaseTest {
                 .typeInDynamicField("Shift Name", "Morning Shift")
                 .typeInDynamicField("From", "08:00 AM")
                 .typeInDynamicField("To", "4:00 PM")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .clickToEdit("Morning Shift")
                 .typeInDynamicField("Shift Name", "Morning Shift Extended")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .verifyRecordDeleted("Morning Shift")
                 .verifyRecordExists("Morning Shift Extended")
@@ -316,7 +316,7 @@ public class AdminJobTest extends BaseTest {
         adminPage
                 .navigateToSection("Job", "Work Shifts")
                 .clickToAdd()
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Shift Name", "Required");
     }
 
@@ -330,7 +330,7 @@ public class AdminJobTest extends BaseTest {
                 .typeInDynamicField("Shift Name", "Standard Day")
                 .typeInDynamicField("From", "09:00 AM")
                 .typeInDynamicField("To", "05:00 PM")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
 
         adminPage
@@ -338,7 +338,7 @@ public class AdminJobTest extends BaseTest {
                 .typeInDynamicField("Shift Name", "Standard Day")
                 .typeInDynamicField("From", "09:00 AM")
                 .typeInDynamicField("To", "05:00 PM")
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Shift Name", "Required");
 
         adminPage

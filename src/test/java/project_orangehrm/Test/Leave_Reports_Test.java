@@ -34,7 +34,7 @@ public class Leave_Reports_Test extends BaseTest {
         leavePage
                 .navigateToSection("Reports", "Leave Entitlements and Usage Report")
                 .clickAndSelectDropdown("Leave Type", "US - Vacation")
-                .clickAndSelectDropdown("Job Title", "Automation Tester")
+                .clickAndSelectDropdown("Job Title", "Software Engineer")
                 .clickToSubmit()
                 .verifySearchTable();
     }

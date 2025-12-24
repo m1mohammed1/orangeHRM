@@ -42,7 +42,6 @@ public class TimePage extends CommonPage {
         return this;
     }
 
-    // ==================== Fluent Wrapper Methods ====================
     public TimePage navigateToSection(String mainCategory, String subCategory) {
         super.navigateToSection(mainCategory, subCategory);
         return this;

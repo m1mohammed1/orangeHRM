@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 public class AdminPage extends CommonPage {
 
 
+    private final By SEC_SAVE_BTN = By.cssSelector(".orangehrm-card-container:nth-of-type(2) button[type='submit']");
     private final String DYNAMIC_UNIT_DELETE_BTN = "//div[normalize-space()='%s']/ancestor::div[contains(@class, 'oxd-tree-node-content')]//button[i[contains(@class, 'bi-trash')]]";
 
     public AdminPage(WebDriver driver) {
@@ -47,8 +48,13 @@ public class AdminPage extends CommonPage {
         return this;
     }
 
-    public AdminPage clickSave() {
+    public AdminPage clickToSave() {
         save();
+        return this;
+    }
+
+    public AdminPage clickToSecSave() {
+        clickWhenReady(SEC_SAVE_BTN);
         return this;
     }
 

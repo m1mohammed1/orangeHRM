@@ -20,7 +20,7 @@ public class BasePage {
     public BasePage(WebDriver driver) {
         this.driver = driver;
         this.fluentWait = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(10))
+                .withTimeout(Duration.ofSeconds(5))
                 .pollingEvery(Duration.ofMillis(300))
                 .ignoring(NoSuchElementException.class)
                 .ignoring(StaleElementReferenceException.class)
@@ -106,7 +106,7 @@ public class BasePage {
     }
 
     public void clickJS(By locator) {
-        WebElement element = fluentWait.until(ExpectedConditions.elementToBeClickable(locator));
+        WebElement element = fluentWait.until(ExpectedConditions.presenceOfElementLocated(locator));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 
     }

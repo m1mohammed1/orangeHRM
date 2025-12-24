@@ -43,18 +43,12 @@ public class Performance_Reviews_Test extends BaseTest {
                 .typeInDynamicField("Due Date", "2025-01-15")
                 .clickSave()
                 .verifySuccessMessage();
-
-        // 2. Activate Review (Change Status from Inactive to In Progress)
-        // Need to filter list to find it first? Usually appears at top or need search
         // performancePage.searchByEmployee(employeeName);
-
-        // Assuming we are in the list, click 'Edit' or 'Evaluate' isn't available until Activated?
-        // Usually, after save, it stays in list. We create it, verify it exists.
-        performancePage.verifyRecordExists(employeeName);
-
-        // 3. Delete Review (Cleanup)
         performancePage
-                .deleteSpecificValue(employeeName) // Deleting by Employee Name in the grid
+                .verifyRecordExists(employeeName);
+
+        performancePage
+                .deleteSpecificValue(employeeName)
                 .verifySuccessMessage();
     }
 

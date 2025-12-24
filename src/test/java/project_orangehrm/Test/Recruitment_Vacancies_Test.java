@@ -19,8 +19,12 @@ public class Recruitment_Vacancies_Test extends BaseTest {
         dashboardPage = new DashboardPage(driver);
         recruitmentPage = new RecruitmentPage(driver);
 
-        loginPage.enterUsername("Admin").enterPassword("admin123").clickLogin();
-        dashboardPage.navigateToModule("Recruitment");
+        loginPage
+                .enterUsername("Admin")
+                .enterPassword("admin123")
+                .clickLogin();
+        dashboardPage
+                .navigateToModule("Recruitment");
     }
 
     @Test(priority = 1, description = "TC01 - Verify Vacancy Lifecycle: Create, Verify, Delete")

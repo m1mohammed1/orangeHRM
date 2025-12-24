@@ -35,7 +35,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .clickToAdd()
                 .typeInDynamicField("Name", skillName)
                 .typeInDynamicTextArea("Description", "Backend and Frontend Testing")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .verifyRecordExists(skillName);
     }
@@ -49,13 +49,13 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .clickToAdd()
                 .typeInDynamicField("Name", skillName)
                 .typeInDynamicTextArea("Description", "Backend and Frontend Testing")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .verifyRecordExists(skillName);
         adminPage
                 .clickToEdit(skillName)
                 .typeInDynamicField("Name", updatedSkillName)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .verifyRecordDeleted(skillName)
                 .verifyRecordExists(updatedSkillName);
@@ -71,7 +71,7 @@ public class Admin_Qualifications_Test extends BaseTest {
         adminPage
                 .navigateToSection("Qualifications", "Skills")
                 .clickToAdd()
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Name", "Required");
     }
 
@@ -82,12 +82,12 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .navigateToSection("Qualifications", "Skills")
                 .clickToAdd()
                 .typeInDynamicField("Name", duplicateSkill)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
         adminPage
                 .clickToAdd()
                 .typeInDynamicField("Name", duplicateSkill)
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Name", "Already exists")
                 .clickToCancel();
         adminPage
@@ -102,7 +102,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .navigateToSection("Qualifications", "Education")
                 .clickToAdd()
                 .typeInDynamicField("Level", eduLevel)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .verifyRecordExists(eduLevel);
     }
@@ -116,13 +116,13 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .navigateToSection("Qualifications", "Education")
                 .clickToAdd()
                 .typeInDynamicField("Level", eduLevel)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .verifyRecordExists(eduLevel);
         adminPage
                 .clickToEdit(eduLevel)
                 .typeInDynamicField("Level", updatedEduLevel)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .verifyRecordExists(updatedEduLevel);
         adminPage
@@ -136,7 +136,7 @@ public class Admin_Qualifications_Test extends BaseTest {
         adminPage
                 .navigateToSection("Qualifications", "Education")
                 .clickToAdd()
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Level", "Required");
     }
 
@@ -148,13 +148,13 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .navigateToSection("Qualifications", "Education")
                 .clickToAdd()
                 .typeInDynamicField("Level", duplicateEdu)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
 
         adminPage
                 .clickToAdd()
                 .typeInDynamicField("Level", duplicateEdu)
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Level", "Already exists")
                 .clickToCancel();
 
@@ -170,7 +170,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .navigateToSection("Qualifications", "Licenses")
                 .clickToAdd()
                 .typeInDynamicField("Name", licenseName)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .verifyRecordExists(licenseName);
     }
@@ -183,14 +183,14 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .navigateToSection("Qualifications", "Licenses")
                 .clickToAdd()
                 .typeInDynamicField("Name", licenseName)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .verifyRecordExists(licenseName);
 
         adminPage
                 .clickToEdit(licenseName)
                 .typeInDynamicField("Name", updatedLicense)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .verifyRecordExists(updatedLicense);
 
@@ -205,7 +205,7 @@ public class Admin_Qualifications_Test extends BaseTest {
         adminPage
                 .navigateToSection("Qualifications", "Licenses")
                 .clickToAdd()
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Name", "Required");
     }
 
@@ -217,12 +217,12 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .navigateToSection("Qualifications", "Licenses")
                 .clickToAdd()
                 .typeInDynamicField("Name", duplicateLicense)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
         adminPage
                 .clickToAdd()
                 .typeInDynamicField("Name", duplicateLicense)
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Name", "Already exists")
                 .clickToCancel();
         adminPage
@@ -237,7 +237,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .navigateToSection("Qualifications", "Languages")
                 .clickToAdd()
                 .typeInDynamicField("Name", langName)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .verifyRecordExists(langName);
     }
@@ -251,14 +251,14 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .navigateToSection("Qualifications", "Languages")
                 .clickToAdd()
                 .typeInDynamicField("Name", langName)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .verifyRecordExists(langName);
 
         adminPage
                 .clickToEdit(langName)
                 .typeInDynamicField("Name", updatedLang)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .verifyRecordExists(updatedLang);
 
@@ -274,7 +274,7 @@ public class Admin_Qualifications_Test extends BaseTest {
         adminPage
                 .navigateToSection("Qualifications", "Languages")
                 .clickToAdd()
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Name", "Required");
     }
 
@@ -286,12 +286,12 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .navigateToSection("Qualifications", "Languages")
                 .clickToAdd()
                 .typeInDynamicField("Name", duplicateLang)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
         adminPage
                 .clickToAdd()
                 .typeInDynamicField("Name", duplicateLang)
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Name", "Already exists")
                 .clickToCancel();
 
@@ -307,7 +307,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .navigateToSection("Qualifications", "Memberships")
                 .clickToAdd()
                 .typeInDynamicField("Name", membershipName)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .verifyRecordExists(membershipName);
     }
@@ -320,14 +320,14 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .navigateToSection("Qualifications", "Memberships")
                 .clickToAdd()
                 .typeInDynamicField("Name", membershipName)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .verifyRecordExists(membershipName);
 
         adminPage
                 .clickToEdit(membershipName)
                 .typeInDynamicField("Name", updatedMembership)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage()
                 .verifyRecordExists(updatedMembership);
 
@@ -342,7 +342,7 @@ public class Admin_Qualifications_Test extends BaseTest {
         adminPage
                 .navigateToSection("Qualifications", "Memberships")
                 .clickToAdd()
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Name", "Required");
     }
 
@@ -354,12 +354,12 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .navigateToSection("Qualifications", "Memberships")
                 .clickToAdd()
                 .typeInDynamicField("Name", duplicateMember)
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
         adminPage
                 .clickToAdd()
                 .typeInDynamicField("Name", duplicateMember)
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("Name", "Already exists")
                 .clickToCancel();
 

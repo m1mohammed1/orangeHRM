@@ -15,8 +15,8 @@ public class CommonPage extends BasePage {
     private final By RESET_BTN = By.xpath("//button[normalize-space()='Reset']");
     private final By ADD_BTN = By.xpath("//button[normalize-space()='Add']");
     private final By SAVE_BTN = By.xpath("//button[normalize-space()='Save']");
-    private final By CANCEL_BTN = By.xpath("//button[normalize-space()='Cancel']");
-    private final By CONFIRM_DELETE_BTN = By.xpath("//div[@class='orangehrm-modal-footer']//button[normalize-space()='Yes, Delete']");
+    private final By CANCEL_BTN = By.xpath("//button[contains(.,'Cancel')]");
+    private final By CONFIRM_DELETE_BTN = By.xpath("//button[contains(.,'Delete')]");
     private final By OK_BTN = By.xpath("//button[normalize-space()='Ok']");
     private final By CONFIRM_BTN = By.xpath("//button[normalize-space()='Confirm']");
     private final By SUCCESS_TOAST = By.xpath("//div[contains(@class, 'oxd-toast--success')]");
@@ -28,201 +28,272 @@ public class CommonPage extends BasePage {
     private final By FILE_INPUT = By.cssSelector("input[type='file']");
     private final By DIALOG_SHEET = By.cssSelector(".oxd-dialog-sheet");
     private final By DIALOG_CLOSE = By.cssSelector(".oxd-dialog-close-button");
-    private final By DYNAMIC_BTN = By.xpath("//button[normalize-space()='%s']");
+    private final By BODY_TAG = By.tagName("body");
 
-
-
-    private final String DYNAMIC_PLUS_BTN = "//div[contains(@class, 'oxd-grid-item') and .//label[contains(normalize-space(), '%s')]]//button[@type='button']";
-    private final String DYNAMIC_TOGGLE_SWITCH = "//label[contains(., '%s')]/parent::div/following-sibling::div//span[contains(@class, 'oxd-switch-input')]";
     private final String SIDE_MENU_ITEM = "//a[contains(@class,'oxd-main-menu-item')]/span[text()='%s']";
     private final String TOP_BAR_MENU = "//nav[@aria-label='Topbar Menu']//li[contains(normalize-space(), '%s')]";
     private final String DROPDOWN_MENU = "//ul[@role='menu']//a[contains(normalize-space(), '%s')]";
+    private final String DYNAMIC_BTN = "//button[normalize-space()='%s']";
     private final String DYNAMIC_FIELD = "//label[normalize-space()='%s']/../following-sibling::div//input";
+    private final String DYNAMIC_TEXTAREA = "//label[normalize-space()='%s']/../following-sibling::div//textarea";
     private final String DYNAMIC_DROPDOWN = "//label[normalize-space()='%s']/../following-sibling::div//div[contains(@class,'oxd-select-text')]";
     private final String DYNAMIC_OPTION = "//div[@role='listbox']//span[contains(normalize-space(), '%s')]";
-    private final String DYNAMIC_TEXTAREA = "//label[normalize-space()='%s']/../following-sibling::div//textarea";
-    private final String DYNAMIC_ERROR_MSG = "//label[normalize-space()='%s']/ancestor::div[contains(@class,'oxd-input-group')]//span";
     private final String DYNAMIC_CHECKBOX = "//label[contains(text(),'%s')]/following-sibling::span[contains(@class,'oxd-checkbox')]";
+    private final String DYNAMIC_RADIO_BTN = "//label[contains(., '%s')]//span[contains(@class, 'oxd-radio-input')]";
     private final String DYNAMIC_TABLE_RECORD = "//div[@role='row']//div[normalize-space()='%s']";
     private final String DYNAMIC_SUBSCRIBE_BTN = "//div[normalize-space()='%s']/ancestor::div[@role='row']//button[i[contains(@class, 'bi-person')]]";
     private final String DYNAMIC_EDIT_BTN = "//div[contains(text(),'%s')]/ancestor::div[@role='row']//button[i[contains(@class, 'bi-pencil')]]";
-    private final String DYNAMIC_RADIO_BTN = "//label[contains(., '%s')]//span[contains(@class, 'oxd-radio-input')]";
     private final String DYNAMIC_DELETE_BTN = "//div[contains(text(),'%s')]/ancestor::div[@role='row']//button[i[contains(@class, 'bi-trash')]]";
     private final String DYNAMIC_UNIT_DELETE_BTN = "//div[normalize-space()='%s']/ancestor::div[contains(@class, 'oxd-tree-node-content')]//button[i[contains(@class, 'bi-trash')]]";
-    private final String DYNAMIC_ROW_INPUT = "//p[contains(text(), '%s')]/ancestor::div[@role='row']//input";
+    private final String DYNAMIC_ERROR_MSG = "//label[normalize-space()='%s']/ancestor::div[contains(@class,'oxd-input-group')]//span";
+    private final String DYNAMIC_WIDGET = "//p[normalize-space()='%s']";
     private final String DYNAMIC_SIDE_TAB = "//div[@role='tablist']//a[contains(normalize-space(), '%s')]";
+    private final String DYNAMIC_PLUS_BTN = "//div[contains(@class, 'oxd-grid-item') and .//label[contains(normalize-space(), '%s')]]//button[@type='button']";
+    private final String DYNAMIC_TOGGLE_SWITCH = "//label[contains(., '%s')]/parent::div/following-sibling::div//span[contains(@class, 'oxd-switch-input')]";
     private final String DYNAMIC_ACTION_BTN = "//div[normalize-space()='%s']/ancestor::div[@role='row']//button[i[contains(@class, 'bi-eye')]]";
     private final String DYNAMIC_LINK = "//a[contains(text(), '%s')]";
-    private final String DYNAMIC_WIDGET = "//p[normalize-space()='%s']";
+    private final String DYNAMIC_ROW_INPUT = "//p[contains(text(), '%s')]/ancestor::div[@role='row']//input";
 
     public CommonPage(WebDriver driver) {
         super(driver);
     }
 
-
-    public void navigateToModule(String moduleName) {
-        clickWhenReady(By.xpath(String.format(SIDE_MENU_ITEM, moduleName)));
+    public CommonPage navigateToModule(String moduleName) {
+        clickWhenReady(getLocator(SIDE_MENU_ITEM, moduleName));
+        return this;
     }
 
     public CommonPage navigateToSection(String mainCategory, String subCategory) {
-        clickWhenReady(By.xpath(String.format(TOP_BAR_MENU, mainCategory)));
-        clickWhenReady(By.xpath(String.format(DROPDOWN_MENU, subCategory)));
+        clickWhenReady(getLocator(TOP_BAR_MENU, mainCategory));
+        clickWhenReady(getLocator(DROPDOWN_MENU, subCategory));
         return this;
     }
 
     public CommonPage navigateToSection(String mainCategory) {
-        clickWhenReady(By.xpath(String.format(TOP_BAR_MENU, mainCategory)));
+        clickWhenReady(getLocator(TOP_BAR_MENU, mainCategory));
         return this;
     }
 
-    public void typeInField(String fieldName, String text) {
-        typeText(By.xpath(String.format(DYNAMIC_FIELD, fieldName)), text);
+    public CommonPage typeInField(String fieldName, String text) {
+        type(getLocator(DYNAMIC_FIELD, fieldName), text);
+        return this;
     }
 
-    public void typeInTextArea(String fieldName, String text) {
-        typeText(By.xpath(String.format(DYNAMIC_TEXTAREA, fieldName)), text);
+    public CommonPage typeInTextArea(String fieldName, String text) {
+        type(getLocator(DYNAMIC_TEXTAREA, fieldName), text);
+        return this;
     }
 
-    public void type(By locator, String text) {
-        WebElement field = fluentWait.until(org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable(locator));
-        field.click();
-        field.sendKeys(Keys.chord(Keys.CONTROL, "a"));
-        field.sendKeys(Keys.BACK_SPACE);
-        field.clear();
-        field.sendKeys(text);
+    public CommonPage selectDropdownOption(String dropdownName, String visibleText) {
+        clickWhenReady(getLocator(DYNAMIC_DROPDOWN, dropdownName));
+        clickWhenReady(getLocator(DYNAMIC_OPTION, visibleText));
+        return this;
     }
 
-
-    public void selectDropdownOption(String dropdownName, String visibleText) {
-        clickWhenReady(By.xpath(String.format(DYNAMIC_DROPDOWN, dropdownName)));
-        clickWhenReady(By.xpath(String.format(DYNAMIC_OPTION, visibleText)));
+    public CommonPage selectOption(String visibleText) {
+        clickWhenReady(getLocator(DYNAMIC_OPTION, visibleText));
+        return this;
     }
 
-    public void selectOption(String visibleText) {
-        clickWhenReady(By.xpath(String.format(DYNAMIC_OPTION, visibleText)));
-    }
-
-    public void selectFirstOption() {
+    public CommonPage selectFirstOption() {
         clickWhenReady(By.xpath("//div[@role='listbox']//span"));
+        return this;
     }
 
-    public void save() {
+    public CommonPage clickDynamic(String btnText) {
+        clickWhenReady(getLocator(DYNAMIC_BTN, btnText));
+        return this;
+    }
+
+    public CommonPage clickTab(String tabName) {
+        clickWhenReady(getLocator(DYNAMIC_SIDE_TAB, tabName));
+        return this;
+    }
+
+    public CommonPage clickRadio(String value) {
+        clickWhenReady(getLocator(DYNAMIC_RADIO_BTN, value));
+        return this;
+    }
+
+    public CommonPage clickSubscribe(String value) {
+        clickWhenReady(getLocator(DYNAMIC_SUBSCRIBE_BTN, value));
+        return this;
+    }
+
+    public CommonPage clickAction(String value) {
+        clickWhenReady(getLocator(DYNAMIC_ACTION_BTN, value));
+        return this;
+    }
+
+    public CommonPage clickOnCheckbox(String labelText) {
+        clickWhenReady(getLocator(DYNAMIC_CHECKBOX, labelText));
+        return this;
+    }
+
+    public CommonPage clickLink(String linkText) {
+        clickWhenReady(getLocator(DYNAMIC_LINK, linkText));
+        return this;
+    }
+
+    public CommonPage clickRecord(String recordName) {
+        clickWhenReady(getLocator(DYNAMIC_TABLE_RECORD, recordName));
+        return this;
+    }
+
+    public CommonPage dynamicPlusBtn(String value) {
+        clickWhenReady(getLocator(DYNAMIC_PLUS_BTN, value));
+        return this;
+    }
+
+    public CommonPage dynamicToggle(String value) {
+        clickJS(getLocator(DYNAMIC_TOGGLE_SWITCH, value));
+        return this;
+    }
+
+    public CommonPage save() {
         clickWhenReady(SAVE_BTN);
+        return this;
     }
 
-    public void ok() {
-        clickWhenReady(OK_BTN);
-    }
-
-    public void add() {
-        clickWhenReady(ADD_BTN);
-    }
-
-    public void reset() {
-        clickWhenReady(RESET_BTN);
-    }
-
-    public void submit() {
+    public CommonPage submit() {
         clickWhenReady(SUBMIT_BTN);
+        return this;
     }
 
-    public void clickTab(String tabName) {
-        clickWhenReady(By.xpath(String.format(DYNAMIC_SIDE_TAB, tabName)));
+    public CommonPage ok() {
+        clickWhenReady(OK_BTN);
+        return this;
     }
 
-    public void clickDynamic(String value) {
-        clickWhenReady(DYNAMIC_BTN);
+    public CommonPage add() {
+        clickWhenReady(ADD_BTN);
+        return this;
     }
 
-    public void clickRadio(String value) {
-        clickWhenReady(By.xpath(String.format(DYNAMIC_RADIO_BTN,value)));
+    public CommonPage reset() {
+        clickWhenReady(RESET_BTN);
+        return this;
     }
 
-    public void clickSubscribe(String value) {
-        clickWhenReady(By.xpath(String.format(DYNAMIC_SUBSCRIBE_BTN,value)));
-    }
-
-    public void clickAction(String value) {
-        clickWhenReady(By.xpath(String.format(DYNAMIC_ACTION_BTN, value)));
-    }
-
-    public void clickOnCheckbox(String labelText) {
-        clickWhenReady(By.xpath(String.format(DYNAMIC_CHECKBOX, labelText)));
-    }
-
-    public void cancel() {
+    public CommonPage cancel() {
         clickWhenReady(CANCEL_BTN);
+        return this;
     }
 
-    public void confirm() {
+    public CommonPage confirm() {
         clickWhenReady(CONFIRM_BTN);
+        return this;
     }
 
-    public void dynamicPlusBtn(String value) {
-        clickWhenReady(By.xpath(String.format(DYNAMIC_PLUS_BTN, value)));
+    public CommonPage confirmDeletion() {
+        clickWhenReady(CONFIRM_DELETE_BTN);
+        return this;
     }
 
-    public void toggle() {
+    public CommonPage toggle() {
         clickWhenReady(TOGGLE_SWITCH);
+        return this;
     }
 
-    public void dynamicToggle(String value) {
-        clickJS(By.xpath(String.format(DYNAMIC_TOGGLE_SWITCH,value)));
-    }
-
-    public void toggleEdit() {
+    public CommonPage toggleEdit() {
         clickWhenReady(EDIT_SWITCH_BTN);
+        return this;
     }
 
-    public void edit(String value) {
-        clickWhenReady(By.xpath(String.format(DYNAMIC_EDIT_BTN, value)));
+    public CommonPage edit(String value) {
+        clickWhenReady(getLocator(DYNAMIC_EDIT_BTN, value));
+        return this;
     }
 
-    public void delete(String value) {
-        clickWhenReady(By.xpath(String.format(DYNAMIC_DELETE_BTN, value)));
+    public CommonPage delete(String value) {
+        clickWhenReady(getLocator(DYNAMIC_DELETE_BTN, value));
         clickWhenReady(CONFIRM_DELETE_BTN);
+        return this;
     }
 
-    public void deleteUnit(String value) {
-        clickWhenReady(By.xpath(String.format(DYNAMIC_UNIT_DELETE_BTN, value)));
+    public CommonPage deleteUnit(String value) {
+        clickWhenReady(getLocator(DYNAMIC_UNIT_DELETE_BTN, value));
         clickWhenReady(CONFIRM_DELETE_BTN);
+        return this;
     }
 
-    public void clickRecord(String recordName) {
-        clickWhenReady(By.xpath(String.format(DYNAMIC_TABLE_RECORD, recordName)));
+    public CommonPage setRowValue(String rowIdentifier, String value) {
+        driver.findElement(getLocator(DYNAMIC_ROW_INPUT, rowIdentifier)).sendKeys(value);
+        return this;
     }
 
-    public void clickLink(String linkText) {
-        clickWhenReady(By.xpath(String.format(DYNAMIC_LINK, linkText)));
+    public CommonPage enterDate(String fieldName, String dateValue) {
+        return typeInField(fieldName, dateValue);
     }
 
-    public void setRowValue(String rowIdentifier, String value) {
-        driver.findElement(By.xpath(String.format(DYNAMIC_ROW_INPUT, rowIdentifier))).sendKeys(value);
-    }
-
-    public void enterDate(String fieldName, String dateValue) {
-        typeInField(fieldName, dateValue);
-    }
-
-    public void upload(String filePath) {
+    public CommonPage upload(String filePath) {
         driver.findElement(FILE_INPUT).sendKeys(filePath);
+        return this;
     }
 
-    public void verifyDashboard(String expectedHeader) {
+    public CommonPage verifyDashboard(String expectedHeader) {
         assertTextContain(PAGE_HEADER, expectedHeader);
+        return this;
     }
 
-    public void verifyHeader(String expectedHeader) {
+    public CommonPage verifyHeader(String expectedHeader) {
         assertTextContain(PAGE_HEADER, expectedHeader);
+        return this;
     }
 
-    public void verifyTitle(String expectedTitle) {
+    public CommonPage verifyTitle(String expectedTitle) {
         assertTextContain(PAGE_TITLE, expectedTitle);
+        return this;
     }
+
+    public CommonPage verifySuccessToast() {
+        assertVisible(SUCCESS_TOAST, "Success message not displayed");
+        return this;
+    }
+
+    public CommonPage verifyInfoToast() {
+        assertVisible(INFO_TOAST, "Info message not displayed");
+        return this;
+    }
+
+    public CommonPage verifyErrorToast() {
+        assertVisible(ERROR_TOAST, "Error message not displayed");
+        return this;
+    }
+
 
     public CommonPage verifyElementVisible(String elementText) {
-        assertVisible(By.xpath(String.format(DYNAMIC_WIDGET, elementText)),
-                "Element '" + elementText + "' is not visible");
+        assertVisible(getLocator(DYNAMIC_WIDGET, elementText), "Element not visible: " + elementText);
+        return this;
+    }
+
+    public CommonPage verifyRecordVisible(String recordName) {
+        assertVisible(getLocator(DYNAMIC_TABLE_RECORD, recordName), "Record not found: " + recordName);
+        return this;
+    }
+
+    public CommonPage verifyRecordNotVisible(String recordName) {
+        assertNotVisible(getLocator(DYNAMIC_TABLE_RECORD, recordName), "Record still visible: " + recordName);
+        return this;
+    }
+
+    public CommonPage verifyFieldError(String fieldName) {
+        assertVisible(getLocator(DYNAMIC_ERROR_MSG, fieldName), "Field error not displayed for: " + fieldName);
+        return this;
+    }
+
+    public CommonPage verifyFilterVisible() {
+        assertVisible(SEARCH_FILTER, "Search filter not visible");
+        return this;
+    }
+
+    public CommonPage verifyDialogText(String expectedText) {
+        assertTextContain(DIALOG_SHEET, expectedText);
+        return this;
+    }
+
+    public CommonPage verifyBodyContains(String expectedText) {
+        assertTextContain(BODY_TAG, expectedText);
         return this;
     }
 
@@ -231,58 +302,29 @@ public class CommonPage extends BasePage {
         return this;
     }
 
-    public void verifySuccessToast() {
-        assertVisible(SUCCESS_TOAST, "Success message (Toast) is not displayed");
-    }
-
-    public void verifyInfoToast() {
-        assertVisible(INFO_TOAST, "Info message (Toast) is not displayed");
-    }
-
-    public void verifyErrorToast() {
-        assertVisible(ERROR_TOAST, "Error message (Toast) is not displayed");
-    }
-
-    public void verifyRecordVisible(String recordName) {
-        assertVisible(By.xpath(String.format(DYNAMIC_TABLE_RECORD, recordName)),
-                "Record '" + recordName + "' was not found in the table.");
-    }
-
-    public void verifyRecordNotVisible(String recordName) {
-        assertNotVisible(By.xpath(String.format(DYNAMIC_TABLE_RECORD, recordName)),
-                "Record '" + recordName + "' is still visible after deletion.");
-    }
-
-    public void verifyFieldError(String fieldName) {
-        assertVisible(By.xpath(String.format(DYNAMIC_ERROR_MSG, fieldName)),
-                "Validation error for field '" + fieldName + "' is not displayed.");
-    }
-
-    public void verifyFilterVisible() {
-        assertVisible(SEARCH_FILTER, "Search table is not visible");
-    }
-
-    public void verifyDialogText(String expectedText) {
-        assertTextContain(DIALOG_SHEET, expectedText);
-    }
-
     public boolean isElementVisible(String elementText) {
         try {
-            return driver.findElement(By.xpath(String.format(DYNAMIC_WIDGET, elementText))).isDisplayed();
+            return driver.findElement(getLocator(DYNAMIC_WIDGET, elementText)).isDisplayed();
         } catch (Exception e) {
             return false;
         }
     }
 
-    public void dismissDialog() {
+    public CommonPage dismissDialog() {
         clickWhenReady(DIALOG_CLOSE);
+        return this;
     }
 
-    public void clickWhenReady(By locator) {
-        super.clickWhenReady(locator);
+    public CommonPage waitToastDisappear() {
+        assertNotVisible(SUCCESS_TOAST, "Toast still visible");
+        return this;
     }
 
-    public void clickWithScrollJS(By locator) {
-        super.clickWithScrollJS(locator);
+    public void type(By locator, String text) {
+        typeText(locator, text);
+    }
+
+    protected By getLocator(String xpath, String value) {
+        return By.xpath(String.format(xpath, value));
     }
 }

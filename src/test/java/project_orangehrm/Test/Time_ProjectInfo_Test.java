@@ -55,35 +55,32 @@ public class Time_ProjectInfo_Test extends BaseTest {
                 //.verifyFieldErrorMessage("Name");
     }
 
-    // ==================================================================================
-    // SECTION 2: PROJECTS (Linked to Customer)
-    // ==================================================================================
-
     @Test(priority = 3, description = "TC03 - Verify Project Lifecycle: Create, Verify, Delete")
     public void verifyProject_Lifecycle_Success() {
-        String customerName = "Beta Industries"; // Create this first or assume exists
+        String customerName = "Beta Industries";
         String projectName = "Project X - Automation";
-        String adminName = "Paul Collings"; // Valid Admin
+        String adminName = "Script Automation Test";
 
-        // Pre-req: Ensure Customer Exists
-        timePage.navigateToSection("Project Info", "Customers").clickToAdd().typeInDynamicField("Name", customerName).clickSave();
-
-        // Create Project
+        timePage
+                .navigateToSection("Project Info", "Customers")
+                .clickToAdd()
+                .typeInDynamicField("Name", customerName)
+                .clickSave();
         timePage
                 .navigateToSection("Project Info", "Projects")
                 .clickToAdd()
                 .typeInDynamicField("Project Name", projectName)
                 .typeInDynamicField("Customer Name", customerName)
-                .selectFromList() // Select Customer
+                .selectFromList()
                 .typeInDynamicField("Project Admin", adminName)
-                .selectFromList() // Select Admin
+                .selectFromList()
                 .clickSave()
                 .verifySuccessMessage()
                 .verifyRecordExists(projectName)
                 .deleteSpecificValue(projectName)
                 .verifySuccessMessage();
-
-        // Cleanup Customer
-        timePage.navigateToSection("Project Info", "Customers").deleteSpecificValue(customerName);
+        timePage
+                .navigateToSection("Project Info", "Customers")
+                .deleteSpecificValue(customerName);
     }
 }

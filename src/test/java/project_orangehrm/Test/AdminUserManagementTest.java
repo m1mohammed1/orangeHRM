@@ -41,7 +41,7 @@ public class AdminUserManagementTest extends BaseTest {
                 .typeInDynamicField("Username", "TestAdmin_QA")
                 .typeInDynamicField("Password", "Password123!")
                 .typeInDynamicField("Confirm Password", "Password123!")
-                .clickSave()
+                .clickToSave()
                 .verifySuccessMessage();
         adminPage
                 .typeInDynamicField("Username", "TestAdmin_QA")
@@ -53,7 +53,7 @@ public class AdminUserManagementTest extends BaseTest {
     public void verifyUserManagement_EmptyFields_ShowError() {
         adminPage
                 .clickToAdd()
-                .clickSave()
+                .clickToSave()
                 .verifyFieldErrorMessage("User Role", "Required")
                 .verifyFieldErrorMessage("Employee Name", "Required")
                 .verifyFieldErrorMessage("Status", "Required")
