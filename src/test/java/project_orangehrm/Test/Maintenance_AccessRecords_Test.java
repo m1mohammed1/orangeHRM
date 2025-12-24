@@ -18,9 +18,8 @@ public class Maintenance_AccessRecords_Test extends BaseTest {
         loginPage = new LoginPage(driver);
         dashboardPage = new DashboardPage(driver);
         maintenancePage = new MaintenancePage(driver);
-
-        loginPage.
-                enterUsername("Admin")
+        loginPage
+                .enterUsername("Admin")
                 .enterPassword("admin123")
                 .clickLogin();
         dashboardPage

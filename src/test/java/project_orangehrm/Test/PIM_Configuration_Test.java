@@ -51,7 +51,7 @@ public class PIM_Configuration_Test extends BaseTest {
                 .verifyRecordExists(fieldName);
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Custom Field Lifecycle: Create, Verify, Edit, Delete")
+    @Test(priority = 3, description = "TC03 - Verify Custom Field Lifecycle: Create, Verify, Edit, Delete")
     public void verifyCustomField_Lifecycle_Edit() {
         String fieldName = "Automation Badge ID Edit";
         pimPage
@@ -72,7 +72,7 @@ public class PIM_Configuration_Test extends BaseTest {
                 .verifyRecordDeleted("Ai Automation Badge");
     }
 
-    @Test(priority = 3, description = "TC03 - Verify Custom Field Validation Errors")
+    @Test(priority = 4, description = "TC04 - Verify Custom Field Validation Errors")
     public void verifyCustomField_EmptyFields_ShowError() {
         pimPage
                 .navigateToSection("Configuration", "Custom Fields")
@@ -83,7 +83,7 @@ public class PIM_Configuration_Test extends BaseTest {
                 .verifyFieldErrorMessage("Type", "Required");
     }
 
-    @Test(priority = 4, description = "TC04 - Verify Data Import Validation (No File Selected)")
+    @Test(priority = 5, description = "TC05 - Verify Data Import Validation (No File Selected)")
     public void verifyDataImport_Validation_Error() {
         pimPage
                 .navigateToSection("Configuration", "Data Import")
@@ -91,7 +91,7 @@ public class PIM_Configuration_Test extends BaseTest {
                 .verifyFieldErrorMessage("Select File", "Required");
     }
 
-    @Test(priority = 5, description = "TC05 - Verify Reporting Method Lifecycle: Create, Verify")
+    @Test(priority = 6, description = "TC06 - Verify Reporting Method Lifecycle: Create, Verify")
     public void verifyReportingMethod_Lifecycle_Success() {
         String methodName = "Weekly Scrum Report";
         pimPage
@@ -103,7 +103,7 @@ public class PIM_Configuration_Test extends BaseTest {
                 .verifyRecordExists(methodName);
     }
 
-    @Test(priority = 5, description = "TC05 - Verify Reporting Method Lifecycle: Create, Verify, Edit, Delete")
+    @Test(priority = 7, description = "TC07 - Verify Reporting Method Lifecycle: Create, Verify, Edit, Delete")
     public void verifyReportingMethod_Lifecycle_Edit() {
         String methodName = "Weekly Scrum Report";
         pimPage
@@ -122,7 +122,7 @@ public class PIM_Configuration_Test extends BaseTest {
                 .verifyRecordDeleted("Monthly Scrum Report");
     }
 
-    @Test(priority = 6, description = "TC06 - Verify Reporting Method Validation & Duplicates")
+    @Test(priority = 8, description = "TC08 - Verify Reporting Method Validation & Duplicates")
     public void verifyReportingMethod_Validation_And_Duplicate() {
         String duplicateName = "duplicateName";
         pimPage
@@ -144,7 +144,7 @@ public class PIM_Configuration_Test extends BaseTest {
                 .deleteSpecificValue(duplicateName);
     }
 
-    @Test(priority = 7, description = "TC07 - Verify Termination Reason Lifecycle: Create, Verify")
+    @Test(priority = 9, description = "TC09 - Verify Termination Reason Lifecycle: Create, Verify")
     public void verifyTerminationReason_Lifecycle_Success() {
         String reasonName = "Better Salary Opportunity";
         pimPage
@@ -156,7 +156,7 @@ public class PIM_Configuration_Test extends BaseTest {
                 .verifyRecordExists(reasonName);
     }
 
-    @Test(priority = 7, description = "TC07 - Verify Termination Reason Lifecycle: Create, Verify, Edit, Delete")
+    @Test(priority = 10, description = "TC10 - Verify Termination Reason Lifecycle: Create, Verify, Edit, Delete")
     public void verifyTerminationReason_Lifecycle_Edit() {
         String reasonName = "Better Salary Opportunity Edit";
         pimPage
@@ -175,7 +175,7 @@ public class PIM_Configuration_Test extends BaseTest {
                 .verifyRecordDeleted("Better Job Opportunity");
     }
 
-    @Test(priority = 8, description = "TC08 - Verify Termination Reason Validation")
+    @Test(priority = 11, description = "TC11 - Verify Termination Reason Validation")
     public void verifyTerminationReason_EmptyFields_ShowError() {
         pimPage
                 .navigateToSection("Configuration", "Termination Reasons")

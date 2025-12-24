@@ -29,7 +29,7 @@ public class Performance_Reports_Test extends BaseTest {
 
     @Test(priority = 1, description = "TC01 - Generate Employee Performance Report")
     public void verifyPerformanceReport_Generate() {
-        String employeeName = "Paul Collings";
+        String employeeName = "Script Automation Tester";
         String jobTitle = "QA Engineer";
 
         performancePage

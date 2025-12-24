@@ -112,7 +112,7 @@ public class AdminOrganizationTest extends BaseTest {
                 .deleteSpecificValue(duplicateName);
     }
 
-    @Test(priority = 6, description = "TC06 - Verify Search by City and Country filters")
+    @Test(priority = 5, description = "TC05 - Verify Search by City and Country filters")
     public void verifyLocation_SearchFilters_Success() {
         String searchCity = "SearchTest City";
         String searchCountry = "Canada";
@@ -133,7 +133,7 @@ public class AdminOrganizationTest extends BaseTest {
                 .deleteSpecificValue("Filter Test Location");
     }
 
-    @Test(priority = 7, description = "TC07 - Verify Reset Button functionality")
+    @Test(priority = 6, description = "TC06 - Verify Reset Button functionality")
     public void verifyLocation_ResetFilter_Success() {
         adminPage
                 .navigateToSection("Organization", "Locations")
@@ -146,7 +146,7 @@ public class AdminOrganizationTest extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 8, description = "TC08 - Verify Organization Unit Lifecycle: Enable Edit, Create, Verify, Delete")
+    @Test(priority = 7, description = "TC07 - Verify Organization Unit Lifecycle: Enable Edit, Create, Verify, Delete")
     public void verifyStructure_Lifecycle_Success() {
         String unitId = "QA-UNIT-01";
         String unitName = "Quality Assurance Dept";
@@ -164,7 +164,7 @@ public class AdminOrganizationTest extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 9, description = "TC09 - Verify validation error for empty Unit Name in Structure")
+    @Test(priority = 8, description = "TC08 - Verify validation error for empty Unit Name in Structure")
     public void verifyStructure_EmptyFields_ShowError() {
         adminPage
                 .navigateToSection("Organization", "Structure")
@@ -174,7 +174,7 @@ public class AdminOrganizationTest extends BaseTest {
                 .verifyFieldErrorMessage("Name", "Required");
     }
 
-    @Test(priority = 10, description = "TC10 - Verify error when creating a duplicate Unit ID")
+    @Test(priority = 9, description = "TC09 - Verify error when creating a duplicate Unit ID")
     public void verifyStructure_DuplicateEntry_ShowError() {
         String unitId = "DEV-01";
         String unitName = "Development Dept";

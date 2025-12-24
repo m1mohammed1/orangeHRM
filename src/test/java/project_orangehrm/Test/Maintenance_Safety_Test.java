@@ -29,15 +29,15 @@ public class Maintenance_Safety_Test extends BaseTest {
 
     @Test(priority = 1, description = "TC01 - Verify Cancel Button on Password Screen")
     public void verifyAccess_Cancel_Redirection() {
-        maintenancePage.clickCancelPassword();
-        dashboardPage.verifyDashboard("Dashboard");
+        maintenancePage
+                .clickCancelPassword();
+        dashboardPage
+                .verifyDashboard("Dashboard");
     }
 
     @Test(priority = 2, description = "TC02 - Verify Canceling Purge Action in Modal")
     public void verifyPurge_Modal_Cancel() {
         String employeeName = "Terminated";
-
-
         maintenancePage
                 .verifyAccessPassword("admin123");
         maintenancePage

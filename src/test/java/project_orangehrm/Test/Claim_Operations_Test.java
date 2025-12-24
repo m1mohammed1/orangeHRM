@@ -53,6 +53,7 @@ public class Claim_Operations_Test extends BaseTest {
                 .clickToSubmit();
     }
 
+
     @Test(priority = 2, description = "TC02 - Verify Submit, Edit Claim Logic")
     public void verifyClaim_Edit() {
 
@@ -85,4 +86,5 @@ public class Claim_Operations_Test extends BaseTest {
                 .clickToSubmit()
                 .verifySuccessMessage();
     }
+
 }

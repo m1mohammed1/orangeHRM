@@ -56,7 +56,7 @@ public class Claim_Advanced_Test extends BaseTest {
 
     }
 
-    @Test(priority = 2, description = "TC03 - Verify My Claims History Search")
+    @Test(priority = 2, description = "TC02 - Verify My Claims History Search")
     public void verifyMyClaims_History() {
         String fromDate = "2024-01-01";
         String toDate = "2024-12-31";

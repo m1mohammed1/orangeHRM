@@ -41,7 +41,7 @@ public class Dashboard_UserActions_Test extends BaseTest {
         dashboardPage
                 .clickLogout();
         dashboardPage
-                .verifyElementVisible("submit");
+                .verifyElementVisible("Submit");
     }
 
     @Test(priority = 3, description = "TC03 - Verify Hiding and Showing Widgets")

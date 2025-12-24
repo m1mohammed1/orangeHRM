@@ -39,8 +39,6 @@ public class Maintenance_PurgeRecords_Test extends BaseTest {
                 .selectFromList()
                 .searchUser()
                 .verifySearchTable();
-
-
     }
 
     @Test(priority = 2, description = "TC02 - Verify Purge Candidate Records Search & Delete")

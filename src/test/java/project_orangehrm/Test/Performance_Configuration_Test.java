@@ -110,7 +110,7 @@ public class Performance_Configuration_Test extends BaseTest {
     }
 
 /*
-    @Test(priority = 3, description = "TC03 - Verify Competency Lifecycle: Create and Link to Job")
+    @Test(priority = 6, description = "TC06 - Verify Competency Lifecycle: Create and Link to Job")
     public void verifyCompetency_Lifecycle_Success() {
         String compName = "Leadership Skills";
         performancePage
