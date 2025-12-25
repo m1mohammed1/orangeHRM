@@ -32,6 +32,11 @@ public class PerformancePage extends CommonPage {
         return this;
     }
 
+    public PerformancePage waitInSeconds(int seconds) {
+        super.hardWait(seconds);
+        return this;
+    }
+
     public PerformancePage setRatingForKPI(String kpiName, String rating) {
         setRowValue(kpiName, rating);
         return this;
@@ -49,6 +54,11 @@ public class PerformancePage extends CommonPage {
 
     public PerformancePage clickOnRecordLink(String linkText) {
         clickLink(linkText);
+        return this;
+    }
+
+    public PerformancePage closePopups() {
+        close();
         return this;
     }
 

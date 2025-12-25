@@ -56,7 +56,7 @@ public class Recruitment_Actions_Test extends BaseTest {
         recruitmentPage
                 .clickToAdd()
                 .clickSave()
-                .verifyFieldErrorMessage("First Name", "Required")
+                .verifyFieldErrorMessage("Full Name", "Required")
                 .verifyFieldErrorMessage("Email", "Required");
     }
 }

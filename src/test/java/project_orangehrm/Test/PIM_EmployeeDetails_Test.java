@@ -143,18 +143,18 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
     public void addImmigrationDocument_Passport_Success() {
         pimPage
                 .navigateToSection("Employee List")
-                .typeInDynamicField("Employee Name", "Script Automation")
+                .typeInDynamicField("Employee Name", "Script Automation Tester")
                 .selectFromList()
                 .searchUser()
                 .clickToEdit("Script");
         pimPage
                 .clickSideBarEmp("Immigration")
                 .clickToAdd()
-                .clickAndSelectDropdown("Document", "Passport")
                 .typeInDynamicField("Number", "P123456789")
                 .selectDate("Issued Date", "2020-01-01")
                 .selectDate("Expiry Date", "2030-01-01")
-                .typeInDynamicField("Issued By", "Egypt")
+                .closePopups()
+                .clickAndSelectDropdown("Issued By", "Egypt")
                 .clickSave()
                 .verifySuccessMessage();
     }
@@ -163,7 +163,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
     public void verifyImmigration_Delete_Success() {
         pimPage
                 .navigateToSection("Employee List")
-                .typeInDynamicField("Employee Name", "Script Automation")
+                .typeInDynamicField("Employee Name", "Script Automation Tester")
                 .selectFromList()
                 .searchUser()
                 .clickToEdit("Script");
@@ -217,7 +217,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
     public void verifyQualifications_Education_Add_Success() {
         pimPage
                 .navigateToSection("Employee List")
-                .typeInDynamicField("Employee Name", "Script Automation")
+                .typeInDynamicField("Employee Name", "Script Automation Tester")
                 .selectFromList()
                 .searchUser()
                 .clickToEdit("Script");
@@ -225,7 +225,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
                 .clickSideBarEmp("Qualifications")
                 .clickToSection("Education")
                 .clickToAdd()
-                .clickAndSelectDropdown("Level", "Bachelor's Degree")
+                .clickAndSelectDropdown("Level", "High School Diploma")
                 .typeInDynamicField("Institute", "Cairo University")
                 .typeInDynamicField("Major/Specialization", "Computer Science")
                 .typeInDynamicField("Year", "2019")

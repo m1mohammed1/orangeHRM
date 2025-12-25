@@ -80,6 +80,12 @@ public class PIM_Employee_Test extends BaseTest {
                 .clickAndSelectDropdown("Reporting Method", "Test_Reporting")
                 .clickSave();
         pimPage
+                .clickSideBarEmp("Job")
+                .selectDate("Joined Date", "2025-2-15")
+                .clickAndSelectDropdown("Job Title", "QA Engineer")
+                .clickSave();
+
+        pimPage
                 .navigateToSection("Employee List")
                 .typeInDynamicField("Employee Name", MiddleName + " " + lastName)
                 .searchUser()

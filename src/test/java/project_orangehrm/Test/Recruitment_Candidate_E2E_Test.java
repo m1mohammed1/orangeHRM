@@ -37,8 +37,8 @@ public class Recruitment_Candidate_E2E_Test extends BaseTest {
 
         recruitmentPage
                 .clickToAdd()
-                .typeInDynamicNameFiled("Full Name", "FirstName", firstName)
-                .typeInDynamicNameFiled("Full Name", "LastName", lastName)
+                .typeInDynamicNameFiled("Full Name", "First Name", firstName)
+                .typeInDynamicNameFiled("Full Name", "Last Name", lastName)
                 .typeInDynamicField("Email", email)
                 .typeInDynamicField("Contact Number", "010000000")
                 .clickAndSelectDropdown("Vacancy", vacancy)
@@ -90,13 +90,13 @@ public class Recruitment_Candidate_E2E_Test extends BaseTest {
         String email = "decline.candidate@test.com";
         recruitmentPage
                 .clickToAdd()
-                .typeInDynamicNameFiled("Full Name", "FirstName", firstName)
-                .typeInDynamicNameFiled("Full Name", "LastName", lastName)
+                .typeInDynamicNameFiled("Full Name", "First Name", firstName)
+                .typeInDynamicNameFiled("Full Name", "Last Name", lastName)
                 .typeInDynamicField("Email", email)
                 .clickSave()
                 .verifySuccessMessage();
         recruitmentPage
-                .clickEyeStatus("Shortlist")
+                .toggleEditMode()
                 .typeInDynamicTextArea("Notes", "Good profile")
                 .clickSave()
                 .verifyErrorToast();

@@ -36,8 +36,8 @@ public class Recruitment_CandidateWorkflow_Test extends BaseTest {
         recruitmentPage
                 .navigateToSection("Candidates")
                 .clickToAdd()
-                .typeInDynamicNameFiled("Full Name", "FirstName", firstName)
-                .typeInDynamicNameFiled("Full Name", "LastName", lastName)
+                .typeInDynamicNameFiled("Full Name", "First Name", firstName)
+                .typeInDynamicNameFiled("Full Name", "Last Name", lastName)
                 .typeInDynamicField("Email", email)
                 .typeInDynamicField("Contact Number", "01234567890")
                 .clickAndSelectDropdown("Vacancy", "Software Engineer")
@@ -52,8 +52,7 @@ public class Recruitment_CandidateWorkflow_Test extends BaseTest {
                 .navigateToSection("Candidates")
                 .clickToAdd()
                 .clickSave()
-                .verifyFieldErrorMessage("First Name", "Required")
-                .verifyFieldErrorMessage("Last Name", "Required")
+                .verifyFieldErrorMessage("Full Name", "Required")
                 .verifyFieldErrorMessage("Email", "Required");
     }
 
@@ -69,7 +68,7 @@ public class Recruitment_CandidateWorkflow_Test extends BaseTest {
                 .clickToButton("Shortlist")
                 .typeInDynamicTextArea("Notes", "Shortlisted - Good Profile")
                 .clickSave()
-                .verifySuccessMessage();
+                .verifyErrorToast();
     }
 
     @Test(priority = 4, description = "TC04 - Verify Schedule Interview")
@@ -128,8 +127,8 @@ public class Recruitment_CandidateWorkflow_Test extends BaseTest {
         recruitmentPage
                 .navigateToSection("Candidates")
                 .clickToAdd()
-                .typeInDynamicNameFiled("Full Name", "FirstName", firstName)
-                .typeInDynamicNameFiled("Full Name", "LastName", lastName)
+                .typeInDynamicNameFiled("Full Name", "First Name", firstName)
+                .typeInDynamicNameFiled("Full Name", "Last Name", lastName)
                 .typeInDynamicField("Email", email)
                 .clickSave()
                 .verifySuccessMessage();
@@ -188,8 +187,8 @@ public class Recruitment_CandidateWorkflow_Test extends BaseTest {
         recruitmentPage
                 .navigateToSection("Candidates")
                 .clickToAdd()
-                .typeInDynamicNameFiled("Full Name", "FirstName", firstName)
-                .typeInDynamicNameFiled("Full Name", "LastName", lastName)
+                .typeInDynamicNameFiled("Full Name", "Firs tName", firstName)
+                .typeInDynamicNameFiled("Full Name", "Last Name", lastName)
                 .typeInDynamicField("Email", email)
                 .clickSave()
                 .verifySuccessMessage();

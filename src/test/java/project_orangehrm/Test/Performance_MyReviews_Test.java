@@ -27,10 +27,33 @@ public class Performance_MyReviews_Test extends BaseTest {
                 .navigateToModule("Performance");
     }
 
+
+    @Test(priority = 14, description = "TC14 - Verify Manage Reviews Add Reviews Life Cycle")
+    public void verifyManageReviews_AddReview_Success() {
+        String employeeName = "Dev Sec Ops";
+        String SupervisorName = "Script Automation Tester";
+
+        performancePage
+                .navigateToSection("Manage Reviews", "Manage Reviews")
+                .clickToAdd();
+        performancePage
+                .typeInDynamicField("Employee Name", employeeName)
+                .selectFromList()
+                .typeInDynamicField("Supervisor Reviewer", SupervisorName)
+                .selectFromList()
+                .selectDate("Review Period Start Date", "2025-03-15")
+                .selectDate("Review Period End Date", "2025-03-20")
+                .selectDate("Due Date", "2025-03-30")
+                .closePopups()
+                .clickSave()
+                .verifySuccessMessage();
+    }
+
+
     @Test(priority = 1, description = "TC01 - Verify My Reviews Page Display")
     public void verifyMyReviews_Display_Success() {
         performancePage
-                .navigateToSection("My Reviews");
+                .navigateToSection("Manage Reviews", "My Reviews");
         performancePage
                 .verifySearchTable();
     }
@@ -38,7 +61,7 @@ public class Performance_MyReviews_Test extends BaseTest {
     @Test(priority = 2, description = "TC02 - Verify My Reviews Filter by Status")
     public void verifyMyReviews_FilterByStatus_Success() {
         performancePage
-                .navigateToSection("My Reviews");
+                .navigateToSection("Manage Reviews", "My Reviews");
         performancePage
                 .clickAndSelectDropdown("Status", "Activated")
                 .searchUser()
@@ -48,7 +71,7 @@ public class Performance_MyReviews_Test extends BaseTest {
     @Test(priority = 3, description = "TC03 - Verify My Reviews Filter by Job Title")
     public void verifyMyReviews_FilterByJobTitle_Success() {
         performancePage
-                .navigateToSection("My Reviews");
+                .navigateToSection("Manage Reviews", "My Reviews");
         performancePage
                 .clickAndSelectDropdown("Job Title", "QA Engineer")
                 .searchUser()
@@ -58,7 +81,7 @@ public class Performance_MyReviews_Test extends BaseTest {
     @Test(priority = 4, description = "TC04 - Verify My Reviews Filter by From Date")
     public void verifyMyReviews_FilterByFromDate_Success() {
         performancePage
-                .navigateToSection("My Reviews");
+                .navigateToSection("Manage Reviews", "My Reviews");
         performancePage
                 .selectDate("From Date", "2024-01-01")
                 .searchUser()
@@ -68,7 +91,7 @@ public class Performance_MyReviews_Test extends BaseTest {
     @Test(priority = 5, description = "TC05 - Verify My Reviews Filter by To Date")
     public void verifyMyReviews_FilterByToDate_Success() {
         performancePage
-                .navigateToSection("My Reviews");
+                .navigateToSection("Manage Reviews", "My Reviews");
         performancePage
                 .selectDate("To Date", "2025-12-31")
                 .searchUser()
@@ -78,7 +101,7 @@ public class Performance_MyReviews_Test extends BaseTest {
     @Test(priority = 6, description = "TC06 - Verify My Reviews Reset Filters")
     public void verifyMyReviews_ResetFilters_Success() {
         performancePage
-                .navigateToSection("My Reviews");
+                .navigateToSection("Manage Reviews", "My Reviews");
         performancePage
                 .clickAndSelectDropdown("Status", "Activated")
                 .selectDate("From Date", "2024-01-01")

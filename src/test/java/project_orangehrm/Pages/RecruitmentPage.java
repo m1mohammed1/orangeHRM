@@ -52,6 +52,11 @@ public class RecruitmentPage extends CommonPage {
         return this;
     }
 
+    public RecruitmentPage toggleEditMode() {
+        toggle();
+        return this;
+    }
+
     public RecruitmentPage clickAndSelectDropdown(String dropdownName, String visibleText) {
         selectDropdownOption(dropdownName, visibleText);
         return this;

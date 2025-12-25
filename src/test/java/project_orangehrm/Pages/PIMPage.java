@@ -53,6 +53,11 @@ public class PIMPage extends CommonPage {
         return this;
     }
 
+    public PIMPage waitInSeconds(int seconds) {
+        super.hardWait(seconds);
+        return this;
+    }
+
     public PIMPage typeInDynamicField(String fieldName, String text) {
         typeInField(fieldName, text);
         return this;

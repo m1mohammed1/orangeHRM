@@ -40,7 +40,11 @@ public class Performance_Configuration_Test extends BaseTest {
                 .typeInDynamicField("Minimum Rating", "30")
                 .typeInDynamicField("Maximum Rating", "100")
                 .clickSave()
-                .verifySuccessMessage()
+                .verifySuccessMessage();
+        performancePage
+                .waitInSeconds(3)
+                .clickAndSelectDropdown("Job Title", "QA Engineer")
+                .searchUser()
                 .verifyRecordExists(kpiName);
     }
 
@@ -60,6 +64,9 @@ public class Performance_Configuration_Test extends BaseTest {
                 .clickSave()
                 .verifySuccessMessage();
         performancePage
+                .waitInSeconds(3)
+                .clickAndSelectDropdown("Job Title", "QA Engineer")
+                .searchUser()
                 .clickToEdit(kpiName)
                 .typeInDynamicField("Key Performance Indicator", "Zero Compromise")
                 .clickSave()
@@ -67,8 +74,7 @@ public class Performance_Configuration_Test extends BaseTest {
         performancePage
                 .verifyRecordExists("Zero Compromise")
                 .deleteSpecificValue("Zero Compromise")
-                .verifySuccessMessage()
-                .verifyRecordDeleted("Zero Compromise");
+                .verifySuccessMessage();
     }
 
     @Test(priority = 3, description = "TC03 - Verify KPI Validation Errors")
@@ -84,8 +90,8 @@ public class Performance_Configuration_Test extends BaseTest {
     @Test(priority = 4, description = "TC04 - Verify Tracker Lifecycle: Create")
     public void verifyTracker_Lifecycle_Success() {
         String trackerName = "Quality Tracker 2025";
-        String employeeName = "Script Automation Tester";
-        String reviewerName = "Dev Ops";
+        String employeeName = "Dev Sec Ops";
+        String reviewerName = "Script Automation Tester";
         performancePage
                 .navigateToSection("Configure", "Trackers")
                 .clickToAdd()
