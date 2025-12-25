@@ -27,7 +27,7 @@ public class ClaimTestCleaning extends BaseTest {
                 .navigateToModule("Claim");
     }
 
-    @Test(priority = 1, description = "Cleanup Event - Global QA Summit 2025")
+    @Test(priority = 1, description = "TC01 - Cleanup Event - Global QA Summit 2025")
     public void cleanUpEvent_GlobalQASummit2025() {
         claimPage
                 .navigateToSection("Configuration", "Events")

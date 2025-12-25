@@ -27,19 +27,19 @@ public class BuzzTestCleaning extends BaseTest {
                 .navigateToModule("Buzz");
     }
 
-    @Test(priority = 1, description = "Cleanup Post - Engagement")
+    @Test(priority = 1, description = "TC01 - Cleanup Post - Engagement")
     public void cleanUpPost_Engagement() {
         buzzPage
                 .deleteIfExists("Engagement");
     }
 
-    @Test(priority = 2, description = "Cleanup Post - Updated Text")
+    @Test(priority = 2, description = "TC02 - Cleanup Post - Updated Text")
     public void cleanUpPost_UpdatedText() {
         buzzPage
                 .deleteIfExists("Updated Text");
     }
 
-    @Test(priority = 3, description = "Cleanup Post - Safety Check")
+    @Test(priority = 3, description = "TC03 - Cleanup Post - Safety Check")
     public void cleanUpPost_SafetyCheck() {
         buzzPage
                 .deleteIfExists("Safety Check");

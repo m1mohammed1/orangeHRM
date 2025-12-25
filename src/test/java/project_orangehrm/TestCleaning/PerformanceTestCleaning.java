@@ -27,7 +27,7 @@ public class PerformanceTestCleaning extends BaseTest {
                 .navigateToModule("Performance");
     }
 
-    @Test(priority = 1, description = "Cleanup KPI - Zero Production Bugs")
+    @Test(priority = 1, description = "TC01 - Cleanup KPI - Zero Production Bugs")
     public void cleanUpKPI_ZeroProductionBugs() {
         performancePage
                 .navigateToSection("Configure","KPIs")
@@ -36,12 +36,10 @@ public class PerformanceTestCleaning extends BaseTest {
                 .deleteIfExists("Zero Production Bugs");
     }
 
-    @Test(priority = 2, description = "Cleanup Tracker - Quality Tracker 2025")
+    @Test(priority = 2, description = "TC02 - Cleanup Tracker - Quality Tracker 2025")
     public void cleanUpTracker_QualityTracker2025() {
         performancePage
                 .navigateToSection("Configure", "Trackers")
                 .deleteIfExists("Quality Tracker 2025");
     }
 }
-
-

@@ -12,6 +12,7 @@ public class RecruitmentPage extends CommonPage {
 
     String DYNAMIC_NAME_FILED = "//label[normalize-space()='%s']/../following-sibling::div//input[@placeholder='%s']";
 
+
     public RecruitmentPage(WebDriver driver) {
         super(driver);
     }

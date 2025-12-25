@@ -29,7 +29,7 @@ public class PIMTestCleaning extends BaseTest {
     }
 
 
-    @Test(priority = 1, description = "Cleanup Custom Field - Automation Badge ID")
+    @Test(priority = 1, description = "TC01 - Cleanup Custom Field - Automation Badge ID")
     public void cleanUpCustomField_AutomationBadgeID() {
         pimPage
                 .verifyPIMPage("PIM")
@@ -38,7 +38,7 @@ public class PIMTestCleaning extends BaseTest {
     }
 
 
-    @Test(priority = 2, description = "Cleanup Reporting Method - Weekly Scrum Report")
+    @Test(priority = 2, description = "TC02 - Cleanup Reporting Method - Weekly Scrum Report")
     public void cleanUpReportingMethod_WeeklyScrumReport() {
         pimPage
                 .verifyPIMPage("PIM")
@@ -47,7 +47,7 @@ public class PIMTestCleaning extends BaseTest {
     }
 
 
-    @Test(priority = 3, description = "Cleanup Termination Reason - Better Salary Opportunity")
+    @Test(priority = 3, description = "TC03 - Cleanup Termination Reason - Better Salary Opportunity")
     public void cleanUpTerminationReason_BetterSalaryOpportunity() {
         pimPage
                 .verifyPIMPage("PIM")
@@ -55,7 +55,7 @@ public class PIMTestCleaning extends BaseTest {
                 .deleteIfExists("Better Salary Opportunity");
     }
 
-    @Test(priority = 4, description = "Cleanup Employee - Script Automation Tester (ID: 77777)")
+    @Test(priority = 4, description = "TC04 - Cleanup Employee - Script Automation Tester (ID: 77777)")
     public void cleanUpEmployee_ScriptAutomationTester() {
         pimPage
                 .verifyPIMPage("PIM")
@@ -66,7 +66,7 @@ public class PIMTestCleaning extends BaseTest {
                 .deleteIfExists("77777");
     }
 
-    @Test(priority = 5, description = "Cleanup Employee - Dev Sec Ops (ID: 0777)")
+    @Test(priority = 5, description = "TC05 - Cleanup Employee - Dev Sec Ops (ID: 0777)")
     public void cleanUpEmployee_DevSecOps() {
         pimPage
                 .verifyPIMPage("PIM")
@@ -77,7 +77,7 @@ public class PIMTestCleaning extends BaseTest {
                 .deleteIfExists("0777");
     }
 
-    @Test(priority = 6, description = "Cleanup Employee - Dev Ops Trem (ID: 0333)")
+    @Test(priority = 6, description = "TC06 - Cleanup Employee - Dev Ops Trem (ID: 0333)")
     public void cleanUpEmployee_DevOpsTrem() {
         pimPage
                 .verifyPIMPage("PIM")
@@ -88,7 +88,7 @@ public class PIMTestCleaning extends BaseTest {
                 .deleteIfExists("0333");
     }
 
-    @Test(priority = 7, description = "Cleanup Report - QA Employee Audit Report")
+    @Test(priority = 7, description = "TC07 - Cleanup Report - QA Employee Audit Report")
     public void cleanUpReport_QAEmployeeAuditReport() {
         pimPage
                 .verifyPIMPage("PIM")

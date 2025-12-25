@@ -28,7 +28,7 @@ public class AdminTestCleaning extends BaseTest {
     }
 
 
-    @Test(priority = 1, description = "Validate and Cleanup Job Title")
+    @Test(priority = 1, description = "TC01 - Cleanup Job Title - Principal SDET Engineer")
     public void cleanUpJobTitle() {
         adminPage
                 .verifyAdminPage("Admin")
@@ -36,7 +36,7 @@ public class AdminTestCleaning extends BaseTest {
                 .deleteIfExists("Principal SDET Engineer");
     }
 
-    @Test(priority = 2, description = "Validate and Cleanup Pay Grade")
+    @Test(priority = 2, description = "TC02 - Cleanup Pay Grade - Grade 5 - Executive")
     public void cleanUpPayGrade() {
         adminPage
                 .verifyAdminPage("Admin")
@@ -44,7 +44,7 @@ public class AdminTestCleaning extends BaseTest {
                 .deleteIfExists("Grade 5 - Executive");
     }
 
-    @Test(priority = 2, description = "Cleanup Employment Status - Freelance - Project Based")
+    @Test(priority = 3, description = "TC03 - Cleanup Employment Status - Freelance - Project Based")
     public void cleanUpEmploymentStatus() {
         adminPage
                 .verifyAdminPage("Admin")
@@ -52,7 +52,7 @@ public class AdminTestCleaning extends BaseTest {
                 .deleteIfExists("Freelance - Project Based");
     }
 
-    @Test(priority = 3, description = "Cleanup Job Category - Professionals - QA Engineer")
+    @Test(priority = 4, description = "TC04 - Cleanup Job Category - Professionals - QA Engineer")
     public void cleanUpJobCategory() {
         adminPage
                 .verifyAdminPage("Admin")
@@ -60,7 +60,7 @@ public class AdminTestCleaning extends BaseTest {
                 .deleteIfExists("Professionals - َQA Engineer");
     }
 
-    @Test(priority = 4, description = "Cleanup Work Shift - Night Shift - B")
+    @Test(priority = 5, description = "TC05 - Cleanup Work Shift - Night Shift - B")
     public void cleanUpWorkShift() {
         adminPage
                 .verifyAdminPage("Admin")
@@ -68,7 +68,7 @@ public class AdminTestCleaning extends BaseTest {
                 .deleteIfExists("Night Shift - B");
     }
 
-    @Test(priority = 6, description = "Validate and Cleanup Location")
+    @Test(priority = 6, description = "TC06 - Cleanup Location - Cairo Innovation Hub")
     public void cleanUpLocation() {
         adminPage
                 .verifyAdminPage("Admin")
@@ -78,7 +78,7 @@ public class AdminTestCleaning extends BaseTest {
                 .deleteIfExists("Cairo Innovation Hub");
     }
 
-    @Test(priority =8, description = "Validate and Cleanup Skill - Java Automation")
+    @Test(priority = 7, description = "TC07 - Cleanup Skill - Java Automation")
     public void cleanUpSkill() {
         adminPage
                 .verifyAdminPage("Admin")
@@ -86,7 +86,7 @@ public class AdminTestCleaning extends BaseTest {
                 .deleteIfExists("Java Automation");
     }
 
-    @Test(priority = 9, description = "Cleanup Education - Master of Science")
+    @Test(priority = 8, description = "TC08 - Cleanup Education - Master of Science")
     public void cleanUpEducation() {
         adminPage
                 .verifyAdminPage("Admin")
@@ -94,7 +94,7 @@ public class AdminTestCleaning extends BaseTest {
                 .deleteIfExists("Master of Science");
     }
 
-    @Test(priority = 10, description = "Cleanup License - ISTQB Foundation")
+    @Test(priority = 9, description = "TC09 - Cleanup License - ISTQB Foundation")
     public void cleanUpLicense() {
         adminPage
                 .verifyAdminPage("Admin")
@@ -102,7 +102,7 @@ public class AdminTestCleaning extends BaseTest {
                 .deleteIfExists("ISTQB Foundation");
     }
 
-    @Test(priority = 11, description = "Cleanup Language - German-Arabic")
+    @Test(priority = 10, description = "TC10 - Cleanup Language - German-Arabic")
     public void cleanUpLanguage() {
         adminPage
                 .verifyAdminPage("Admin")
@@ -110,7 +110,7 @@ public class AdminTestCleaning extends BaseTest {
                 .deleteIfExists("German-Arabic");
     }
 
-    @Test(priority = 12, description = "Cleanup Membership - IEEE Member")
+    @Test(priority = 11, description = "TC11 - Cleanup Membership - IEEE Member")
     public void cleanUpMembership() {
         adminPage
                 .verifyAdminPage("Admin")
@@ -118,7 +118,7 @@ public class AdminTestCleaning extends BaseTest {
                 .deleteIfExists("IEEE Member");
     }
 
-    @Test(priority = 13, description = "Cleanup Email Subscription - Automation Subscriber")
+    @Test(priority = 12, description = "TC12 - Cleanup Email Subscription - Automation Subscriber")
     public void cleanUpEmailSubscription() {
         adminPage
                 .verifyAdminPage("Admin")
@@ -127,7 +127,7 @@ public class AdminTestCleaning extends BaseTest {
                 .deleteIfExists("Automation Subscriber");
     }
 
-    @Test(priority = 14, description = "Cleanup Nationality - Automation Tester Nationality")
+    @Test(priority = 13, description = "TC13 - Cleanup Nationality - Automation Tester Nationality")
     public void cleanUpNationality() {
         adminPage
                 .verifyAdminPage("Admin")

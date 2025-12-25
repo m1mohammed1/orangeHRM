@@ -27,7 +27,7 @@ public class TimeTestCleaning extends BaseTest {
                 .navigateToModule("Time");
     }
 
-    @Test(priority = 1, description = "Cleanup Attendance Record - Started working on Automation")
+    @Test(priority = 1, description = "TC01 - Cleanup Attendance Record - Started working on Automation")
     public void cleanUpAttendance_StartedWorkingOnAutomation() {
         timePage
                 .navigateToSection("Attendance", "My Records")
@@ -36,7 +36,7 @@ public class TimeTestCleaning extends BaseTest {
                 .deleteIfExists("Started working on Automation");
     }
 
-    @Test(priority = 2, description = "Cleanup Attendance Record - Leaving for the day")
+    @Test(priority = 2, description = "TC02 - Cleanup Attendance Record - Leaving for the day")
     public void cleanUpAttendance_LeavingForTheDay() {
         timePage
                 .navigateToSection("Attendance", "My Records")
@@ -45,7 +45,7 @@ public class TimeTestCleaning extends BaseTest {
                 .deleteIfExists("Leaving for the day");
     }
 
-    @Test(priority = 3, description = "Cleanup Customer - Auto Test Customer")
+    @Test(priority = 3, description = "TC03 - Cleanup Customer - Auto Test Customer")
     public void cleanUpCustomer_AutoTestCustomer() {
         timePage
                 .navigateToSection("Project Info", "Customers")

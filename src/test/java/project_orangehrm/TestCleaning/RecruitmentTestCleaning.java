@@ -27,52 +27,38 @@ public class RecruitmentTestCleaning extends BaseTest {
     }
 
 
-    @Test(priority = 1, description = "Cleanup Candidate - E2E Candidate")
+    @Test(priority = 1, description = "TC01 - Cleanup Candidate - E2E Candidate")
     public void cleanUpCandidate_E2ECandidate() {
         recruitmentPage
                 .navigateToSection("Candidates")
-                .typeInDynamicField("Candidate Name","E2E")
-                .selectFromList()
-                .searchUser()
                 .deleteIfExists("E2E Candidate");
     }
 
-    @Test(priority = 2, description = "Cleanup Candidate - Decline Candidate")
+    @Test(priority = 2, description = "TC02 - Cleanup Candidate - Decline Candidate")
     public void cleanUpCandidate_DeclineCandidate() {
         recruitmentPage
                 .navigateToSection("Candidates")
-                .typeInDynamicField("Candidate Name","Decline")
-                .selectFromList()
-                .searchUser()
                 .deleteIfExists("Decline Candidate");
     }
 
-    @Test(priority = 3, description = "Cleanup Vacancy - Senior Java SDET")
+    @Test(priority = 3, description = "TC03 - Cleanup Vacancy - Senior Java SDET")
     public void cleanUpVacancy_SeniorJavaSDET() {
         recruitmentPage
                 .navigateToSection("Vacancies")
-                .clickAndSelectDropdown("Vacancy","Senior Java SDET")
-                .searchUser()
                 .deleteIfExists("Senior Java SDET");
     }
 
-    @Test(priority = 4, description = "Cleanup Candidate - Workflow Candidate")
+    @Test(priority = 4, description = "TC04 - Cleanup Candidate - Workflow Candidate")
     public void cleanUpCandidate_WorkflowCandidate() {
         recruitmentPage
                 .navigateToSection("Candidates")
-                .typeInDynamicField("Candidate Name", "Workflow")
-                .selectFromList()
-                .searchUser()
                 .deleteIfExists("Workflow Candidate");
     }
 
-    @Test(priority = 5, description = "Cleanup Candidate - Failed Candidate")
+    @Test(priority = 5, description = "TC05 - Cleanup Candidate - Failed Candidate")
     public void cleanUpCandidate_FailedCandidate() {
         recruitmentPage
                 .navigateToSection("Candidates")
-                .typeInDynamicField("Candidate Name", "Failed")
-                .selectFromList()
-                .searchUser()
                 .deleteIfExists("Failed Candidate");
     }
 }
