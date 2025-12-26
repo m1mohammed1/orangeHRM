@@ -28,8 +28,9 @@ env:
   MAVEN_OPTS: -Xmx2048m
 
 jobs:
+
   foundation:
-    name: Foundation (Admin + PIM + Recruitment)
+    name: Foundation (Foundation (Admin + PIM + Recruitment)
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -61,7 +62,7 @@ jobs:
         run: |
           mvn test -B \
             -Dsurefire.suiteXmlFiles=testng.xml \
-            -Dtestnames=Step1_Hyper_Admin_PIM_Foundation,Step2_Hyper_Admin_PIM_Foundation,Step3_Recruitment \
+            -Dtestnames=Step1_Hyper_Admin_PIM_Foundation,Step2_PIM_User_Foundation,Step3_Recruitment \
             -Dbrowser=chrome \
             -Dheadless=true \
             -Dmaven.test.failure.ignore=true
@@ -85,15 +86,15 @@ jobs:
       matrix:
         include:
           - name: Time_Core
-            tests: "project_orangehrm.Test.Time_Configuration_Test,project_orangehrm.Test.Time_Attendance_Test,project_orangehrm.Test.Time_Timesheets_Test"
+            testname: "Step4_Ops_Time_Core"
           - name: Time_Logic
-            tests: "project_orangehrm.Test.Time_ProjectInfo_Test,project_orangehrm.Test.Time_BusinessLogic_Test"
+            testname: "Step4_Ops_Time_Logic"
           - name: Leave_Config
-            tests: "project_orangehrm.Test.Leave_Configuration_Test,project_orangehrm.Test.Leave_Entitlements_Test,project_orangehrm.Test.Leave_Operations_Test"
+            testname: "Step4_Ops_Leave_Config"
           - name: Leave_Apply
-            tests: "project_orangehrm.Test.Leave_ApplyLeave_Test,project_orangehrm.Test.Leave_LeaveList_Test"
+            testname: "Step4_Ops_Leave_Apply"
           - name: Claims
-            tests: "project_orangehrm.Test.Claim_*"
+            testname: "Step4_Ops_Claims"
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -123,7 +124,7 @@ jobs:
         run: |
           mvn test -B \
             -Dsurefire.suiteXmlFiles=testng.xml \
-            -Dtest="${{ matrix.tests }}" \
+            -Dtestnames="${{ matrix.testname }}" \
             -Dbrowser=chrome \
             -Dheadless=true \
             -Dmaven.test.failure.ignore=true
@@ -147,15 +148,15 @@ jobs:
       matrix:
         include:
           - name: Perf_Reviews
-            tests: "project_orangehrm.Test.Performance_Configuration_Test,project_orangehrm.Test.Performance_Reviews_Test"
+            testname: "Step5_Perf_Reviews"
           - name: Perf_Eval
-            tests: "project_orangehrm.Test.Performance_MyReviews_Test,project_orangehrm.Test.Performance_Evaluation_Test"
+            testname: "Step5_Perf_Evaluation"
           - name: Buzz_Dash
-            tests: "project_orangehrm.Test.Buzz_*,project_orangehrm.Test.Dashboard_Widgets_Test"
+            testname: "Step5_Perf_Buzz_Dash"
           - name: Dash_Adv
-            tests: "project_orangehrm.Test.Dashboard_UserActions_Test,project_orangehrm.Test.Dashboard_Advanced_Test,project_orangehrm.Test.Directory_Test"
+            testname: "Step5_Perf_Dash_Adv"
           - name: All_Reports
-            tests: "project_orangehrm.Test.*_Reports_Test"
+            testname: "Step5_Perf_Reports"
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -185,7 +186,7 @@ jobs:
         run: |
           mvn test -B \
             -Dsurefire.suiteXmlFiles=testng.xml \
-            -Dtest="${{ matrix.tests }}" \
+            -Dtestnames="${{ matrix.testname }}" \
             -Dbrowser=chrome \
             -Dheadless=true \
             -Dmaven.test.failure.ignore=true
@@ -209,9 +210,9 @@ jobs:
       matrix:
         include:
           - name: Auth_Records
-            tests: "project_orangehrm.Test.Maintenance_Authentication_Test,project_orangehrm.Test.Maintenance_AccessRecords_Test"
+            testname: "Step6_Maintenance_Auth"
           - name: Safety_Purge
-            tests: "project_orangehrm.Test.Maintenance_Safety_Test,project_orangehrm.Test.Maintenance_PurgeRecords_Test"
+            testname: "Step6_Maintenance_Safety"
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -241,7 +242,7 @@ jobs:
         run: |
           mvn test -B \
             -Dsurefire.suiteXmlFiles=testng.xml \
-            -Dtest="${{ matrix.tests }}" \
+            -Dtestnames="${{ matrix.testname }}" \
             -Dbrowser=chrome \
             -Dheadless=true \
             -Dmaven.test.failure.ignore=true
@@ -266,11 +267,11 @@ jobs:
       matrix:
         include:
           - name: Admin_PIM
-            tests: "project_orangehrm.TestCleaning.AdminTestCleaning,project_orangehrm.TestCleaning.PIMTestCleaning"
+            testname: "Step7_Clean_Admin_PIM"
           - name: Recruit_Perf
-            tests: "project_orangehrm.TestCleaning.RecruitmentTestCleaning,project_orangehrm.TestCleaning.PerformanceTestCleaning"
+            testname: "Step7_Clean_Recruit_Perf"
           - name: Others
-            tests: "project_orangehrm.TestCleaning.ClaimTestCleaning,project_orangehrm.TestCleaning.BuzzTestCleaning,project_orangehrm.TestCleaning.TimeTestCleaning"
+            testname: "Step7_Clean_Others"
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -300,7 +301,7 @@ jobs:
         run: |
           mvn test -B \
             -Dsurefire.suiteXmlFiles=testng.xml \
-            -Dtest="${{ matrix.tests }}" \
+            -Dtestnames="${{ matrix.testname }}" \
             -Dbrowser=chrome \
             -Dheadless=true \
             -Dmaven.test.failure.ignore=true
@@ -374,6 +375,8 @@ jobs:
           echo "|------|--------|" >> $GITHUB_STEP_SUMMARY
           echo "| Foundation | ${{ needs.foundation.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Operations | ${{ needs.operations.result }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Maintenance | ${{ needs.maintenance-cleanup.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Performance | ${{ needs.performance.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Maintenance | ${{ needs.maintenance.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Cleanup | ${{ needs.cleanup.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Allure Report:** [View Report](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/)" >> $GITHUB_STEP_SUMMARY
