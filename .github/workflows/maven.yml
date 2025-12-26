@@ -25,12 +25,11 @@ permissions:
 
 env:
   BROWSER: ${{ github.event.inputs.browser || 'chrome' }}
-  MAVEN_OPTS: -Xmx2048m
+  MAVEN_OPTS: "-Xmx3072m -Djava.awt.headless=true"
 
 jobs:
-
   foundation:
-    name: Foundation (Foundation (Admin + PIM + Recruitment)
+    name: Foundation (Admin + PIM + Recruitment)
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -44,38 +43,21 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Setup Chrome Browser
-        uses: browser-actions/setup-chrome@latest
-        with:
-          chrome-version: stable
-
-      - name: Setup ChromeDriver
-        uses: nanasess/setup-chromedriver@v2
-
-      - name: Start Display (Xvfb)
-        run: |
-          export DISPLAY=:99
-          sudo Xvfb :99 -screen 0 1920x1080x24 &
-          sleep 3
-
       - name: Run Foundation Tests
         run: |
           mvn test -B \
             -Dsurefire.suiteXmlFiles=testng.xml \
             -Dtestnames=Step1_Hyper_Admin_PIM_Foundation,Step2_PIM_User_Foundation,Step3_Recruitment \
             -Dbrowser=chrome \
-            -Dheadless=true \
-            -Dmaven.test.failure.ignore=true
-        env:
-          DISPLAY: :99
+            -Dheadless=true
 
       - name: Upload Foundation Results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: allure-foundation
+          name: allure-results-foundation
           path: target/allure-results
-          retention-days: 5
+          retention-days: 1
 
   operations:
     name: Ops - ${{ matrix.name }}
@@ -106,38 +88,21 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Setup Chrome Browser
-        uses: browser-actions/setup-chrome@latest
-        with:
-          chrome-version: stable
-
-      - name: Setup ChromeDriver
-        uses: nanasess/setup-chromedriver@v2
-
-      - name: Start Display (Xvfb)
-        run: |
-          export DISPLAY=:99
-          sudo Xvfb :99 -screen 0 1920x1080x24 &
-          sleep 3
-
       - name: Run ${{ matrix.name }}
         run: |
           mvn test -B \
             -Dsurefire.suiteXmlFiles=testng.xml \
             -Dtestnames="${{ matrix.testname }}" \
             -Dbrowser=chrome \
-            -Dheadless=true \
-            -Dmaven.test.failure.ignore=true
-        env:
-          DISPLAY: :99
+            -Dheadless=true
 
       - name: Upload Ops Results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: allure-ops-${{ matrix.name }}
+          name: allure-results-ops-${{ matrix.name }}
           path: target/allure-results
-          retention-days: 5
+          retention-days: 1
 
   performance:
     name: Perf - ${{ matrix.name }}
@@ -168,38 +133,21 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Setup Chrome Browser
-        uses: browser-actions/setup-chrome@latest
-        with:
-          chrome-version: stable
-
-      - name: Setup ChromeDriver
-        uses: nanasess/setup-chromedriver@v2
-
-      - name: Start Display (Xvfb)
-        run: |
-          export DISPLAY=:99
-          sudo Xvfb :99 -screen 0 1920x1080x24 &
-          sleep 3
-
       - name: Run ${{ matrix.name }}
         run: |
           mvn test -B \
             -Dsurefire.suiteXmlFiles=testng.xml \
             -Dtestnames="${{ matrix.testname }}" \
             -Dbrowser=chrome \
-            -Dheadless=true \
-            -Dmaven.test.failure.ignore=true
-        env:
-          DISPLAY: :99
+            -Dheadless=true
 
       - name: Upload Perf Results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: allure-perf-${{ matrix.name }}
+          name: allure-results-perf-${{ matrix.name }}
           path: target/allure-results
-          retention-days: 5
+          retention-days: 1
 
   maintenance:
     name: Maint - ${{ matrix.name }}
@@ -224,38 +172,21 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Setup Chrome Browser
-        uses: browser-actions/setup-chrome@latest
-        with:
-          chrome-version: stable
-
-      - name: Setup ChromeDriver
-        uses: nanasess/setup-chromedriver@v2
-
-      - name: Start Display (Xvfb)
-        run: |
-          export DISPLAY=:99
-          sudo Xvfb :99 -screen 0 1920x1080x24 &
-          sleep 3
-
       - name: Run ${{ matrix.name }}
         run: |
           mvn test -B \
             -Dsurefire.suiteXmlFiles=testng.xml \
             -Dtestnames="${{ matrix.testname }}" \
             -Dbrowser=chrome \
-            -Dheadless=true \
-            -Dmaven.test.failure.ignore=true
-        env:
-          DISPLAY: :99
+            -Dheadless=true
 
       - name: Upload Maint Results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: allure-maint-${{ matrix.name }}
+          name: allure-results-maint-${{ matrix.name }}
           path: target/allure-results
-          retention-days: 5
+          retention-days: 1
 
   cleanup:
     name: Clean - ${{ matrix.name }}
@@ -283,38 +214,21 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Setup Chrome Browser
-        uses: browser-actions/setup-chrome@latest
-        with:
-          chrome-version: stable
-
-      - name: Setup ChromeDriver
-        uses: nanasess/setup-chromedriver@v2
-
-      - name: Start Display (Xvfb)
-        run: |
-          export DISPLAY=:99
-          sudo Xvfb :99 -screen 0 1920x1080x24 &
-          sleep 3
-
       - name: Run ${{ matrix.name }}
         run: |
           mvn test -B \
             -Dsurefire.suiteXmlFiles=testng.xml \
             -Dtestnames="${{ matrix.testname }}" \
             -Dbrowser=chrome \
-            -Dheadless=true \
-            -Dmaven.test.failure.ignore=true
-        env:
-          DISPLAY: :99
+            -Dheadless=true
 
       - name: Upload Cleanup Results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: allure-clean-${{ matrix.name }}
+          name: allure-results-clean-${{ matrix.name }}
           path: target/allure-results
-          retention-days: 5
+          retention-days: 1
 
   report:
     name: Generate Report
@@ -329,26 +243,26 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: all-results
-          pattern: allure-*
+          pattern: allure-results-*
           merge-multiple: true
 
-      - name: Download Allure History (Previous Report)
+      - name: Download Allure History
         uses: actions/checkout@v4
         continue-on-error: true
         with:
           ref: gh-pages
           path: gh-pages
 
-      - name: Merge Results & Restore History
+      - name: Prepare Results for Generation
         run: |
           mkdir -p target/allure-results
-          cp -r all-results/* target/allure-results/ || true
+          cp -r all-results/* target/allure-results/
+          
+          # استعادة التاريخ
           if [ -d "gh-pages/history" ]; then
-            echo "Found previous history, restoring..."
             cp -r gh-pages/history target/allure-results/
-          else
-            echo "No previous history found (First run?)"
           fi
+          rm -f target/allure-results/executor.json
 
       - name: Generate Allure Report
         uses: simple-elf/allure-report-action@master
@@ -365,18 +279,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-report
-
-      - name: Job Summary
-        if: always()
-        run: |
-          echo "## Test Execution Summary" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "| Step | Status |" >> $GITHUB_STEP_SUMMARY
-          echo "|------|--------|" >> $GITHUB_STEP_SUMMARY
-          echo "| Foundation | ${{ needs.foundation.result }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Operations | ${{ needs.operations.result }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Performance | ${{ needs.performance.result }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Maintenance | ${{ needs.maintenance.result }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Cleanup | ${{ needs.cleanup.result }} |" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Allure Report:** [View Report](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/)" >> $GITHUB_STEP_SUMMARY
