@@ -43,7 +43,7 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Setup Xvfb with cleanup trap
+      - name: Setup Xvfb
         run: |
           sudo apt-get update
           sudo apt-get install -y xvfb
@@ -55,8 +55,7 @@ jobs:
         timeout-minutes: 50
         run: |
           mvn test -B \
-            -Dsurefire.suiteXmlFiles=testng.xml \
-            -Dtestnames=Step1_Hyper_Admin_PIM_Foundation,Step2_PIM_User_Foundation,Step3_Recruitment \
+            -Dtest="LoginTest,PIM*,Admin*,Recruitment*" \
             -Dbrowser=${{ env.BROWSER }} \
             -Dheadless=true
         env:
@@ -65,9 +64,7 @@ jobs:
       - name: Cleanup Xvfb
         if: always()
         run: |
-          if [ -n "$XVFB_PID" ]; then
-            kill $XVFB_PID 2>/dev/null || true
-          fi
+          if [ -n "$XVFB_PID" ]; then kill $XVFB_PID 2>/dev/null || true; fi
           pkill Xvfb || true
 
       - name: Upload Foundation Results
@@ -89,15 +86,15 @@ jobs:
       matrix:
         include:
           - name: Time_Core
-            testname: "Step4_Ops_Time_Core"
+            test_patterns: "Time_Configuration_Test,Time_Attendance_Test,Time_Timesheets_Test"
           - name: Time_Logic
-            testname: "Step4_Ops_Time_Logic"
+            test_patterns: "Time_ProjectInfo_Test,Time_BusinessLogic_Test"
           - name: Leave_Config
-            testname: "Step4_Ops_Leave_Config"
+            test_patterns: "Leave_Configuration_Test,Leave_Entitlements_Test,Leave_Operations_Test"
           - name: Leave_Apply
-            testname: "Step4_Ops_Leave_Apply"
+            test_patterns: "Leave_ApplyLeave_Test,Leave_LeaveList_Test"
           - name: Claims
-            testname: "Step4_Ops_Claims"
+            test_patterns: "Claim_*"
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -109,7 +106,7 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Setup Xvfb with cleanup trap
+      - name: Setup Xvfb
         run: |
           sudo apt-get update
           sudo apt-get install -y xvfb
@@ -121,8 +118,7 @@ jobs:
         timeout-minutes: 25
         run: |
           mvn test -B \
-            -Dsurefire.suiteXmlFiles=testng.xml \
-            -Dtestnames="${{ matrix.testname }}" \
+            -Dtest="${{ matrix.test_patterns }}" \
             -Dbrowser=${{ env.BROWSER }} \
             -Dheadless=true
         env:
@@ -131,9 +127,7 @@ jobs:
       - name: Cleanup Xvfb
         if: always()
         run: |
-          if [ -n "$XVFB_PID" ]; then
-            kill $XVFB_PID 2>/dev/null || true
-          fi
+          if [ -n "$XVFB_PID" ]; then kill $XVFB_PID 2>/dev/null || true; fi
           pkill Xvfb || true
 
       - name: Upload Ops Results
@@ -155,15 +149,15 @@ jobs:
       matrix:
         include:
           - name: Perf_Reviews
-            testname: "Step5_Perf_Reviews"
+            test_patterns: "Performance_Configuration_Test,Performance_Reviews_Test"
           - name: Perf_Eval
-            testname: "Step5_Perf_Evaluation"
+            test_patterns: "Performance_MyReviews_Test,Performance_Evaluation_Test"
           - name: Buzz_Dash
-            testname: "Step5_Perf_Buzz_Dash"
+            test_patterns: "Buzz_*,Dashboard_Widgets_Test"
           - name: Dash_Adv
-            testname: "Step5_Perf_Dash_Adv"
+            test_patterns: "Dashboard_UserActions_Test,Dashboard_Advanced_Test,Directory_Test"
           - name: All_Reports
-            testname: "Step5_Perf_Reports"
+            test_patterns: "*_Reports_Test"
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -175,7 +169,7 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Setup Xvfb with cleanup trap
+      - name: Setup Xvfb
         run: |
           sudo apt-get update
           sudo apt-get install -y xvfb
@@ -187,8 +181,7 @@ jobs:
         timeout-minutes: 25
         run: |
           mvn test -B \
-            -Dsurefire.suiteXmlFiles=testng.xml \
-            -Dtestnames="${{ matrix.testname }}" \
+            -Dtest="${{ matrix.test_patterns }}" \
             -Dbrowser=${{ env.BROWSER }} \
             -Dheadless=true
         env:
@@ -197,9 +190,7 @@ jobs:
       - name: Cleanup Xvfb
         if: always()
         run: |
-          if [ -n "$XVFB_PID" ]; then
-            kill $XVFB_PID 2>/dev/null || true
-          fi
+          if [ -n "$XVFB_PID" ]; then kill $XVFB_PID 2>/dev/null || true; fi
           pkill Xvfb || true
 
       - name: Upload Perf Results
@@ -221,9 +212,9 @@ jobs:
       matrix:
         include:
           - name: Auth_Records
-            testname: "Step6_Maintenance_Auth"
+            test_patterns: "Maintenance_Authentication_Test,Maintenance_AccessRecords_Test"
           - name: Safety_Purge
-            testname: "Step6_Maintenance_Safety"
+            test_patterns: "Maintenance_Safety_Test,Maintenance_PurgeRecords_Test"
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -235,7 +226,7 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Setup Xvfb with cleanup trap
+      - name: Setup Xvfb
         run: |
           sudo apt-get update
           sudo apt-get install -y xvfb
@@ -247,8 +238,7 @@ jobs:
         timeout-minutes: 20
         run: |
           mvn test -B \
-            -Dsurefire.suiteXmlFiles=testng.xml \
-            -Dtestnames="${{ matrix.testname }}" \
+            -Dtest="${{ matrix.test_patterns }}" \
             -Dbrowser=${{ env.BROWSER }} \
             -Dheadless=true
         env:
@@ -257,9 +247,7 @@ jobs:
       - name: Cleanup Xvfb
         if: always()
         run: |
-          if [ -n "$XVFB_PID" ]; then
-            kill $XVFB_PID 2>/dev/null || true
-          fi
+          if [ -n "$XVFB_PID" ]; then kill $XVFB_PID 2>/dev/null || true; fi
           pkill Xvfb || true
 
       - name: Upload Maint Results
@@ -281,11 +269,11 @@ jobs:
       matrix:
         include:
           - name: Admin_PIM
-            testname: "Step7_Clean_Admin_PIM"
+            test_patterns: "AdminTestCleaning,PIMTestCleaning"
           - name: Recruit_Perf
-            testname: "Step7_Clean_Recruit_Perf"
+            test_patterns: "RecruitmentTestCleaning,PerformanceTestCleaning"
           - name: Others
-            testname: "Step7_Clean_Others"
+            test_patterns: "ClaimTestCleaning,BuzzTestCleaning,TimeTestCleaning"
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -297,7 +285,7 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Setup Xvfb with cleanup trap
+      - name: Setup Xvfb
         run: |
           sudo apt-get update
           sudo apt-get install -y xvfb
@@ -309,8 +297,7 @@ jobs:
         timeout-minutes: 15
         run: |
           mvn test -B \
-            -Dsurefire.suiteXmlFiles=testng.xml \
-            -Dtestnames="${{ matrix.testname }}" \
+            -Dtest="${{ matrix.test_patterns }}" \
             -Dbrowser=${{ env.BROWSER }} \
             -Dheadless=true
         env:
@@ -319,9 +306,7 @@ jobs:
       - name: Cleanup Xvfb
         if: always()
         run: |
-          if [ -n "$XVFB_PID" ]; then
-            kill $XVFB_PID 2>/dev/null || true
-          fi
+          if [ -n "$XVFB_PID" ]; then kill $XVFB_PID 2>/dev/null || true; fi
           pkill Xvfb || true
 
       - name: Upload Cleanup Results
@@ -395,4 +380,4 @@ jobs:
           echo "| Maintenance | ${{ needs.maintenance.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Cleanup | ${{ needs.cleanup.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Allure Report:** [View Report](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/)\" >> $GITHUB_STEP_SUMMARY
+          echo "**Allure Report:** [View Report](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/)" >> $GITHUB_STEP_SUMMARY
