@@ -52,7 +52,7 @@ public class AdminJobTest extends BaseTest {
                 .verifyFieldErrorMessage("Job Title", "Required");
     }
 
-    @Test(priority = 3, description = "TC03 - Verify error when creating a duplicate Job Title")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Verify error when creating a duplicate Job Title")
     public void verifyJobTitle_DuplicateEntry_ShowError() {
         adminPage
                 .navigateToSection("Job", "Job Titles")
