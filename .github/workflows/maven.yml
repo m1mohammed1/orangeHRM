@@ -116,7 +116,6 @@ jobs:
           mvn test -B \
             -Dsurefire.suiteXmlFiles=testng.xml \
             -Dtestnames="${{ matrix.shard_name }}" \
-            -Dgroups="regression" \
             -Dbrowser=${{ env.BROWSER }} \
             -Dheadless=true \
             -Dmaven.test.failure.ignore=true
