@@ -116,7 +116,7 @@ public class PIM_Employee_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 4, description = "TC04 - Verify Add Employee Validation")
+    @Test(priority = 4, groups = {"regression"}, description = "TC04 - Verify Add Employee Validation")
     public void verifyEmployee_EmptyFields_ShowError() {
         pimPage
                 .navigateToSection("Add Employee")
@@ -124,7 +124,7 @@ public class PIM_Employee_Test extends BaseTest {
                 .verifyFieldErrorMessage("Employee Full Name", "Required");
     }
 
-    @Test(priority = 5, description = "TC05 - Verify Search by Employment Status")
+    @Test(priority = 5, groups = {"regression"}, description = "TC05 - Verify Search by Employment Status")
     public void verifyEmployeeList_SearchFilter_Success() {
         pimPage
                 .navigateToSection("Employee List")

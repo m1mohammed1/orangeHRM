@@ -40,7 +40,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .verifyRecordExists(skillName);
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Skill Lifecycle: Create,Edit and Delete")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Skill Lifecycle: Create,Edit and Delete")
     public void verifySkills_Lifecycle_Edit() {
         String skillName = "Python Automation";
         String updatedSkillName = "Python Playwright Automation";
@@ -66,7 +66,7 @@ public class Admin_Qualifications_Test extends BaseTest {
     }
 
 
-    @Test(priority = 3, description = "TC03 - Verify validation error for empty Skill Name")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Verify validation error for empty Skill Name")
     public void verifySkills_EmptyFields_ShowError() {
         adminPage
                 .navigateToSection("Qualifications", "Skills")
@@ -75,7 +75,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .verifyFieldErrorMessage("Name", "Required");
     }
 
-    @Test(priority = 4, description = "TC04 - Verify error when creating a duplicate Skill")
+    @Test(priority = 4, groups = {"regression"}, description = "TC04 - Verify error when creating a duplicate Skill")
     public void verifySkills_DuplicateEntry_ShowError() {
         String duplicateSkill = "Java Scripting";
         adminPage
@@ -94,7 +94,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .deleteSpecificValue(duplicateSkill);
     }
 
-    @Test(priority = 5, description = "TC05 - Verify Education Level Lifecycle: Create")
+    @Test(priority = 5, groups = {"regression"}, description = "TC05 - Verify Education Level Lifecycle: Create")
     public void verifyEducation_Lifecycle_Success() {
         String eduLevel = "Master of Science";
         adminPage
@@ -107,7 +107,7 @@ public class Admin_Qualifications_Test extends BaseTest {
     }
 
 
-    @Test(priority = 6, description = "TC06 - Verify Education Level Lifecycle: Create, Edit, Delete")
+    @Test(priority = 6, groups = {"regression"}, description = "TC06 - Verify Education Level Lifecycle: Create, Edit, Delete")
     public void verifyEducation_Lifecycle_Edit() {
         String eduLevel = "Master of artificial intelligence";
         String updatedEduLevel = "PhD in AI";
@@ -130,7 +130,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .verifyRecordDeleted(updatedEduLevel);
     }
 
-    @Test(priority = 7, description = "TC07 - Verify validation error for empty Education Level")
+    @Test(priority = 7, groups = {"regression"}, description = "TC07 - Verify validation error for empty Education Level")
     public void verifyEducation_EmptyFields_ShowError() {
         adminPage
                 .navigateToSection("Qualifications", "Education")
@@ -139,7 +139,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .verifyFieldErrorMessage("Level", "Required");
     }
 
-    @Test(priority = 8, description = "TC08 - Verify error when creating a duplicate Education Level")
+    @Test(priority = 8, groups = {"regression"}, description = "TC08 - Verify error when creating a duplicate Education Level")
     public void verifyEducation_DuplicateEntry_ShowError() {
         String duplicateEdu = "Bachelor of Arts";
 
@@ -162,7 +162,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 9, description = "TC09 - Verify License Lifecycle: Create")
+    @Test(priority = 9, groups = {"regression"}, description = "TC09 - Verify License Lifecycle: Create")
     public void verifyLicenses_Lifecycle_Success() {
         String licenseName = "ISTQB Foundation";
         adminPage
@@ -174,7 +174,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .verifyRecordExists(licenseName);
     }
 
-    @Test(priority = 10, description = "TC10 - Verify License Lifecycle: Create, Edit, Delete")
+    @Test(priority = 10, groups = {"regression"}, description = "TC10 - Verify License Lifecycle: Create, Edit, Delete")
     public void verifyLicenses_Lifecycle_Edit() {
         String licenseName = "OWASP Foundation";
         String updatedLicense = "OWASP Advanced";
@@ -199,7 +199,7 @@ public class Admin_Qualifications_Test extends BaseTest {
     }
 
 
-    @Test(priority = 11, description = "TC11 - Verify validation error for empty License Name")
+    @Test(priority = 11, groups = {"regression"}, description = "TC11 - Verify validation error for empty License Name")
     public void verifyLicenses_EmptyFields_ShowError() {
         adminPage
                 .navigateToSection("Qualifications", "Licenses")
@@ -208,7 +208,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .verifyFieldErrorMessage("Name", "Required");
     }
 
-    @Test(priority = 12, description = "TC12 - Verify error when creating a duplicate License")
+    @Test(priority = 12, groups = {"regression"}, description = "TC12 - Verify error when creating a duplicate License")
     public void verifyLicenses_DuplicateEntry_ShowError() {
         String duplicateLicense = "Certified Scrum Master";
 
@@ -229,7 +229,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 13, description = "TC13 - Verify Language Lifecycle: Create")
+    @Test(priority = 13, groups = {"regression"}, description = "TC13 - Verify Language Lifecycle: Create")
     public void verifyLanguages_Lifecycle_Success() {
         String langName = "German-Arabic";
         adminPage
@@ -241,7 +241,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .verifyRecordExists(langName);
     }
 
-    @Test(priority = 14, description = "TC14 - Verify Language Lifecycle: Create, Edit, Delete")
+    @Test(priority = 14, groups = {"regression"}, description = "TC14 - Verify Language Lifecycle: Create, Edit, Delete")
     public void verifyLanguages_Lifecycle_Edit() {
         String langName = "English-Arabic";
         String updatedLang = "Arabic (Bidi)";
@@ -268,7 +268,7 @@ public class Admin_Qualifications_Test extends BaseTest {
     }
 
 
-    @Test(priority = 15, description = "TC15 - Verify validation error for empty Language Name")
+    @Test(priority = 15, groups = {"regression"}, description = "TC15 - Verify validation error for empty Language Name")
     public void verifyLanguages_EmptyFields_ShowError() {
         adminPage
                 .navigateToSection("Qualifications", "Languages")
@@ -277,7 +277,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .verifyFieldErrorMessage("Name", "Required");
     }
 
-    @Test(priority = 16, description = "TC16 - Verify error when creating a duplicate Language")
+    @Test(priority = 16, groups = {"regression"}, description = "TC16 - Verify error when creating a duplicate Language")
     public void verifyLanguages_DuplicateEntry_ShowError() {
         String duplicateLang = "Arabic-Bidi";
 
@@ -299,7 +299,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 17, description = "TC17 - Verify Membership Lifecycle: Create")
+    @Test(priority = 17, groups = {"regression"}, description = "TC17 - Verify Membership Lifecycle: Create")
     public void verifyMemberships_Lifecycle_Success() {
         String membershipName = "IEEE Member";
         adminPage
@@ -311,7 +311,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .verifyRecordExists(membershipName);
     }
 
-    @Test(priority = 18, description = "TC18 - Verify Membership Lifecycle: Create, Edit, Delete")
+    @Test(priority = 18, groups = {"regression"}, description = "TC18 - Verify Membership Lifecycle: Create, Edit, Delete")
     public void verifyMemberships_Lifecycle_Edit() {
         String membershipName = "IEEE Senior Member";
         String updatedMembership = "IEEE Associate Member";
@@ -336,7 +336,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .verifyRecordDeleted(updatedMembership);
     }
 
-    @Test(priority = 19, description = "TC19 - Verify validation error for empty Membership Name")
+    @Test(priority = 19, groups = {"regression"}, description = "TC19 - Verify validation error for empty Membership Name")
     public void verifyMemberships_EmptyFields_ShowError() {
         adminPage
                 .navigateToSection("Qualifications", "Memberships")
@@ -345,7 +345,7 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .verifyFieldErrorMessage("Name", "Required");
     }
 
-    @Test(priority = 20, description = "TC20 - Verify error when creating a duplicate Membership")
+    @Test(priority = 20, groups = {"regression"}, description = "TC20 - Verify error when creating a duplicate Membership")
     public void verifyMemberships_DuplicateEntry_ShowError() {
         String duplicateMember = "Rotary Club";
 

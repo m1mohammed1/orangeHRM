@@ -83,7 +83,7 @@ public class Recruitment_Candidate_E2E_Test extends BaseTest {
         */
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Candidate Declines Job Offer")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Candidate Declines Job Offer")
     public void verifyCandidate_OfferDeclined_Flow() {
         String firstName = "Decline";
         String lastName = "Candidate";

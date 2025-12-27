@@ -28,7 +28,7 @@ public class Claim_Operations_Test extends BaseTest {
     }
 
 
-    @Test(priority = 1, description = "TC01 - Verify Submit Claim Logic")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify Submit Claim Logic")
     public void verifySubmitClaim_Logic() {
 
         claimPage
@@ -54,7 +54,7 @@ public class Claim_Operations_Test extends BaseTest {
     }
 
 
-    @Test(priority = 2, description = "TC02 - Verify Submit, Edit Claim Logic")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Submit, Edit Claim Logic")
     public void verifyClaim_Edit() {
 
         claimPage

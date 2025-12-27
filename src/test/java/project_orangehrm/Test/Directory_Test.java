@@ -29,13 +29,13 @@ public class Directory_Test extends BaseTest {
                 .navigateToModule("Directory");
     }
 
-    @Test(priority = 1, description = "TC01 - Verify Directory Page Display")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify Directory Page Display")
     public void verifyDirectory_Display_Success() {
         directoryPage
                 .verifyDirectoryPage("Directory");
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Directory Search by Employee Name")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Directory Search by Employee Name")
     public void verifyDirectory_SearchByName_Success() {
         String employeeName = "Script Automation";
 
@@ -46,7 +46,7 @@ public class Directory_Test extends BaseTest {
                 .verifyRecordExists("Script Automation Tester");
     }
 
-    @Test(priority = 3, description = "TC03 - Verify Directory Search by Job Title")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Verify Directory Search by Job Title")
     public void verifyDirectory_SearchByJobTitle_Success() {
         directoryPage
                 .clickAndSelectDropdown("Job Title", "QA Engineer")
@@ -54,7 +54,7 @@ public class Directory_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 4, description = "TC04 - Verify Directory Search by Location")
+    @Test(priority = 4, groups = {"regression"}, description = "TC04 - Verify Directory Search by Location")
     public void verifyDirectory_SearchByLocation_Success() {
         directoryPage
                 .clickAndSelectDropdown("Location", "Texas R&D")
@@ -62,7 +62,7 @@ public class Directory_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 5, description = "TC05 - Verify Directory Multiple Filters")
+    @Test(priority = 5, groups = {"regression"}, description = "TC05 - Verify Directory Multiple Filters")
     public void verifyDirectory_MultipleFilters_Success() {
         directoryPage
                 .clickAndSelectDropdown("Job Title", "QA Engineer")
@@ -71,7 +71,7 @@ public class Directory_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 6, description = "TC06 - Verify Directory Reset Filters")
+    @Test(priority = 6, groups = {"regression"}, description = "TC06 - Verify Directory Reset Filters")
     public void verifyDirectory_ResetFilters_Success() {
         directoryPage
                 .typeInDynamicField("Employee Name", "Test")
@@ -80,7 +80,7 @@ public class Directory_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 7, description = "TC07 - Verify Directory View Employee Details")
+    @Test(priority = 7, groups = {"regression"}, description = "TC07 - Verify Directory View Employee Details")
     public void verifyDirectory_ViewEmployeeDetails_Success() {
         String employeeName = "Script Automation";
 
@@ -92,7 +92,7 @@ public class Directory_Test extends BaseTest {
                 .verifyEmployeeDetailsPopup();
     }
 
-    @Test(priority = 8, description = "TC08 - Verify Directory Empty Search Results")
+    @Test(priority = 8, groups = {"regression"}, description = "TC08 - Verify Directory Empty Search Results")
     public void verifyDirectory_EmptyResults_Success() {
         directoryPage
                 .typeInDynamicField("Employee Name", "NonExistentEmployee12345")
@@ -100,7 +100,7 @@ public class Directory_Test extends BaseTest {
                 .verifyNoRecordsFound();
     }
 
-    @Test(priority = 9, description = "TC09 - Verify Directory Contact Information Display")
+    @Test(priority = 9, groups = {"regression"}, description = "TC09 - Verify Directory Contact Information Display")
     public void verifyDirectory_ContactInfo_Display() {
         String employeeName = "Script Automation";
 
@@ -111,7 +111,7 @@ public class Directory_Test extends BaseTest {
                 .verifyContactInfoVisible();
     }
 
-    @Test(priority = 10, description = "TC10 - Verify Directory Search by Sub Unit")
+    @Test(priority = 10, groups = {"regression"}, description = "TC10 - Verify Directory Search by Sub Unit")
     public void verifyDirectory_SearchBySubUnit_Success() {
         directoryPage
                 .clickAndSelectDropdown("Sub Unit", "Engineering")
@@ -119,4 +119,3 @@ public class Directory_Test extends BaseTest {
                 .verifySearchTable();
     }
 }
-

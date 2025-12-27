@@ -29,7 +29,7 @@ public class Admin_Nationalities_Test extends BaseTest {
                 .navigateToModule("Admin");
     }
 
-    @Test(priority = 1, description = "TC01 - Verify Nationality Lifecycle: Create, Verify")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify Nationality Lifecycle: Create, Verify")
     public void verifyNationality_Lifecycle_Success() {
         String nationalityName = "Automation Tester Nationality";
         adminPage
@@ -41,7 +41,7 @@ public class Admin_Nationalities_Test extends BaseTest {
                 .verifyRecordExists(nationalityName);
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Nationality Lifecycle: Create, Edit, Delete")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Nationality Lifecycle: Create, Edit, Delete")
     public void verifyNationality_Lifecycle_Edit() {
         String nationalityName = "1-Test Nationality";
         String updatedName = "1-Updated Test Nationality";
@@ -63,7 +63,7 @@ public class Admin_Nationalities_Test extends BaseTest {
                 .verifyRecordDeleted(updatedName);
     }
 
-    @Test(priority = 3, description = "TC03 - Verify Nationality Validation: Empty Field")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Verify Nationality Validation: Empty Field")
     public void verifyNationality_EmptyFields_ShowError() {
         adminPage
                 .navigateToSection("Nationalities")
@@ -72,7 +72,7 @@ public class Admin_Nationalities_Test extends BaseTest {
                 .verifyFieldErrorMessage("Name", "Required");
     }
 
-    @Test(priority = 4, description = "TC04 - Verify Nationality Duplicate Validation")
+    @Test(priority = 4, groups = {"regression"}, description = "TC04 - Verify Nationality Duplicate Validation")
     public void verifyNationality_Duplicate_ShowError() {
         String duplicateName = "Egyptian";
         adminPage
@@ -83,11 +83,10 @@ public class Admin_Nationalities_Test extends BaseTest {
                 .verifyFieldErrorMessage("Name", "Already exists");
     }
 
-    @Test(priority = 5, description = "TC05 - Verify Nationality Search Functionality")
+    @Test(priority = 5, groups = {"regression"}, description = "TC05 - Verify Nationality Search Functionality")
     public void verifyNationality_Search_Success() {
         adminPage
                 .navigateToSection("Nationalities")
                 .verifyRecordExists("American");
     }
 }
-

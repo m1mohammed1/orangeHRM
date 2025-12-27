@@ -29,7 +29,7 @@ public class Leave_ApplyLeave_Test extends BaseTest {
                 .navigateToModule("Leave");
     }
 
-    @Test(priority = 1, description = "TC01 - Verify Apply Leave Success")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify Apply Leave Success")
     public void verifyApplyLeave_Success() {
         String leaveType = "US - Vacation";
         String fromDate = "2025-01-15";
@@ -45,7 +45,7 @@ public class Leave_ApplyLeave_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Apply Leave Validation - Empty Fields")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Apply Leave Validation - Empty Fields")
     public void verifyApplyLeave_EmptyFields_ShowError() {
         leavePage
                 .navigateToSection("Apply")
@@ -55,7 +55,7 @@ public class Leave_ApplyLeave_Test extends BaseTest {
                 .verifyFieldErrorMessage("To Date", "Required");
     }
 
-    @Test(priority = 3, description = "TC03 - Verify Apply Leave with Half Day")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Verify Apply Leave with Half Day")
     public void verifyApplyLeave_HalfDay_Success() {
         String leaveType = "US - Vacation";
         String date = "2025-01-20";
@@ -71,7 +71,7 @@ public class Leave_ApplyLeave_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 4, description = "TC04 - Verify Apply Leave Balance Check")
+    @Test(priority = 4, groups = {"regression"}, description = "TC04 - Verify Apply Leave Balance Check")
     public void verifyApplyLeave_BalanceDisplay() {
         String leaveType = "US - Vacation";
 
@@ -82,14 +82,14 @@ public class Leave_ApplyLeave_Test extends BaseTest {
     }
 
 
-    @Test(priority = 5, description = "TC05 - Verify My Leave List Display")
+    @Test(priority = 5, groups = {"regression"}, description = "TC05 - Verify My Leave List Display")
     public void verifyMyLeave_ListDisplay_Success() {
         leavePage
                 .navigateToSection("My Leave")
                 .verifySearchTable();
     }
 
-    @Test(priority = 6, description = "TC06 - Verify My Leave Filter by Status")
+    @Test(priority = 6, groups = {"regression"}, description = "TC06 - Verify My Leave Filter by Status")
     public void verifyMyLeave_FilterByStatus_Success() {
         leavePage
                 .navigateToSection("My Leave")
@@ -98,7 +98,7 @@ public class Leave_ApplyLeave_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 7, description = "TC07 - Verify My Leave Filter by Date Range")
+    @Test(priority = 7, groups = {"regression"}, description = "TC07 - Verify My Leave Filter by Date Range")
     public void verifyMyLeave_FilterByDateRange_Success() {
         String fromDate = "2024-01-01";
         String toDate = "2025-12-31";
@@ -111,7 +111,7 @@ public class Leave_ApplyLeave_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 8, description = "TC08 - Verify My Leave Cancel Pending Request")
+    @Test(priority = 8, groups = {"regression"}, description = "TC08 - Verify My Leave Cancel Pending Request")
     public void verifyMyLeave_CancelRequest_Success() {
         leavePage
                 .navigateToSection("My Leave")
@@ -121,7 +121,7 @@ public class Leave_ApplyLeave_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 9, description = "TC09 - Verify My Leave Reset Filters")
+    @Test(priority = 9, groups = {"regression"}, description = "TC09 - Verify My Leave Reset Filters")
     public void verifyMyLeave_ResetFilters_Success() {
         leavePage
                 .navigateToSection("My Leave")
@@ -132,7 +132,7 @@ public class Leave_ApplyLeave_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 10, description = "TC10 - Verify My Entitlements Display")
+    @Test(priority = 10, groups = {"regression"}, description = "TC10 - Verify My Entitlements Display")
     public void verifyMyEntitlements_Display_Success() {
         leavePage
                 .navigateToSection("Entitlements", "My Entitlements")
@@ -141,4 +141,3 @@ public class Leave_ApplyLeave_Test extends BaseTest {
                 .verifySearchTable();
     }
 }
-

@@ -27,8 +27,7 @@ public class Performance_MyReviews_Test extends BaseTest {
                 .navigateToModule("Performance");
     }
 
-
-    @Test(priority = 14, description = "TC14 - Verify Manage Reviews Add Reviews Life Cycle")
+    @Test(priority = 1, groups = {"foundation"}, description = "TC01 - Verify Manage Reviews Add Reviews Life Cycle")
     public void verifyManageReviews_AddReview_Success() {
         String employeeName = "Dev Sec Ops";
         String SupervisorName = "Script Automation Tester";
@@ -50,7 +49,7 @@ public class Performance_MyReviews_Test extends BaseTest {
     }
 
 
-    @Test(priority = 1, description = "TC01 - Verify My Reviews Page Display")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify My Reviews Page Display")
     public void verifyMyReviews_Display_Success() {
         performancePage
                 .navigateToSection("Manage Reviews", "My Reviews");
@@ -58,7 +57,7 @@ public class Performance_MyReviews_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 2, description = "TC02 - Verify My Reviews Filter by Status")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Verify My Reviews Filter by Status")
     public void verifyMyReviews_FilterByStatus_Success() {
         performancePage
                 .navigateToSection("Manage Reviews", "My Reviews");
@@ -68,7 +67,7 @@ public class Performance_MyReviews_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 3, description = "TC03 - Verify My Reviews Filter by Job Title")
+    @Test(priority = 4, groups = {"regression"}, description = "TC04 - Verify My Reviews Filter by Job Title")
     public void verifyMyReviews_FilterByJobTitle_Success() {
         performancePage
                 .navigateToSection("Manage Reviews", "My Reviews");
@@ -78,7 +77,7 @@ public class Performance_MyReviews_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 4, description = "TC04 - Verify My Reviews Filter by From Date")
+    @Test(priority = 5, groups = {"regression"}, description = "TC05 - Verify My Reviews Filter by From Date")
     public void verifyMyReviews_FilterByFromDate_Success() {
         performancePage
                 .navigateToSection("Manage Reviews", "My Reviews");
@@ -88,7 +87,7 @@ public class Performance_MyReviews_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 5, description = "TC05 - Verify My Reviews Filter by To Date")
+    @Test(priority = 6, groups = {"regression"}, description = "TC06 - Verify My Reviews Filter by To Date")
     public void verifyMyReviews_FilterByToDate_Success() {
         performancePage
                 .navigateToSection("Manage Reviews", "My Reviews");
@@ -98,7 +97,7 @@ public class Performance_MyReviews_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 6, description = "TC06 - Verify My Reviews Reset Filters")
+    @Test(priority = 7, groups = {"regression"}, description = "TC07 - Verify My Reviews Reset Filters")
     public void verifyMyReviews_ResetFilters_Success() {
         performancePage
                 .navigateToSection("Manage Reviews", "My Reviews");
@@ -109,7 +108,7 @@ public class Performance_MyReviews_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 7, description = "TC07 - Verify My Trackers Page Display")
+    @Test(priority = 8, groups = {"regression"}, description = "TC08 - Verify My Trackers Page Display")
     public void verifyMyTrackers_Display_Success() {
         performancePage
                 .navigateToSection("My Trackers");
@@ -117,7 +116,7 @@ public class Performance_MyReviews_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 8, description = "TC08 - Verify My Trackers Add Log")
+    @Test(priority = 9, groups = {"regression"}, description = "TC09 - Verify My Trackers Add Log")
     public void verifyMyTrackers_AddLog_Success() {
         performancePage
                 .navigateToSection("My Trackers");
@@ -131,7 +130,7 @@ public class Performance_MyReviews_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 9, description = "TC09 - Verify My Trackers Edit Log")
+    @Test(priority = 10, groups = {"regression"}, description = "TC10 - Verify My Trackers Edit Log")
     public void verifyMyTrackers_EditLog_Success() {
         performancePage
                 .navigateToSection("My Trackers");
@@ -143,7 +142,7 @@ public class Performance_MyReviews_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 10, description = "TC10 - Verify My Trackers Delete Log")
+    @Test(priority = 11, groups = {"regression"}, description = "TC11 - Verify My Trackers Delete Log")
     public void verifyMyTrackers_DeleteLog_Success() {
         performancePage
                 .navigateToSection("My Trackers");
@@ -153,7 +152,7 @@ public class Performance_MyReviews_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 11, description = "TC11 - Verify Employee Trackers Page Display")
+    @Test(priority = 12, groups = {"regression"}, description = "TC12 - Verify Employee Trackers Page Display")
     public void verifyEmployeeTrackers_Display_Success() {
         performancePage
                 .navigateToSection("Employee Trackers");
@@ -161,7 +160,7 @@ public class Performance_MyReviews_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 12, description = "TC12 - Verify Employee Trackers Filter by Employee")
+    @Test(priority = 13, groups = {"regression"}, description = "TC13 - Verify Employee Trackers Filter by Employee")
     public void verifyEmployeeTrackers_FilterByEmployee_Success() {
         String employeeName = "Script Automation";
 
@@ -174,7 +173,7 @@ public class Performance_MyReviews_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 13, description = "TC13 - Verify Employee Trackers Add Log")
+    @Test(priority = 14, groups = {"regression"}, description = "TC14 - Verify Employee Trackers Add Log")
     public void verifyEmployeeTrackers_AddLog_Success() {
         String employeeName = "Script Automation";
 
@@ -193,7 +192,7 @@ public class Performance_MyReviews_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 14, description = "TC14 - Verify Manage Reviews Search by Employee")
+    @Test(priority = 15, groups = {"regression"}, description = "TC15 - Verify Manage Reviews Search by Employee")
     public void verifyManageReviews_SearchByEmployee_Success() {
         String employeeName = "Script Automation";
 
@@ -206,7 +205,7 @@ public class Performance_MyReviews_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 15, description = "TC15 - Verify Manage Reviews Search by Reviewer")
+    @Test(priority = 16, groups = {"regression"}, description = "TC16 - Verify Manage Reviews Search by Reviewer")
     public void verifyManageReviews_SearchByReviewer_Success() {
         String reviewerName = "Script Automation";
 
@@ -219,7 +218,7 @@ public class Performance_MyReviews_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 16, description = "TC16 - Verify Manage Reviews Filter by Status")
+    @Test(priority = 17, groups = {"regression"}, description = "TC17 - Verify Manage Reviews Filter by Status")
     public void verifyManageReviews_FilterByStatus_Success() {
         performancePage
                 .navigateToSection("Manage Reviews", "Manage Reviews");
@@ -229,7 +228,7 @@ public class Performance_MyReviews_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 17, description = "TC17 - Verify Manage Reviews Activate Review")
+    @Test(priority = 18, groups = {"regression"}, description = "TC18 - Verify Manage Reviews Activate Review")
     public void verifyManageReviews_Activate_Success() {
         String employeeName = "Dev Ops";
         String supervisorName = "Script Automation Tester";
@@ -252,7 +251,7 @@ public class Performance_MyReviews_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 18, description = "TC18 - Verify Manage Reviews Complete Review")
+    @Test(priority = 19, groups = {"regression"}, description = "TC19 - Verify Manage Reviews Complete Review")
     public void verifyManageReviews_Complete_Success() {
         performancePage
                 .navigateToSection("Manage Reviews", "Manage Reviews");
@@ -264,7 +263,7 @@ public class Performance_MyReviews_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 19, description = "TC19 - Verify Manage Reviews Reset Filters")
+    @Test(priority = 20, groups = {"regression"}, description = "TC20 - Verify Manage Reviews Reset Filters")
     public void verifyManageReviews_ResetFilters_Success() {
         performancePage
                 .navigateToSection("Manage Reviews", "Manage Reviews");
@@ -275,4 +274,3 @@ public class Performance_MyReviews_Test extends BaseTest {
                 .verifySearchTable();
     }
 }
-

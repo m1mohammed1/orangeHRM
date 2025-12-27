@@ -29,7 +29,7 @@ public class Performance_Evaluation_Test extends BaseTest {
 
 
 
-    @Test(priority = 1, description = "TC01 - Verify Employee Submitting Self Review")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify Employee Submitting Self Review")
     public void verifySelfReview_Submit_Success() {
         String kpiName = "Zero Production Bugs";
         String rating = "90";
@@ -44,7 +44,7 @@ public class Performance_Evaluation_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Supervisor Grading Employee Review")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Supervisor Grading Employee Review")
     public void verifySupervisorReview_Submit_Success() {
         String employeeName = "Script Automation Tester";
         String kpiName = "Zero Production Bugs";

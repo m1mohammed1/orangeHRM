@@ -27,7 +27,7 @@ public class Dashboard_Advanced_Test extends BaseTest {
 
 
 
-    @Test(priority = 1, description = "TC01 - Verify Dashboard Widget Toggle Visibility")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify Dashboard Widget Toggle Visibility")
     public void verifyWidget_ToggleVisibility() {
         String widgetName = "My Actions";
 
@@ -38,7 +38,7 @@ public class Dashboard_Advanced_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Help Support Redirection")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Help Support Redirection")
     public void verifyHelp_IconPresence() {
         dashboardPage
                 .verifyDashboard("Dashboard");

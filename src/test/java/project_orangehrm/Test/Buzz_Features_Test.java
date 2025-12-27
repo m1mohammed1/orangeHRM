@@ -27,13 +27,13 @@ public class Buzz_Features_Test extends BaseTest {
                 .navigateToModule("Buzz");
     }
 
-    @Test(priority = 1, description = "TC01 - Verify 'Most Liked Posts' Widget")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify 'Most Liked Posts' Widget")
     public void verifyMostLiked_Widget() {
         buzzPage
                 .verifyElementVisible("Most Liked Posts");
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Empty Post Validation")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Empty Post Validation")
     public void verifyEmptyPost_Error() {
         buzzPage
                 .createPost("");

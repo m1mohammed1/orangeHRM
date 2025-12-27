@@ -70,7 +70,7 @@ public class AdminJobTest extends BaseTest {
                 .deleteSpecificValue("Duplicate Job Title");
     }
 
-    @Test(priority = 4, description = "TC04 - Verify Pay Grade Lifecycle with Currency: Create, Add Currency, Delete")
+    @Test(priority = 4, groups = {"regression"}, description = "TC04 - Verify Pay Grade Lifecycle with Currency: Create, Add Currency, Delete")
     public void verifyPayGrade_WithCurrency_Success() {
         adminPage
                 .navigateToSection("Job", "Pay Grades")
@@ -86,7 +86,7 @@ public class AdminJobTest extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 5, description = "TC05 - Verify validation error for empty Pay Grade Name")
+    @Test(priority = 5, groups = {"regression"}, description = "TC05 - Verify validation error for empty Pay Grade Name")
     public void verifyPayGrade_EmptyFields_ShowError() {
         adminPage
                 .navigateToSection("Job", "Pay Grades")
@@ -95,7 +95,7 @@ public class AdminJobTest extends BaseTest {
                 .verifyFieldErrorMessage("Name", "Required");
     }
 
-    @Test(priority = 6, description = "TC06 - Verify error when creating a duplicate Pay Grade")
+    @Test(priority = 6, groups = {"regression"}, description = "TC06 - Verify error when creating a duplicate Pay Grade")
     public void verifyPayGrade_DuplicateEntry_ShowError() {
         adminPage
                 .navigateToSection("Job", "Pay Grades")
@@ -116,7 +116,7 @@ public class AdminJobTest extends BaseTest {
                 .deleteSpecificValue("Duplicate Grade");
     }
 
-    @Test(priority = 7, description = "TC07 - Verify Employment Status Lifecycle: Create and Delete")
+    @Test(priority = 7, groups = {"regression"}, description = "TC07 - Verify Employment Status Lifecycle: Create and Delete")
     public void verifyEmploymentStatus_Lifecycle_Success() {
         adminPage
                 .navigateToSection("Job", "Employment Status")
@@ -127,7 +127,7 @@ public class AdminJobTest extends BaseTest {
                 .verifyRecordExists("Freelance - Project Based");
     }
 
-    @Test(priority = 8, description = "TC08 - Verify validation error for empty Employment Status Name")
+    @Test(priority = 8, groups = {"regression"}, description = "TC08 - Verify validation error for empty Employment Status Name")
     public void verifyEmploymentStatus_EmptyFields_ShowError() {
         adminPage
                 .navigateToSection("Job", "Employment Status")
@@ -136,7 +136,7 @@ public class AdminJobTest extends BaseTest {
                 .verifyFieldErrorMessage("Name", "Required");
     }
 
-    @Test(priority = 9, description = "TC09 - Verify error when creating a duplicate Employment Status")
+    @Test(priority = 9, groups = {"regression"}, description = "TC09 - Verify error when creating a duplicate Employment Status")
     public void verifyEmploymentStatus_DuplicateEntry_ShowError() {
         adminPage
                 .navigateToSection("Job", "Employment Status")
@@ -156,7 +156,7 @@ public class AdminJobTest extends BaseTest {
                 .deleteSpecificValue("Duplicate Status");
     }
 
-    @Test(priority = 10, description = "TC10 - Verify updating an existing Job Title")
+    @Test(priority = 10, groups = {"regression"}, description = "TC10 - Verify updating an existing Job Title")
     public void verifyJobTitle_Update_Success() {
         adminPage
                 .navigateToSection("Job", "Job Titles")
@@ -174,7 +174,7 @@ public class AdminJobTest extends BaseTest {
                 .deleteSpecificValue("Senior QA Automation Tester");
     }
 
-    @Test(priority = 11, description = "TC11 - Verify updating Pay Grade Currency Salary")
+    @Test(priority = 11, groups = {"regression"}, description = "TC11 - Verify updating Pay Grade Currency Salary")
     public void verifyPayGrade_UpdateCurrency_Success() {
         adminPage
                 .navigateToSection("Job", "Pay Grades")
@@ -199,7 +199,7 @@ public class AdminJobTest extends BaseTest {
                 .deleteSpecificValue("Grade Update Test");
     }
 
-    @Test(priority = 12, description = "TC12 - Verify updating Employment Status Name")
+    @Test(priority = 12, groups = {"regression"}, description = "TC12 - Verify updating Employment Status Name")
     public void verifyEmploymentStatus_Update_Success() {
         String oldStatus = "Freelance Part Time ";
         String newStatus = "Part Time (Contract)";
@@ -219,7 +219,7 @@ public class AdminJobTest extends BaseTest {
                 .deleteSpecificValue(newStatus);
     }
 
-    @Test(priority = 13, description = "TC13 - Verify Job Category Lifecycle: Create, Verify, and Delete")
+    @Test(priority = 13, groups = {"regression"}, description = "TC13 - Verify Job Category Lifecycle: Create, Verify, and Delete")
     public void verifyJobCategory_Lifecycle_Success() {
         adminPage
                 .navigateToSection("Job", "Job Categories")
@@ -230,7 +230,7 @@ public class AdminJobTest extends BaseTest {
                 .verifyRecordExists("Professionals - َQA Engineer");
     }
 
-    @Test(priority = 14, description = "TC14 - Verify updating an existing Job Category")
+    @Test(priority = 14, groups = {"regression"}, description = "TC14 - Verify updating an existing Job Category")
     public void verifyJobCategory_Update_Success() {
         adminPage
                 .navigateToSection("Job", "Job Categories")
@@ -247,7 +247,7 @@ public class AdminJobTest extends BaseTest {
                 .deleteSpecificValue("Skilled Solutions Architect");
     }
 
-    @Test(priority = 15, description = "TC15 - Verify validation error for empty Job Category Name")
+    @Test(priority = 15, groups = {"regression"}, description = "TC15 - Verify validation error for empty Job Category Name")
     public void verifyJobCategory_EmptyFields_ShowError() {
         adminPage
                 .navigateToSection("Job", "Job Categories")
@@ -256,7 +256,7 @@ public class AdminJobTest extends BaseTest {
                 .verifyFieldErrorMessage("Name", "Required");
     }
 
-    @Test(priority = 16, description = "TC16 - Verify error when creating a duplicate Job Category")
+    @Test(priority = 16, groups = {"regression"}, description = "TC16 - Verify error when creating a duplicate Job Category")
     public void verifyJobCategory_DuplicateEntry_ShowError() {
         String duplicateName = "Cyber Operatives";
         adminPage
@@ -275,7 +275,7 @@ public class AdminJobTest extends BaseTest {
                 .deleteSpecificValue(duplicateName);
     }
 
-    @Test(priority = 17, description = "TC17 - Verify Work Shift Lifecycle: Create, Verify, and Delete")
+    @Test(priority = 17, groups = {"regression"}, description = "TC17 - Verify Work Shift Lifecycle: Create, Verify, and Delete")
     public void verifyWorkShift_Lifecycle_Success() {
         adminPage
                 .navigateToSection("Job", "Work Shifts")
@@ -289,7 +289,7 @@ public class AdminJobTest extends BaseTest {
 
     }
 
-    @Test(priority = 18, description = "TC18 - Verify updating an existing Work Shift")
+    @Test(priority = 18, groups = {"regression"}, description = "TC18 - Verify updating an existing Work Shift")
     public void verifyWorkShift_Update_Success() {
         String oldShift = "Morning Shift";
         String newShift = "Morning Shift Extended";
@@ -311,7 +311,7 @@ public class AdminJobTest extends BaseTest {
                 .deleteSpecificValue("Morning Shift Extended");
     }
 
-    @Test(priority = 19, description = "TC19 - Verify validation error for empty Work Shift Name")
+    @Test(priority = 19, groups = {"regression"}, description = "TC19 - Verify validation error for empty Work Shift Name")
     public void verifyWorkShift_EmptyFields_ShowError() {
         adminPage
                 .navigateToSection("Job", "Work Shifts")
@@ -320,7 +320,7 @@ public class AdminJobTest extends BaseTest {
                 .verifyFieldErrorMessage("Shift Name", "Required");
     }
 
-    @Test(priority = 20, description = "TC20 - Verify error when creating a duplicate Work Shift")
+    @Test(priority = 20, groups = {"regression"}, description = "TC20 - Verify error when creating a duplicate Work Shift")
     public void verifyWorkShift_DuplicateEntry_ShowError() {
         adminPage
                 .navigateToSection("Job", "Work Shifts")

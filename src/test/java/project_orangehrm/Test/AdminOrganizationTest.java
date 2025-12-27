@@ -51,7 +51,7 @@ public class AdminOrganizationTest extends BaseTest {
                 .verifyRecordExists(locName);
     }
 
-    @Test(priority = 2, description = "TC02 - Verify updating an existing Location")
+    @Test(priority = 2, groups = {"foundation"}, description = "TC02 - Verify updating an existing Location")
     public void verifyLocation_Update_Success() {
         String oldName = "Giza Branch";
         String newName = "Cairo Main Office";
@@ -79,7 +79,7 @@ public class AdminOrganizationTest extends BaseTest {
                 .deleteSpecificValue(newName);
     }
 
-    @Test(priority = 3, description = "TC03 - Verify validation errors for required Location fields")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Verify validation errors for required Location fields")
     public void verifyLocation_EmptyFields_ShowError() {
         adminPage
                 .navigateToSection("Organization", "Locations")
@@ -89,7 +89,7 @@ public class AdminOrganizationTest extends BaseTest {
                 .verifyFieldErrorMessage("Country", "Required");
     }
 
-    @Test(priority = 4, description = "TC04 - Verify error when creating a duplicate Location Name")
+    @Test(priority = 4, groups = {"regression"}, description = "TC04 - Verify error when creating a duplicate Location Name")
     public void verifyLocation_DuplicateEntry_ShowError() {
         String duplicateName = "Alexandria Hub";
         adminPage
@@ -110,7 +110,7 @@ public class AdminOrganizationTest extends BaseTest {
                 .deleteSpecificValue(duplicateName);
     }
 
-    @Test(priority = 5, description = "TC05 - Verify Search by City and Country filters")
+    @Test(priority = 5, groups = {"regression"}, description = "TC05 - Verify Search by City and Country filters")
     public void verifyLocation_SearchFilters_Success() {
         String searchCity = "SearchTest City";
         String searchCountry = "Canada";
@@ -131,7 +131,7 @@ public class AdminOrganizationTest extends BaseTest {
                 .deleteSpecificValue("Filter Test Location");
     }
 
-    @Test(priority = 6, description = "TC06 - Verify Reset Button functionality")
+    @Test(priority = 6, groups = {"regression"}, description = "TC06 - Verify Reset Button functionality")
     public void verifyLocation_ResetFilter_Success() {
         adminPage
                 .navigateToSection("Organization", "Locations")
@@ -144,7 +144,7 @@ public class AdminOrganizationTest extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 7, description = "TC07 - Verify Organization Unit Lifecycle: Enable Edit, Create, Verify, Delete")
+    @Test(priority = 7, groups = {"regression"}, description = "TC07 - Verify Organization Unit Lifecycle: Enable Edit, Create, Verify, Delete")
     public void verifyStructure_Lifecycle_Success() {
         String unitId = "QA-UNIT-01";
         String unitName = "Quality Assurance Dept";
@@ -162,7 +162,7 @@ public class AdminOrganizationTest extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 8, description = "TC08 - Verify validation error for empty Unit Name in Structure")
+    @Test(priority = 8, groups = {"regression"}, description = "TC08 - Verify validation error for empty Unit Name in Structure")
     public void verifyStructure_EmptyFields_ShowError() {
         adminPage
                 .navigateToSection("Organization", "Structure")
@@ -172,7 +172,7 @@ public class AdminOrganizationTest extends BaseTest {
                 .verifyFieldErrorMessage("Name", "Required");
     }
 
-    @Test(priority = 9, description = "TC09 - Verify error when creating a duplicate Unit ID")
+    @Test(priority = 9, groups = {"regression"}, description = "TC09 - Verify error when creating a duplicate Unit ID")
     public void verifyStructure_DuplicateEntry_ShowError() {
         String unitId = "DEV-01";
         String unitName = "Development Dept";
@@ -198,4 +198,3 @@ public class AdminOrganizationTest extends BaseTest {
                 .verifySuccessToast();
     }
 }
-

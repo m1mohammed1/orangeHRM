@@ -46,7 +46,7 @@ public class Recruitment_CandidateWorkflow_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Add Candidate Validation")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Add Candidate Validation")
     public void verifyCandidate_Add_Validation() {
         recruitmentPage
                 .navigateToSection("Candidates")
@@ -56,7 +56,7 @@ public class Recruitment_CandidateWorkflow_Test extends BaseTest {
                 .verifyFieldErrorMessage("Email", "Required");
     }
 
-    @Test(priority = 3, description = "TC03 - Verify Shortlist Candidate")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Verify Shortlist Candidate")
     public void verifyCandidate_Shortlist_Success() {
         recruitmentPage
                 .navigateToSection("Candidates")
@@ -89,7 +89,7 @@ public class Recruitment_CandidateWorkflow_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 5, description = "TC05 - Verify Schedule Interview Validation")
+    @Test(priority = 5, groups = {"regression"}, description = "TC05 - Verify Schedule Interview Validation")
     public void verifyCandidate_ScheduleInterview_Validation() {
         recruitmentPage
                 .navigateToSection("Candidates")
@@ -118,7 +118,7 @@ public class Recruitment_CandidateWorkflow_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 7, description = "TC07 - Verify Mark Interview Failed")
+    @Test(priority = 7, groups = {"regression"}, description = "TC07 - Verify Mark Interview Failed")
     public void verifyCandidate_MarkInterviewFailed_Success() {
         String firstName = "Failed";
         String lastName = "Candidate";
@@ -164,7 +164,7 @@ public class Recruitment_CandidateWorkflow_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 9, description = "TC09 - Verify Hire Candidate")
+    @Test(priority = 9, groups = {"regression"}, description = "TC09 - Verify Hire Candidate")
     public void verifyCandidate_Hire_Success() {
         recruitmentPage
                 .navigateToSection("Candidates")
@@ -178,7 +178,7 @@ public class Recruitment_CandidateWorkflow_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 10, description = "TC10 - Verify Reject Candidate")
+    @Test(priority = 10, groups = {"regression"}, description = "TC10 - Verify Reject Candidate")
     public void verifyCandidate_Reject_Success() {
         String firstName = "Reject";
         String lastName = "Candidate";
@@ -200,7 +200,7 @@ public class Recruitment_CandidateWorkflow_Test extends BaseTest {
     }
 
 
-    @Test(priority = 11, description = "TC11 - Verify Delete Candidate")
+    @Test(priority = 11, groups = {"regression"}, description = "TC11 - Verify Delete Candidate")
     public void verifyCandidate_Delete_Success() {
         recruitmentPage
                 .navigateToSection("Candidates")
@@ -211,7 +211,7 @@ public class Recruitment_CandidateWorkflow_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 12, description = "TC12 - Verify Search by Status")
+    @Test(priority = 12, groups = {"regression"}, description = "TC12 - Verify Search by Status")
     public void verifyCandidate_SearchByStatus_Success() {
         recruitmentPage
                 .navigateToSection("Candidates")
@@ -220,7 +220,7 @@ public class Recruitment_CandidateWorkflow_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 13, description = "TC13 - Verify Search by Job Title")
+    @Test(priority = 13, groups = {"regression"}, description = "TC13 - Verify Search by Job Title")
     public void verifyCandidate_SearchByJobTitle_Success() {
         recruitmentPage
                 .navigateToSection("Candidates")
@@ -229,7 +229,7 @@ public class Recruitment_CandidateWorkflow_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 14, description = "TC14 - Verify Search by Vacancy")
+    @Test(priority = 14, groups = {"regression"}, description = "TC14 - Verify Search by Vacancy")
     public void verifyCandidate_SearchByVacancy_Success() {
         recruitmentPage
                 .navigateToSection("Candidates")
@@ -238,7 +238,7 @@ public class Recruitment_CandidateWorkflow_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 15, description = "TC15 - Verify Search by Hiring Manager")
+    @Test(priority = 15, groups = {"regression"}, description = "TC15 - Verify Search by Hiring Manager")
     public void verifyCandidate_SearchByHiringManager_Success() {
         recruitmentPage
                 .navigateToSection("Candidates")
@@ -248,7 +248,7 @@ public class Recruitment_CandidateWorkflow_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 16, description = "TC16 - Verify Reset Search Filters")
+    @Test(priority = 16, groups = {"regression"}, description = "TC16 - Verify Reset Search Filters")
     public void verifyCandidate_ResetFilters_Success() {
         recruitmentPage
                 .navigateToSection("Candidates")
@@ -258,4 +258,3 @@ public class Recruitment_CandidateWorkflow_Test extends BaseTest {
                 .verifySearchTable();
     }
 }
-

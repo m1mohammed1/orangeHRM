@@ -29,7 +29,7 @@ public class AdminUserManagementTest extends BaseTest {
                 .navigateToModule("Admin");
     }
 
-    @Test(priority = 1, description = "TC01 - Positive: Verify Admin User Lifecycle: Create, Search, and Delete")
+    @Test(priority = 1, groups = {"foundation"}, description = "TC01 - Positive: Verify Admin User Lifecycle: Create, Search, and Delete")
     public void verifyUserManagement_Lifecycle_Success() {
         adminPage
                 .verifyAdminPage("Admin")
@@ -49,7 +49,7 @@ public class AdminUserManagementTest extends BaseTest {
                 .verifyRecordExists("TestAdmin_QA");
     }
 
-    @Test(priority = 2, description = "TC02 - Negative: Verify validation errors for all required fields in User Form")
+    @Test(priority = 2, groups = {"foundation"}, description = "TC02 - Negative: Verify validation errors for all required fields in User Form")
     public void verifyUserManagement_EmptyFields_ShowError() {
         adminPage
                 .clickToAdd()
@@ -62,7 +62,7 @@ public class AdminUserManagementTest extends BaseTest {
                 .verifyFieldErrorMessage("Confirm Password", "Required");
     }
 
-    @Test(priority = 3, description = "TC03 - Negative: Verify search with non-existing username")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Negative: Verify search with non-existing username")
     public void verifyUserManagement_SearchNotFound_NoRecords() {
         adminPage
                 .typeInDynamicField("Username", "InvalidUser_XYZ")
@@ -70,7 +70,7 @@ public class AdminUserManagementTest extends BaseTest {
                 .verifyRecordDeleted("InvalidUser_XYZ");
     }
 
-    @Test(priority = 4, description = "TC04 - Negative: Verify error message when Password and Confirm Password do not match")
+    @Test(priority = 4, groups = {"regression"}, description = "TC04 - Negative: Verify error message when Password and Confirm Password do not match")
     public void verifyUserManagement_PasswordMismatch_ShowError() {
         adminPage
                 .clickToAdd()
@@ -85,7 +85,7 @@ public class AdminUserManagementTest extends BaseTest {
 
     }
 
-    @Test(priority = 5, description = "TC05 - Negative: Verify error message when Password and Confirm Password do not match")
+    @Test(priority = 5, groups = {"regression"}, description = "TC05 - Negative: Verify error message when Password and Confirm Password do not match")
     public void verifyUserManagement_PasswordContainMinimumNumber_ShowError() {
         adminPage
                 .clickToAdd()
@@ -99,7 +99,7 @@ public class AdminUserManagementTest extends BaseTest {
                 .verifyFieldErrorMessage("Password", "Required");
     }
 
-    @Test(priority = 6, description = "TC06 - Verify Edit User: Change Status from Enabled to Disabled")
+    @Test(priority = 6, groups = {"regression"}, description = "TC06 - Verify Edit User: Change Status from Enabled to Disabled")
     public void verifyUserManagement_EditUser_Success() {
         String username = "EditTest_User";
         adminPage
@@ -130,7 +130,7 @@ public class AdminUserManagementTest extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 7, description = "TC07 - Verify Delete User Functionality")
+    @Test(priority = 7, groups = {"regression"}, description = "TC07 - Verify Delete User Functionality")
     public void verifyUserManagement_DeleteUser_Success() {
         String username = "DeleteTest_User";
         adminPage
@@ -153,7 +153,7 @@ public class AdminUserManagementTest extends BaseTest {
                 .verifyRecordDeleted(username);
     }
 
-    @Test(priority = 8, description = "TC08 - Verify Search by User Role Filter")
+    @Test(priority = 8, groups = {"regression"}, description = "TC08 - Verify Search by User Role Filter")
     public void verifyUserManagement_SearchByRole_Success() {
         adminPage
                 .verifyAdminPage("Admin")
@@ -162,7 +162,7 @@ public class AdminUserManagementTest extends BaseTest {
                 .verifyRecordExists("Admin");
     }
 
-    @Test(priority = 9, description = "TC09 - Verify Search by Status Filter")
+    @Test(priority = 9, groups = {"regression"}, description = "TC09 - Verify Search by Status Filter")
     public void verifyUserManagement_SearchByStatus_Success() {
         adminPage
                 .verifyAdminPage("Admin")
@@ -171,7 +171,7 @@ public class AdminUserManagementTest extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 10, description = "TC10 - Verify Duplicate Username Error")
+    @Test(priority = 10, groups = {"regression"}, description = "TC10 - Verify Duplicate Username Error")
     public void verifyUserManagement_DuplicateUsername_ShowError() {
         adminPage
                 .verifyAdminPage("Admin")
@@ -187,7 +187,7 @@ public class AdminUserManagementTest extends BaseTest {
                 .verifyFieldErrorMessage("Username", "Already exists");
     }
 
-    @Test(priority = 11, description = "TC11 - Verify Reset Search Filters")
+    @Test(priority = 11, groups = {"regression"}, description = "TC11 - Verify Reset Search Filters")
     public void verifyUserManagement_ResetFilter_Success() {
         adminPage
                 .verifyAdminPage("Admin")

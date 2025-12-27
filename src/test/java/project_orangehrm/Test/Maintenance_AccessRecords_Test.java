@@ -28,7 +28,7 @@ public class Maintenance_AccessRecords_Test extends BaseTest {
                 .verifyAccessPassword("admin123");
     }
 
-    @Test(priority = 1, description = "TC01 - Verify Access Records Download")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify Access Records Download")
     public void verifyAccessRecords_Download() {
         String employeeName = "Dev Ops Term";
         maintenancePage
@@ -41,7 +41,7 @@ public class Maintenance_AccessRecords_Test extends BaseTest {
                 .clickEmployeeModel("Download");
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Validation for Access Records")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Validation for Access Records")
     public void verifyAccessRecords_Validation_Error() {
         maintenancePage
                 .navigateToSection("Access Records", "Access Records")

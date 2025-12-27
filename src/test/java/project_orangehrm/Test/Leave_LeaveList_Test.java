@@ -29,14 +29,14 @@ public class Leave_LeaveList_Test extends BaseTest {
                 .navigateToModule("Leave");
     }
 
-    @Test(priority = 1, description = "TC01 - Verify Leave List Display")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify Leave List Display")
     public void verifyLeaveList_Display_Success() {
         leavePage
                 .navigateToSection("Leave List")
                 .verifySearchTable();
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Leave List Filter by Date")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Leave List Filter by Date")
     public void verifyLeaveList_FilterByDate_Success() {
         String fromDate = "2024-01-01";
         String toDate = "2025-12-31";
@@ -49,7 +49,7 @@ public class Leave_LeaveList_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 3, description = "TC03 - Verify Leave List Filter by Status")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Verify Leave List Filter by Status")
     public void verifyLeaveList_FilterByStatus_Success() {
         leavePage
                 .navigateToSection("Leave List")
@@ -58,7 +58,7 @@ public class Leave_LeaveList_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 4, description = "TC04 - Verify Leave List Filter by Employee")
+    @Test(priority = 4, groups = {"regression"}, description = "TC04 - Verify Leave List Filter by Employee")
     public void verifyLeaveList_FilterByEmployee_Success() {
         String employeeName = "Script Automation Tester";
 
@@ -70,7 +70,7 @@ public class Leave_LeaveList_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 5, description = "TC05 - Verify Leave List Filter by Leave Type")
+    @Test(priority = 5, groups = {"regression"}, description = "TC05 - Verify Leave List Filter by Leave Type")
     public void verifyLeaveList_FilterByLeaveType_Success() {
         leavePage
                 .navigateToSection("Leave List")
@@ -79,7 +79,7 @@ public class Leave_LeaveList_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 6, description = "TC06 - Verify Leave List Filter by Sub Unit")
+    @Test(priority = 6, groups = {"regression"}, description = "TC06 - Verify Leave List Filter by Sub Unit")
     public void verifyLeaveList_FilterBySubUnit_Success() {
         leavePage
                 .navigateToSection("Leave List")
@@ -88,7 +88,7 @@ public class Leave_LeaveList_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 7, description = "TC07 - Verify Leave Approve Action")
+    @Test(priority = 7, groups = {"regression"}, description = "TC07 - Verify Leave Approve Action")
     public void verifyLeaveList_Approve_Success() {
         leavePage
                 .navigateToSection("Leave List")
@@ -98,7 +98,7 @@ public class Leave_LeaveList_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 8, description = "TC08 - Verify Leave Reject Action")
+    @Test(priority = 8, groups = {"regression"}, description = "TC08 - Verify Leave Reject Action")
     public void verifyLeaveList_Reject_Success() {
         leavePage
                 .navigateToSection("Leave List")
@@ -108,7 +108,7 @@ public class Leave_LeaveList_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 9, description = "TC09 - Verify Leave Cancel Action")
+    @Test(priority = 9, groups = {"regression"}, description = "TC09 - Verify Leave Cancel Action")
     public void verifyLeaveList_Cancel_Success() {
         leavePage
                 .navigateToSection("Leave List")
@@ -118,7 +118,7 @@ public class Leave_LeaveList_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 10, description = "TC10 - Verify Leave List View Details")
+    @Test(priority = 10, groups = {"regression"}, description = "TC10 - Verify Leave List View Details")
     public void verifyLeaveList_ViewDetails_Success() {
         leavePage
                 .navigateToSection("Leave List")
@@ -127,7 +127,7 @@ public class Leave_LeaveList_Test extends BaseTest {
                 .verifyElementVisible("Leave Details");
     }
 
-    @Test(priority = 11, description = "TC11 - Verify Leave List Add Comment")
+    @Test(priority = 11, groups = {"regression"}, description = "TC11 - Verify Leave List Add Comment")
     public void verifyLeaveList_AddComment_Success() {
         leavePage
                 .navigateToSection("Leave List")
@@ -139,7 +139,7 @@ public class Leave_LeaveList_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 12, description = "TC12 - Verify Leave List Reset Filters")
+    @Test(priority = 12, groups = {"regression"}, description = "TC12 - Verify Leave List Reset Filters")
     public void verifyLeaveList_ResetFilters_Success() {
         leavePage
                 .navigateToSection("Leave List")
@@ -150,4 +150,3 @@ public class Leave_LeaveList_Test extends BaseTest {
                 .verifySearchTable();
     }
 }
-

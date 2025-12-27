@@ -27,7 +27,7 @@ public class Performance_Reviews_Test extends BaseTest {
                 .navigateToModule("Performance");
     }
 
-    @Test(priority = 1, description = "TC01 - Manage Review Lifecycle: Create, Activate, Delete")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Manage Review Lifecycle: Create, Activate, Delete")
     public void verifyReview_Lifecycle_Success() {
         String employeeName = "Dev  Ops";
         String supervisorName = "Script Automation Tester";
@@ -50,7 +50,7 @@ public class Performance_Reviews_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Review Validation Errors")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Review Validation Errors")
     public void verifyReview_EmptyFields_Error() {
         performancePage
                 .navigateToSection("Manage Reviews", "Manage Reviews")

@@ -27,7 +27,7 @@ public class Performance_Reports_Test extends BaseTest {
                 .navigateToModule("Performance");
     }
 
-    @Test(priority = 1, description = "TC01 - Generate Employee Performance Report")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Generate Employee Performance Report")
     public void verifyPerformanceReport_Generate() {
         String employeeName = "Script Automation Tester";
         String jobTitle = "QA Engineer";

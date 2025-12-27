@@ -50,7 +50,7 @@ public class Recruitment_Vacancies_Test extends BaseTest {
                 .verifyRecordExists(vacancyName);
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Vacancy Lifecycle: Create, Verify, Edit, Delete")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Vacancy Lifecycle: Create, Verify, Edit, Delete")
     public void verifyVacancy_Lifecycle_Edit() {
         String vacancyName = "Senior Quality Engineer";
         String jobTitle = "QA Engineer";
@@ -80,7 +80,7 @@ public class Recruitment_Vacancies_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 3, description = "TC03 - Verify Vacancy Validation Errors")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Verify Vacancy Validation Errors")
     public void verifyVacancy_EmptyFields_Error() {
         recruitmentPage
                 .navigateToSection("Vacancies")

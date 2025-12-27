@@ -27,7 +27,7 @@ public class Time_Reports_Test extends BaseTest {
                 .navigateToModule("Time");
     }
 
-    @Test(priority = 1, description = "TC01 - Generate Project Report")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Generate Project Report")
     public void verifyProjectReport_Generate() {
         String projectName = "Apache Software Foundation";
         timePage
@@ -38,7 +38,7 @@ public class Time_Reports_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 2, description = "TC02 - Generate Employee Report")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Generate Employee Report")
     public void verifyEmployeeReport_Generate() {
         String employeeName = "Script Automation Tester";
         timePage

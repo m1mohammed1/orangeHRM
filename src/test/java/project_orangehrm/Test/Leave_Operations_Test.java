@@ -30,7 +30,7 @@ public class Leave_Operations_Test extends BaseTest {
     }
 
 
-    @Test(priority = 1, description = "TC01 - Assign Leave to Employee")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Assign Leave to Employee")
     public void verifyAssignLeave_Success() {
         String employeeName = "Script Automation Tester";
         String leaveType = "US - Vacation";
@@ -53,7 +53,7 @@ public class Leave_Operations_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 2, description = "TC02 - Assign Leave Insufficient Balance Warning")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Assign Leave Insufficient Balance Warning")
     public void verifyAssignLeave_InsufficientBalance_Check() {
         leavePage
                 .navigateToSection("Assign Leave")
@@ -87,7 +87,7 @@ public class Leave_Operations_Test extends BaseTest {
 
  */
 
-    @Test(priority = 4, description = "TC04 - Admin Approve Leave Request")
+    @Test(priority = 4, groups = {"regression"}, description = "TC04 - Admin Approve Leave Request")
     public void verifyLeaveList_ApproveRequest() {
         String employeeName = "Script Automation Tester";
 

@@ -45,7 +45,7 @@ public class    Leave_Configuration_Test extends BaseTest {
                 .verifyRecordDeleted(typeName);
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Leave Type Duplicate Validation")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Leave Type Duplicate Validation")
     public void verifyLeaveType_Duplicate_Error() {
         String typeName = "US - Vacation";
         leavePage
@@ -56,7 +56,7 @@ public class    Leave_Configuration_Test extends BaseTest {
                 .verifyFieldErrorMessage("Name", "Already exists");
     }
 
-    @Test(priority = 3, description = "TC03 - Verify Work Week Configuration Update")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Verify Work Week Configuration Update")
     public void verifyWorkWeek_Update_Success() {
         leavePage
                 .navigateToSection("Configure", "Work Week")
@@ -66,7 +66,7 @@ public class    Leave_Configuration_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 4, description = "TC04 - Verify Holiday Lifecycle: Create, Verify, Delete")
+    @Test(priority = 4, groups = {"regression"}, description = "TC04 - Verify Holiday Lifecycle: Create, Verify, Delete")
     public void verifyHoliday_Lifecycle_Success() {
         String holidayName = "Automation Day";
         String date = "2024-12-31";
@@ -89,7 +89,7 @@ public class    Leave_Configuration_Test extends BaseTest {
                 .verifyRecordDeleted(holidayName);
     }
 
-    @Test(priority = 5, description = "TC05 - Verify Holiday Validation Error")
+    @Test(priority = 5, groups = {"regression"}, description = "TC05 - Verify Holiday Validation Error")
     public void verifyHoliday_EmptyFields_Error() {
         leavePage
                 .navigateToSection("Configure", "Holidays")
@@ -99,7 +99,7 @@ public class    Leave_Configuration_Test extends BaseTest {
                 .verifyFieldErrorMessage("Date", "Required");
     }
 
-    @Test(priority = 6, description = "TC06 - Verify Leave Period Configuration Update")
+    @Test(priority = 6, groups = {"regression"}, description = "TC06 - Verify Leave Period Configuration Update")
     public void verifyLeavePeriod_Update_Success() {
         leavePage
                 .navigateToSection("Configure", "Leave Period")

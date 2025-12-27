@@ -17,7 +17,7 @@ public class LoginTest extends BaseTest {
         dashboardPage = new DashboardPage(driver);
     }
 
-    @Test(priority = 1, description = "TC01 - Positive: Verify successful login with valid credentials")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Positive: Verify successful login with valid credentials")
     public void verifyLogin_ValidCredentials_Success() {
         loginPage
                 .enterUsername("Admin")
@@ -27,7 +27,7 @@ public class LoginTest extends BaseTest {
                 .verifyDashboard("Dashboard");
     }
 
-    @Test(priority = 2, description = "TC02 - Negative: Verify error message when logging in with invalid credentials")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Negative: Verify error message when logging in with invalid credentials")
     public void verifyLogin_InvalidCredentials_ShowError() {
         loginPage
                 .enterUsername("Admin")
@@ -36,7 +36,7 @@ public class LoginTest extends BaseTest {
                 .verifyInvalidCredentialsError("Invalid credentials");
     }
 
-    @Test(priority = 3, description = "TC03 - Negative: Verify error message when required fields are empty")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Negative: Verify error message when required fields are empty")
     public void verifyLogin_EmptyFields_ShowRequiredMessage() {
         loginPage
                 .enterUsername("")

@@ -24,7 +24,7 @@ public class Maintenance_Authentication_Test extends BaseTest {
                 .clickLogin();
     }
 
-    @Test(priority = 1, description = "TC01 - Verify Maintenance Access Requires Password")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify Maintenance Access Requires Password")
     public void verifyMaintenance_Access_Security() {
         dashboardPage.navigateToModule("Maintenance");
 

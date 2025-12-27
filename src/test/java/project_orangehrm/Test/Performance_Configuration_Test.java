@@ -27,7 +27,7 @@ public class Performance_Configuration_Test extends BaseTest {
                 .navigateToModule("Performance");
     }
 
-    @Test(priority = 1, description = "TC01 - Verify KPI Lifecycle: Create, Link to Job")
+    @Test(priority = 1, groups = {"foundation"}, description = "TC01 - Verify KPI Lifecycle: Create, Link to Job")
     public void verifyKPI_Lifecycle_Success() {
         String kpiName = "Zero Production Bugs";
         String jobTitle = "QA Engineer";
@@ -48,7 +48,7 @@ public class Performance_Configuration_Test extends BaseTest {
                 .verifyRecordExists(kpiName);
     }
 
-    @Test(priority = 2, description = "TC02 - Verify KPI Lifecycle: Create, Link to Job, Edit, Delete")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify KPI Lifecycle: Create, Link to Job, Edit, Delete")
     public void verifyKPI_Lifecycle_Edit() {
         String kpiName = "Zero Bugs, Zero Compromise";
         String jobTitle = "QA Engineer";
@@ -77,7 +77,7 @@ public class Performance_Configuration_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 3, description = "TC03 - Verify KPI Validation Errors")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Verify KPI Validation Errors")
     public void verifyKPI_EmptyFields_Error() {
         performancePage
                 .navigateToSection("Configure", "KPIs")
@@ -87,7 +87,7 @@ public class Performance_Configuration_Test extends BaseTest {
                 .verifyFieldErrorMessage("Job Title", "Required");
     }
 
-    @Test(priority = 4, description = "TC04 - Verify Tracker Lifecycle: Create")
+    @Test(priority = 4, groups = {"regression"}, description = "TC04 - Verify Tracker Lifecycle: Create")
     public void verifyTracker_Lifecycle_Success() {
         String trackerName = "Quality Tracker 2025";
         String employeeName = "Dev Sec Ops";
@@ -104,7 +104,7 @@ public class Performance_Configuration_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 5, description = "TC05 - Verify Tracker Validation Errors")
+    @Test(priority = 5, groups = {"regression"}, description = "TC05 - Verify Tracker Validation Errors")
     public void verifyTracker_EmptyFields_Error() {
         performancePage
                 .navigateToSection("Configure", "Trackers")

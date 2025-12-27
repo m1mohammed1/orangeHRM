@@ -26,7 +26,7 @@ public class Recruitment_Search_And_Data_Test extends BaseTest {
                 navigateToModule("Recruitment");
     }
 
-    @Test(priority = 1, description = "TC01 - Verify Search Candidate by Name and Status")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify Search Candidate by Name and Status")
     public void verifyCandidate_Search_Success() {
         String candidateName = "E2E";
         recruitmentPage
@@ -38,7 +38,7 @@ public class Recruitment_Search_And_Data_Test extends BaseTest {
                 .verifyRecordExists(candidateName);
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Reset Search Filters")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Reset Search Filters")
     public void verifySearch_Reset_Success() {
         recruitmentPage
                 .navigateToSection("Candidates")
@@ -47,7 +47,7 @@ public class Recruitment_Search_And_Data_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 3, description = "TC03 - Verify Editing Candidate Details (Email/Phone)")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Verify Editing Candidate Details (Email/Phone)")
     public void verifyCandidate_EditInfo_Success() {
         String oldEmail = "wrong@test.com";
         String newEmail = "correct@test.com";

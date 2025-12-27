@@ -29,7 +29,7 @@ public class Leave_Reports_Test extends BaseTest {
                 .navigateToModule("Leave");
     }
 
-    @Test(priority = 1, description = "TC01 - Generate Leave Entitlements and Usage Report")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Generate Leave Entitlements and Usage Report")
     public void verifyLeaveUsageReport_Generate() {
         leavePage
                 .navigateToSection("Reports", "Leave Entitlements and Usage Report")
@@ -39,7 +39,7 @@ public class Leave_Reports_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 2, description = "TC02 - Generate My Leave Entitlements Report")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Generate My Leave Entitlements Report")
     public void verifyMyLeaveReport_Generate() {
         leavePage
                 .navigateToSection("Reports", "My Leave Entitlements and Usage Report")

@@ -51,7 +51,7 @@ public class Recruitment_Actions_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Add Candidate Validation")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Add Candidate Validation")
     public void verifyCandidate_EmptyFields_Error() {
         recruitmentPage
                 .clickToAdd()

@@ -29,7 +29,7 @@ public class Leave_Entitlements_Test extends BaseTest {
                 .navigateToModule("Leave");
     }
 
-    @Test(priority = 1, description = "TC01 - Add Leave Entitlement to Employee")
+    @Test(priority = 1, groups = {"foundation"}, description = "TC01 - Add Leave Entitlement to Employee")
     public void verifyAddEntitlement_Success() {
         String employeeName = "Script Automation Tester";
         String leaveType = "US - Vacation";
@@ -45,7 +45,7 @@ public class Leave_Entitlements_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Add Entitlement Validation")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Add Entitlement Validation")
     public void verifyAddEntitlement_Validation_Error() {
         leavePage
                 .navigateToSection("Entitlements", "Add Entitlements")
@@ -55,7 +55,7 @@ public class Leave_Entitlements_Test extends BaseTest {
                 .verifyFieldErrorMessage("Entitlement", "Required");
     }
 
-    @Test(priority = 3, description = "TC03 - Search Employee Entitlements")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Search Employee Entitlements")
     public void verifyEmployeeEntitlements_Search_Success() {
         String employeeName = "Script Automation Tester";
 

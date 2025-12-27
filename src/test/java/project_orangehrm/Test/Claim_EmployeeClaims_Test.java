@@ -27,14 +27,14 @@ public class Claim_EmployeeClaims_Test extends BaseTest {
                 .navigateToModule("Claim");
     }
 
-    @Test(priority = 1, description = "TC01 - Verify Employee Claims Page Display")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify Employee Claims Page Display")
     public void verifyEmployeeClaims_Display_Success() {
         claimPage
                 .navigateToSection("Employee Claims")
                 .verifySearchTable();
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Employee Claims Search by Employee")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Employee Claims Search by Employee")
     public void verifyEmployeeClaims_SearchByEmployee_Success() {
         String employeeName = "Script Automation Tester";
 
@@ -46,7 +46,7 @@ public class Claim_EmployeeClaims_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 3, description = "TC03 - Verify Employee Claims Search by Reference ID")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Verify Employee Claims Search by Reference ID")
     public void verifyEmployeeClaims_SearchByReferenceId_Success() {
         claimPage
                 .navigateToSection("Employee Claims")
@@ -55,7 +55,7 @@ public class Claim_EmployeeClaims_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 4, description = "TC04 - Verify Employee Claims Search by Event")
+    @Test(priority = 4, groups = {"regression"}, description = "TC04 - Verify Employee Claims Search by Event")
     public void verifyEmployeeClaims_SearchByEvent_Success() {
         claimPage
                 .navigateToSection("Employee Claims")
@@ -64,7 +64,7 @@ public class Claim_EmployeeClaims_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 5, description = "TC05 - Verify Employee Claims Search by Status")
+    @Test(priority = 5, groups = {"regression"}, description = "TC05 - Verify Employee Claims Search by Status")
     public void verifyEmployeeClaims_SearchByStatus_Success() {
         claimPage
                 .navigateToSection("Employee Claims")
@@ -73,7 +73,7 @@ public class Claim_EmployeeClaims_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 6, description = "TC06 - Verify Employee Claims Filter by Date Range")
+    @Test(priority = 6, groups = {"regression"}, description = "TC06 - Verify Employee Claims Filter by Date Range")
     public void verifyEmployeeClaims_FilterByDateRange_Success() {
         String fromDate = "2024-01-01";
         String toDate = "2025-12-31";
@@ -86,7 +86,7 @@ public class Claim_EmployeeClaims_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 7, description = "TC07 - Verify Employee Claims Approve Action")
+    @Test(priority = 7, groups = {"regression"}, description = "TC07 - Verify Employee Claims Approve Action")
     public void verifyEmployeeClaims_Approve_Success() {
         claimPage
                 .navigateToSection("Employee Claims")
@@ -97,7 +97,7 @@ public class Claim_EmployeeClaims_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 8, description = "TC08 - Verify Employee Claims Reject Action")
+    @Test(priority = 8, groups = {"regression"}, description = "TC08 - Verify Employee Claims Reject Action")
     public void verifyEmployeeClaims_Reject_Success() {
         claimPage
                 .navigateToSection("Employee Claims")
@@ -108,7 +108,7 @@ public class Claim_EmployeeClaims_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 9, description = "TC09 - Verify Employee Claims View Details")
+    @Test(priority = 9, groups = {"regression"}, description = "TC09 - Verify Employee Claims View Details")
     public void verifyEmployeeClaims_ViewDetails_Success() {
         claimPage
                 .navigateToSection("Employee Claims")
@@ -117,7 +117,7 @@ public class Claim_EmployeeClaims_Test extends BaseTest {
                 .verifyElementVisible("Claim Details");
     }
 
-    @Test(priority = 10, description = "TC10 - Verify Employee Claims Pay Action")
+    @Test(priority = 10, groups = {"regression"}, description = "TC10 - Verify Employee Claims Pay Action")
     public void verifyEmployeeClaims_Pay_Success() {
         claimPage
                 .navigateToSection("Employee Claims")
@@ -128,7 +128,7 @@ public class Claim_EmployeeClaims_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 11, description = "TC11 - Verify Employee Claims Cancel Action")
+    @Test(priority = 11, groups = {"regression"}, description = "TC11 - Verify Employee Claims Cancel Action")
     public void verifyEmployeeClaims_Cancel_Success() {
         claimPage
                 .navigateToSection("Employee Claims")
@@ -139,7 +139,7 @@ public class Claim_EmployeeClaims_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 12, description = "TC12 - Verify Employee Claims Reset Filters")
+    @Test(priority = 12, groups = {"regression"}, description = "TC12 - Verify Employee Claims Reset Filters")
     public void verifyEmployeeClaims_ResetFilters_Success() {
         claimPage
                 .navigateToSection("Employee Claims")
@@ -149,7 +149,7 @@ public class Claim_EmployeeClaims_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 13, description = "TC13 - Verify My Claims View Details")
+    @Test(priority = 13, groups = {"regression"}, description = "TC13 - Verify My Claims View Details")
     public void verifyMyClaims_ViewDetails_Success() {
         claimPage
                 .navigateToSection("My Claims")
@@ -158,7 +158,7 @@ public class Claim_EmployeeClaims_Test extends BaseTest {
                 .verifyElementVisible("Claim Details");
     }
 
-    @Test(priority = 14, description = "TC14 - Verify My Claims Filter by Event")
+    @Test(priority = 14, groups = {"regression"}, description = "TC14 - Verify My Claims Filter by Event")
     public void verifyMyClaims_FilterByEvent_Success() {
         claimPage
                 .navigateToSection("My Claims")
@@ -167,7 +167,7 @@ public class Claim_EmployeeClaims_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 15, description = "TC15 - Verify My Claims Filter by Status")
+    @Test(priority = 15, groups = {"regression"}, description = "TC15 - Verify My Claims Filter by Status")
     public void verifyMyClaims_FilterByStatus_Success() {
         claimPage
                 .navigateToSection("My Claims")
@@ -176,7 +176,7 @@ public class Claim_EmployeeClaims_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 16, description = "TC16 - Verify My Claims Reset Filters")
+    @Test(priority = 16, groups = {"regression"}, description = "TC16 - Verify My Claims Reset Filters")
     public void verifyMyClaims_ResetFilters_Success() {
         claimPage
                 .navigateToSection("My Claims")

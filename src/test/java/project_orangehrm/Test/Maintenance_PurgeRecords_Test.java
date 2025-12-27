@@ -29,7 +29,7 @@ public class Maintenance_PurgeRecords_Test extends BaseTest {
                 .verifyAccessPassword("admin123");
     }
 
-    @Test(priority = 1, description = "TC01 - Verify Purge Employee Records Search & Delete")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify Purge Employee Records Search & Delete")
     public void verifyPurgeEmployee_Lifecycle() {
         String employeeName = "Dev Ops Trem";
 
@@ -41,7 +41,7 @@ public class Maintenance_PurgeRecords_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Purge Candidate Records Search & Delete")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Purge Candidate Records Search & Delete")
     public void verifyPurgeCandidate_Lifecycle() {
         String vacancy = "Senior QA Engineer";
         maintenancePage

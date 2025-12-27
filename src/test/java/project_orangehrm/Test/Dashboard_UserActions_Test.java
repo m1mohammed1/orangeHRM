@@ -24,7 +24,7 @@ public class Dashboard_UserActions_Test extends BaseTest {
     }
 
 
-    @Test(priority = 1, description = "TC01 - Verify About Modal Popup")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify About Modal Popup")
     public void verifyUserMenu_AboutInfo() {
         dashboardPage
                 .clickAbout();
@@ -36,7 +36,7 @@ public class Dashboard_UserActions_Test extends BaseTest {
                 .closeDialog();
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Logout Functionality")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Logout Functionality")
     public void verifyUserMenu_Logout() {
         dashboardPage
                 .clickLogout();
@@ -44,7 +44,7 @@ public class Dashboard_UserActions_Test extends BaseTest {
                 .verifyElementVisible("Submit");
     }
 
-    @Test(priority = 3, description = "TC03 - Verify Hiding and Showing Widgets")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Verify Hiding and Showing Widgets")
     public void verifyDashboard_Configuration_Toggle() {
         String widgetName = "Quick Launch";
 

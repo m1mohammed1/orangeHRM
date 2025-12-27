@@ -27,7 +27,7 @@ public class Buzz_Newsfeed_Test extends BaseTest {
                 .navigateToModule("Buzz");
     }
 
-    @Test(priority = 1, description = "TC01 - Positive: Verify Post Lifecycle (Create, View, Delete)")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Positive: Verify Post Lifecycle (Create, View, Delete)")
     public void verifyPost_Lifecycle_Success() {
         String postText = "Auto Post ";
         buzzPage
@@ -40,7 +40,7 @@ public class Buzz_Newsfeed_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 2, description = "TC02 - Positive: Verify Engagement (Like and Comment)")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Positive: Verify Engagement (Like and Comment)")
     public void verifyEngagement_Success() {
         String postText = "Engagement ";
         String comment = "Nice Update!";
@@ -51,7 +51,7 @@ public class Buzz_Newsfeed_Test extends BaseTest {
                 .verifyBodyContains(comment);
     }
 
-    @Test(priority = 3, description = "TC03 - Positive: Verify Edit Post")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Positive: Verify Edit Post")
     public void verifyPost_Edit_Success() {
         String original = "Original Text";
         String updated = "Updated Text";
@@ -65,14 +65,14 @@ public class Buzz_Newsfeed_Test extends BaseTest {
                 .verifyBodyContains(updated);
     }
 
-    @Test(priority = 4, description = "TC04 - Negative: Verify Post Creation with Empty Content")
+    @Test(priority = 4, groups = {"regression"}, description = "TC04 - Negative: Verify Post Creation with Empty Content")
     public void verifyEmptyPost_Error() {
         buzzPage
                 .createPost("")
                 .verifyEmptyPostError("Required");
     }
 
-    @Test(priority = 5, description = "TC05 - Negative: Verify Cancellation of Post Deletion")
+    @Test(priority = 5, groups = {"regression"}, description = "TC05 - Negative: Verify Cancellation of Post Deletion")
     public void verifyCancelDeletion_Flow() {
         String postText = "Safety Check ";
         buzzPage

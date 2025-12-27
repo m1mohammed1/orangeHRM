@@ -26,7 +26,7 @@ public class Time_Timesheets_Test extends BaseTest {
                 navigateToModule("Time");
     }
 
-    @Test(priority = 1, description = "TC01 - Verify My Timesheet: Add Row, Edit Hours, Save")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify My Timesheet: Add Row, Edit Hours, Save")
     public void verifyMyTimesheet_EditAndSave() {
         String projectName = "Microsoft Ltd - Azure Project";
         String activityName = "Bug Fixes";
@@ -42,7 +42,7 @@ public class Time_Timesheets_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Submit Timesheet (Workflow Status)")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Submit Timesheet (Workflow Status)")
     public void verifyTimesheet_Submit_Success() {
         timePage
                 .navigateToSection("Timesheets", "My Timesheets")
@@ -51,7 +51,7 @@ public class Time_Timesheets_Test extends BaseTest {
                 .verifyBodyContains("Submitted");
     }
 
-    @Test(priority = 3, description = "TC03 - Verify Employee Timesheet Approval (Admin Action)")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Verify Employee Timesheet Approval (Admin Action)")
     public void verifyEmployeeTimesheet_Approve() {
         String employeeName = "Script Automation Tester";
 

@@ -29,7 +29,7 @@ public class Time_ProjectInfo_Test extends BaseTest {
 
 
 
-    @Test(priority = 1, description = "TC01 - Verify Customer Add")
+    @Test(priority = 1, groups = {"foundation"}, description = "TC01 - Verify Customer Add")
     public void verifyCustomer_Add_Success() {
         String customerName = "Auto Test Customer";
 
@@ -43,7 +43,7 @@ public class Time_ProjectInfo_Test extends BaseTest {
                 .verifyRecordExists(customerName);
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Customer Edit")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Customer Edit")
     public void verifyCustomer_Edit_Success() {
         String customerName = "Edit Test Customer";
         String updatedName = "Updated Customer Name";
@@ -64,7 +64,7 @@ public class Time_ProjectInfo_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 3, description = "TC03 - Verify Customer Delete")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Verify Customer Delete")
     public void verifyCustomer_Delete_Success() {
         String customerName = "Delete Test Customer";
 
@@ -80,7 +80,7 @@ public class Time_ProjectInfo_Test extends BaseTest {
                 .verifyRecordDeleted(customerName);
     }
 
-    @Test(priority = 4, description = "TC04 - Verify Customer Validation")
+    @Test(priority = 4, groups = {"regression"}, description = "TC04 - Verify Customer Validation")
     public void verifyCustomer_Validation_Error() {
         timePage
                 .navigateToSection("Project Info", "Customers")
@@ -89,7 +89,7 @@ public class Time_ProjectInfo_Test extends BaseTest {
                 .verifyFieldErrorMessage("Name", "Required");
     }
 
-    @Test(priority = 5, description = "TC05 - Verify Customer Duplicate")
+    @Test(priority = 5, groups = {"regression"}, description = "TC05 - Verify Customer Duplicate")
     public void verifyCustomer_Duplicate_Error() {
         String customerName = "Duplicate Customer";
 
@@ -110,7 +110,7 @@ public class Time_ProjectInfo_Test extends BaseTest {
     }
 
 
-    @Test(priority = 6, description = "TC06 - Verify Project Add")
+    @Test(priority = 6, groups = {"foundation"}, description = "TC06 - Verify Project Add")
     public void verifyProject_Add_Success() {
         String projectName = "Automation Project";
         String customerName = "Auto Test Customer";
@@ -125,7 +125,7 @@ public class Time_ProjectInfo_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 7, description = "TC07 - Verify Project Add with Admin")
+    @Test(priority = 7, groups = {"foundation"}, description = "TC07 - Verify Project Add with Admin")
     public void verifyProject_AddWithAdmin_Success() {
         String projectName = "Project With Admin";
         String customerName = "Auto Test Customer";
@@ -142,7 +142,7 @@ public class Time_ProjectInfo_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 8, description = "TC08 - Verify Project Edit")
+    @Test(priority = 8, groups = {"regression"}, description = "TC08 - Verify Project Edit")
     public void verifyProject_Edit_Success() {
         String projectName = "Edit Project";
         String updatedName = "Updated Project Name";
@@ -169,7 +169,7 @@ public class Time_ProjectInfo_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 9, description = "TC09 - Verify Project Delete")
+    @Test(priority = 9, groups = {"regression"}, description = "TC09 - Verify Project Delete")
     public void verifyProject_Delete_Success() {
         String projectName = "Delete Project";
         String customerName = "Auto Test Customer";
@@ -188,7 +188,7 @@ public class Time_ProjectInfo_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 10, description = "TC10 - Verify Project Validation")
+    @Test(priority = 10, groups = {"regression"}, description = "TC10 - Verify Project Validation")
     public void verifyProject_Validation_Error() {
         timePage
                 .navigateToSection("Project Info", "Projects")
@@ -198,7 +198,7 @@ public class Time_ProjectInfo_Test extends BaseTest {
                 .verifyFieldErrorMessage("Customer Name", "Required");
     }
 
-    @Test(priority = 11, description = "TC11 - Verify Project Search by Customer")
+    @Test(priority = 11, groups = {"regression"}, description = "TC11 - Verify Project Search by Customer")
     public void verifyProject_SearchByCustomer_Success() {
         String customerName = "Auto Test Customer";
 
@@ -209,7 +209,7 @@ public class Time_ProjectInfo_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 12, description = "TC12 - Verify Project Search by Project Name")
+    @Test(priority = 12, groups = {"regression"}, description = "TC12 - Verify Project Search by Project Name")
     public void verifyProject_SearchByName_Success() {
         timePage
                 .navigateToSection("Project Info", "Projects")
@@ -218,7 +218,7 @@ public class Time_ProjectInfo_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 13, description = "TC13 - Verify Project Search by Admin")
+    @Test(priority = 13, groups = {"regression"}, description = "TC13 - Verify Project Search by Admin")
     public void verifyProject_SearchByAdmin_Success() {
         String adminName = "Script Automation";
 
@@ -230,7 +230,7 @@ public class Time_ProjectInfo_Test extends BaseTest {
                 .verifySearchTable();
     }
 
-    @Test(priority = 14, description = "TC14 - Verify Project Reset Filters")
+    @Test(priority = 14, groups = {"regression"}, description = "TC14 - Verify Project Reset Filters")
     public void verifyProject_ResetFilters_Success() {
         timePage
                 .navigateToSection("Project Info", "Projects")
@@ -241,7 +241,7 @@ public class Time_ProjectInfo_Test extends BaseTest {
     }
 
 
-    @Test(priority = 15, description = "TC15 - Verify Add Project Activity")
+    @Test(priority = 15, groups = {"regression"}, description = "TC15 - Verify Add Project Activity")
     public void verifyProjectActivity_Add_Success() {
         String projectName = "Automation Project";
         String activityName = "QA Testing Activity";
@@ -259,7 +259,7 @@ public class Time_ProjectInfo_Test extends BaseTest {
                 .verifyRecordExists(activityName);
     }
 
-    @Test(priority = 16, description = "TC16 - Verify Delete Project Activity")
+    @Test(priority = 16, groups = {"regression"}, description = "TC16 - Verify Delete Project Activity")
     public void verifyProjectActivity_Delete_Success() {
         String projectName = "Automation Project";
 
@@ -273,7 +273,7 @@ public class Time_ProjectInfo_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 17, description = "TC17 - Cleanup: Delete Test Projects and Customer")
+    @Test(priority = 17, groups = {"regression"}, description = "TC17 - Cleanup: Delete Test Projects and Customer")
     public void cleanup_DeleteTestData() {
         timePage
                 .navigateToSection("Project Info", "Projects")
@@ -289,4 +289,3 @@ public class Time_ProjectInfo_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 }
-

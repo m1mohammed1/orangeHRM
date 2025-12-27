@@ -24,7 +24,7 @@ public class Dashboard_Widgets_Test extends BaseTest {
     }
 
 
-    @Test(priority = 1, description = "TC01 - Verify Core Dashboard Widgets are Visible")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify Core Dashboard Widgets are Visible")
     public void verifyWidgets_Visibility() {
         dashboardPage.verifyElementVisible("Time at Work");
         dashboardPage.verifyElementVisible("My Actions");
@@ -34,7 +34,7 @@ public class Dashboard_Widgets_Test extends BaseTest {
         dashboardPage.verifyElementVisible("Employee Distribution by Location");
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Quick Launch Shortcuts Redirection")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Quick Launch Shortcuts Redirection")
     public void verifyQuickLaunch_Navigation() {
         dashboardPage
                 .clickQuickLaunchItem("Assign Leave")
@@ -50,7 +50,7 @@ public class Dashboard_Widgets_Test extends BaseTest {
                 .verifyPageTitle("Time");
     }
 
-    @Test(priority = 3, description = "TC03 - Verify Time at Work Stopwatch Integration")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Verify Time at Work Stopwatch Integration")
     public void verifyTimeWidget_ClockAction() {
         dashboardPage
                 .clickTimeClockButton()

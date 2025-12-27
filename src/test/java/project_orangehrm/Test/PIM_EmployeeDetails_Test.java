@@ -29,7 +29,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
                 .navigateToModule("PIM");
     }
 
-    @Test(priority = 1, description = "TC01 - Verify Personal Details View")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify Personal Details View")
     public void verifyPersonalDetails_View_Success() {
         pimPage
                 .navigateToSection("Employee List")
@@ -40,7 +40,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
                 .verifyToSection("Personal Details");
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Personal Details Edit")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Personal Details Edit")
     public void verifyPersonalDetails_Edit_Success() {
         pimPage
                 .navigateToSection("Employee List")
@@ -54,7 +54,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 3, description = "TC03 - Verify Contact Details Update")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Verify Contact Details Update")
     public void verifyContactDetails_Update_Success() {
         pimPage
                 .navigateToSection("Employee List")
@@ -72,7 +72,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 4, description = "TC04 - Verify Emergency Contact Add")
+    @Test(priority = 4, groups = {"regression"}, description = "TC04 - Verify Emergency Contact Add")
     public void verifyEmergencyContact_Add_Success() {
         pimPage
                 .navigateToSection("Employee List")
@@ -92,7 +92,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
                 .verifyRecordExists("Emergency Contact Person");
     }
 
-    @Test(priority = 5, description = "TC05 - Verify Emergency Contact Delete")
+    @Test(priority = 5, groups = {"regression"}, description = "TC05 - Verify Emergency Contact Delete")
     public void verifyEmergencyContact_Delete_Success() {
         pimPage
                 .navigateToSection("Employee List")
@@ -106,7 +106,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 6, description = "TC06 - Verify Dependent Add")
+    @Test(priority = 6, groups = {"regression"}, description = "TC06 - Verify Dependent Add")
     public void verifyDependent_Add_Success() {
         pimPage
                 .navigateToSection("Employee List")
@@ -125,7 +125,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
                 .verifyRecordExists("Test Dependent");
     }
 
-    @Test(priority = 7, description = "TC07 - Verify Dependent Delete")
+    @Test(priority = 7, groups = {"regression"}, description = "TC07 - Verify Dependent Delete")
     public void verifyDependent_Delete_Success() {
         pimPage
                 .navigateToSection("Employee List")
@@ -139,7 +139,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 8, description = "TC08 - Add Immigration Document (Passport)")
+    @Test(priority = 8, groups = {"regression"}, description = "TC08 - Add Immigration Document (Passport)")
     public void addImmigrationDocument_Passport_Success() {
         pimPage
                 .navigateToSection("Employee List")
@@ -159,7 +159,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 9, description = "TC09 - Verify Immigration Record Delete")
+    @Test(priority = 9, groups = {"regression"}, description = "TC09 - Verify Immigration Record Delete")
     public void verifyImmigration_Delete_Success() {
         pimPage
                 .navigateToSection("Employee List")
@@ -173,7 +173,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 10, description = "TC10 - Verify Salary Component Add")
+    @Test(priority = 10, groups = {"regression"}, description = "TC10 - Verify Salary Component Add")
     public void verifySalary_AddComponent_Success() {
         pimPage
                 .navigateToSection("Employee List")
@@ -193,7 +193,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 11, description = "TC11 - Verify Work Experience Add")
+    @Test(priority = 11, groups = {"regression"}, description = "TC11 - Verify Work Experience Add")
     public void verifyQualifications_WorkExperience_Add_Success() {
         pimPage
                 .navigateToSection("Employee List")
@@ -213,7 +213,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 12, description = "TC12 - Verify Education Add")
+    @Test(priority = 12, groups = {"regression"}, description = "TC12 - Verify Education Add")
     public void verifyQualifications_Education_Add_Success() {
         pimPage
                 .navigateToSection("Employee List")
@@ -234,7 +234,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 13, description = "TC13 - Verify Skills Add")
+    @Test(priority = 13, groups = {"regression"}, description = "TC13 - Verify Skills Add")
     public void verifyQualifications_Skills_Add_Success() {
         pimPage
                 .navigateToSection("Employee List")
@@ -252,7 +252,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 14, description = "TC14 - Verify Languages Add")
+    @Test(priority = 14, groups = {"regression"}, description = "TC14 - Verify Languages Add")
     public void verifyQualifications_Languages_Add_Success() {
         pimPage
                 .navigateToSection("Employee List")
@@ -271,7 +271,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 15, description = "TC15 - Verify License Add")
+    @Test(priority = 15, groups = {"regression"}, description = "TC15 - Verify License Add")
     public void verifyQualifications_License_Add_Success() {
         pimPage
                 .navigateToSection("Employee List")
@@ -291,7 +291,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 16, description = "TC16 - Verify Membership Add")
+    @Test(priority = 16, groups = {"regression"}, description = "TC16 - Verify Membership Add")
     public void verifyMembership_Add_Success() {
         pimPage
                 .navigateToSection("Employee List")
@@ -312,4 +312,3 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 }
-

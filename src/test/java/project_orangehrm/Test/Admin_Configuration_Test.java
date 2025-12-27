@@ -28,7 +28,7 @@ public class Admin_Configuration_Test extends BaseTest {
                 .navigateToModule("Admin");
     }
 //
-    @Test(priority = 1, description = "TC01 - Verify Email Subscription Lifecycle: Add, Verify")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify Email Subscription Lifecycle: Add, Verify")
     public void verifyEmailSubscription_Lifecycle_Success() {
         String subscriberName = "Automation Subscriber";
         String subscriberEmail = "selenium@automated.com";
@@ -43,7 +43,7 @@ public class Admin_Configuration_Test extends BaseTest {
                 .verifyRecordExists(subscriberName);
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Email Subscription Lifecycle: Add, Verify, Edit, Delete")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Email Subscription Lifecycle: Add, Verify, Edit, Delete")
     public void verifyEmailSubscription_Lifecycle_Edit() {
         String subscriberName = "Ai Subscriber";
         String subscriberEmail = "auto_script@test.com";
@@ -69,7 +69,7 @@ public class Admin_Configuration_Test extends BaseTest {
                 .verifyRecordDeleted(subscriberName);
     }
 
-    @Test(priority = 3, description = "TC03 - Verify Email Subscription Validation")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Verify Email Subscription Validation")
     public void verifyEmailSubscription_EmptyFields_ShowError() {
         adminPage
                 .navigateToSection("Configuration", "Email Subscriptions")
@@ -80,7 +80,7 @@ public class Admin_Configuration_Test extends BaseTest {
                 .verifyFieldErrorMessage("Email", "Required");
     }
 
-    @Test(priority = 4, description = "TC04 - Verify Email Configuration: Update SMTP Settings and Validation")
+    @Test(priority = 4, groups = {"regression"}, description = "TC04 - Verify Email Configuration: Update SMTP Settings and Validation")
     public void verifyEmailConfiguration_UpdateAndValidation() {
         adminPage
                 .navigateToSection("Configuration", "Email Configuration");
@@ -97,7 +97,7 @@ public class Admin_Configuration_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 5, description = "TC05 - Verify Localization Settings: Update Default Language and Format")
+    @Test(priority = 5, groups = {"regression"}, description = "TC05 - Verify Localization Settings: Update Default Language and Format")
     public void verifyLocalization_Update_Success() {
         adminPage
                 .navigateToSection("Configuration", "Localization");
@@ -108,7 +108,7 @@ public class Admin_Configuration_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 6, description = "TC06 - Verify Language Packages Lifecycle: Add, Verify, Delete")
+    @Test(priority = 6, groups = {"regression"}, description = "TC06 - Verify Language Packages Lifecycle: Add, Verify, Delete")
     public void verifyLanguagePackages_Lifecycle_Success() {
         String langName = "Arabic (Egypt)";
         adminPage
@@ -122,7 +122,7 @@ public class Admin_Configuration_Test extends BaseTest {
                 .verifyRecordDeleted(langName);
     }
 
-    @Test(priority = 7, description = "TC07 - Verify Social Media Authentication Lifecycle : Create, Verify, Delete")
+    @Test(priority = 7, groups = {"regression"}, description = "TC07 - Verify Social Media Authentication Lifecycle : Create, Verify, Delete")
     public void verifySocialMediaAuthentication_Lifecycle_Success() {
         adminPage
                 .navigateToSection("Configuration", "Social Media Authentication")
@@ -138,7 +138,7 @@ public class Admin_Configuration_Test extends BaseTest {
     }
 
 
-    @Test(priority = 8, description = "TC08 - Verify Modules Page Load and Save")
+    @Test(priority = 8, groups = {"regression"}, description = "TC08 - Verify Modules Page Load and Save")
     public void verifyModules_Configuration_Save() {
         adminPage
                 .navigateToSection("Configuration", "Modules")
@@ -146,7 +146,7 @@ public class Admin_Configuration_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 9, description = "TC09 - Verify Social Media Authentication: Add Provider Validation")
+    @Test(priority = 9, groups = {"regression"}, description = "TC09 - Verify Social Media Authentication: Add Provider Validation")
     public void verifySocialMedia_AddProvider_Validation() {
         adminPage
                 .navigateToSection("Configuration", "Social Media Authentication")
@@ -157,7 +157,7 @@ public class Admin_Configuration_Test extends BaseTest {
                 .verifyFieldErrorMessage("Client ID", "Required");
     }
 
-    @Test(priority = 10, description = "TC10 - Verify OAuth Client Lifecycle: Create, Verify, Delete")
+    @Test(priority = 10, groups = {"regression"}, description = "TC10 - Verify OAuth Client Lifecycle: Create, Verify, Delete")
     public void verifyOAuthClient_Lifecycle_Success() {
         String clientId = "Test_OAuth_Client";
         String redirectUri = "https://www.google.com";
@@ -179,7 +179,7 @@ public class Admin_Configuration_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 11, description = "TC11 - Verify OAuth Client Validation Errors")
+    @Test(priority = 11, groups = {"regression"}, description = "TC11 - Verify OAuth Client Validation Errors")
     public void verifyOAuthClient_EmptyFields_ShowError() {
         adminPage
                 .navigateToSection("Configuration", "Register OAuth Client")
@@ -189,7 +189,7 @@ public class Admin_Configuration_Test extends BaseTest {
                 .verifyFieldErrorMessage("Redirect URI", "Required");
     }
 
-    @Test(priority = 12, description = "TC12 - Verify LDAP Configuration Form Validation")
+    @Test(priority = 12, groups = {"regression"}, description = "TC12 - Verify LDAP Configuration Form Validation")
     public void verifyLDAPConfiguration_Validation_Error() {
         adminPage
                 .navigateToSection("Configuration", "LDAP Configuration")
@@ -204,7 +204,7 @@ public class Admin_Configuration_Test extends BaseTest {
                 .verifyFieldErrorMessage("Base Distinguished Name", "Required");
     }
 
-    @Test(priority = 13, description = "TC13 - Verify LDAP Configuration Save")
+    @Test(priority = 13, groups = {"regression"}, description = "TC13 - Verify LDAP Configuration Save")
     public void verifyLDAPConfiguration_Save_Success() {
         adminPage
                 .navigateToSection("Configuration", "LDAP Configuration")

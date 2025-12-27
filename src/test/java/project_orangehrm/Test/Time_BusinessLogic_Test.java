@@ -27,7 +27,7 @@ public class Time_BusinessLogic_Test extends BaseTest {
                 .navigateToModule("Time");
     }
 
-    @Test(priority = 1, description = "TC01 - Verify Error when Entering > 24 Hours in Timesheet")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify Error when Entering > 24 Hours in Timesheet")
     public void verifyTimesheet_InvalidHours_Error() {
         timePage
                 .navigateToSection("Timesheets", "My Timesheets")
@@ -36,7 +36,7 @@ public class Time_BusinessLogic_Test extends BaseTest {
                 .clickSave();
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Cannot Punch In Future Date")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Cannot Punch In Future Date")
     public void verifyPunchIn_FutureDate_Error() {
         timePage
                 .navigateToSection("Attendance", "Punch In/Out")

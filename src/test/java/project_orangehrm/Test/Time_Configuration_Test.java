@@ -27,7 +27,7 @@ public class Time_Configuration_Test extends BaseTest {
                 .navigateToModule("Time");
     }
 
-    @Test(priority = 1, description = "TC01 - Verify Attendance Configuration Updates")
+    @Test(priority = 1, groups = {"foundation"}, description = "TC01 - Verify Attendance Configuration Updates")
     public void verifyAttendanceConfig_Update_Success() {
         timePage
                 .navigateToSection("Attendance", "Configuration")

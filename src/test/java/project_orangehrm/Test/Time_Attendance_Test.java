@@ -27,7 +27,7 @@ public class Time_Attendance_Test extends BaseTest {
                 .navigateToModule("Time");
     }
 
-    @Test(priority = 1, description = "TC01 - Verify Punch Punch In/Out Workflow")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify Punch Punch In/Out Workflow")
     public void verifyPunchIn_Out_Success() {
         timePage
                 .navigateToSection("Attendance", "Punch In/Out")
@@ -42,7 +42,7 @@ public class Time_Attendance_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 2, description = "TC02 - Verify Punch Punch In/Out Workflow")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Punch Punch In/Out Workflow")
     public void verifyPunchIn_Out_Validate() {
         timePage
                 .navigateToSection("Attendance", "Punch In/Out")
@@ -57,7 +57,7 @@ public class Time_Attendance_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 3, description = "TC03 - Verify Punch Punch In/Out Verify, Edit, Delete Workflow")
+    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Verify Punch Punch In/Out Verify, Edit, Delete Workflow")
     public void verifyPunchIn_Out_Success_Edit() {
         timePage
                 .navigateToSection("Attendance", "Punch In/Out")
@@ -85,7 +85,7 @@ public class Time_Attendance_Test extends BaseTest {
     }
 
 
-    @Test(priority = 4, description = "TC04 - Verify Employee Record Lifecycle: Create, Edit, Delete")
+    @Test(priority = 4, groups = {"regression"}, description = "TC04 - Verify Employee Record Lifecycle: Create, Edit, Delete")
     public void verifyEmployeeRecords_Search() {
         String employeeName = "Script Automation Tester";
         String searchDate = "2024-12-01";
@@ -120,7 +120,7 @@ public class Time_Attendance_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 5, description = "TC05 - Verify My Attendance Records")
+    @Test(priority = 5, groups = {"regression"}, description = "TC05 - Verify My Attendance Records")
     public void verifyMyRecords_View_Success() {
         String searchDate = "2025-7-30";
 
