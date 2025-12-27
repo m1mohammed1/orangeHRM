@@ -44,7 +44,7 @@ jobs:
       - name: Run Foundation Tests (Sequential Execution)
         run: |
           mvn test -B \
-            -Dtest="LoginTest,AdminJobTest,AdminOrganizationTest,Admin_Qualifications_Test,PIM_Employee_Test,AdminUserManagementTest,Leave_Configuration_Test,Leave_Entitlements_Test,Claim_Configuration_Test,Time_ProjectInfo_Test,Time_Configuration_Test,Performance_Configuration_Test,Recruitment_Vacancies_Test" \
+            -DsuiteXmlFile=testng.xml \
             -Dgroups="foundation" \
             -Dbrowser=${{ env.BROWSER }} \
             -Dheadless=true \
