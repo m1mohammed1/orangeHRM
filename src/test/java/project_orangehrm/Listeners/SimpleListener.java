@@ -10,16 +10,19 @@ public class SimpleListener implements ITestListener {
     public void onTestStart(ITestResult result) {
         System.out.println("▶ STARTING: " + result.getMethod().getMethodName()
                 + " in " + result.getTestClass().getRealClass().getSimpleName());
+        System.out.flush();
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
         System.out.println("✓ FINISHED: " + result.getMethod().getMethodName());
+        System.out.flush();
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         System.out.println("✗ FAILED: " + result.getMethod().getMethodName());
+        System.out.flush();
     }
 
     @Override
