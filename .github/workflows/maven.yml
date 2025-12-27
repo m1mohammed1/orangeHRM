@@ -9,7 +9,7 @@ on:
         description: 'Select Browser'
         default: 'edge'
         type: choice
-        options: [chrome,edge, firefox]
+        options: [chrome,edge , firefox]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -20,11 +20,9 @@ env:
   MAVEN_OPTS: "-Xmx3072m -Djava.awt.headless=true"
 
 jobs:
-  # ====================================================
-  # 1. Foundation: Seed Data (Single Machine)
-  # ====================================================
   foundation:
     name: 1. Foundation Setup
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -62,9 +60,6 @@ jobs:
           path: target/allure-results
           retention-days: 3
 
-  # ====================================================
-  # 2. Regression Matrix (46 Parallel Shards) ⚡
-  # ====================================================
   regression_matrix:
     name: 2. ${{ matrix.shard_name }}
     needs: foundation
@@ -134,15 +129,12 @@ jobs:
           path: target/allure-results
           retention-days: 3
 
-  # ====================================================
-  # 3. Cleanup Matrix (8 Parallel Shards) 🧹
-  # ====================================================
   cleanup_matrix:
     name: Clean - ${{ matrix.clean_shard }}
     needs: [regression_matrix]
-    if: always()
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 5
     strategy:
       fail-fast: false
       matrix:
@@ -181,20 +173,17 @@ jobs:
             -Dmaven.test.failure.ignore=true
 
       - name: Upload Cleanup Results
-        if: always()
+        if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
         with:
           name: allure-results-clean-${{ matrix.clean_shard }}
           path: target/allure-results
           retention-days: 3
 
-  # ====================================================
-  # 4. Final Report
-  # ====================================================
   report:
     name: Generate Final Report
     needs: [foundation, regression_matrix, cleanup_matrix]
-    if: always()
+    if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -226,7 +215,7 @@ jobs:
 
       - name: Generate Allure Report
         uses: simple-elf/allure-report-action@master
-        if: always()
+        if: ${{ !cancelled() }}
         with:
           allure_results: target/allure-results
           allure_history: gh-pages
@@ -234,7 +223,7 @@ jobs:
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
-        if: always()
+        if: ${{ !cancelled() }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
@@ -248,9 +237,7 @@ jobs:
           echo "| Step | Status |" >> $GITHUB_STEP_SUMMARY
           echo "|------|--------|" >> $GITHUB_STEP_SUMMARY
           echo "| Foundation | ${{ needs.foundation.result }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Operations | ${{ needs.operations.result }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Performance | ${{ needs.performance.result }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Maintenance | ${{ needs.maintenance.result }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| Cleanup | ${{ needs.cleanup.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Regression | ${{ needs.regression_matrix.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Cleanup | ${{ needs.cleanup_matrix.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-           echo "**Allure Report:** [View Report](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/)" >> $GITHUB_STEP_SUMMARY    
+          echo "**Allure Report:** [View Report](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/)" >> $GITHUB_STEP_SUMMARY
