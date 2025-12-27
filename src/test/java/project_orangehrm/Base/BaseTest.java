@@ -105,7 +105,7 @@ public class BaseTest {
         getDriver().get("https://opensource-demo.orangehrmlive.com/");
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult result) {
         WebDriver driver = tlDriver.get();
         if (ITestResult.FAILURE == result.getStatus()) {

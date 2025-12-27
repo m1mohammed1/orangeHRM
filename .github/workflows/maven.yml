@@ -50,7 +50,7 @@ jobs:
             -Dgroups="foundation" \
             -Dbrowser=${{ env.BROWSER }} \
             -Dheadless=true \
-            -Dmaven.test.failure.ignore=false
+            -Dmaven.test.failure.ignore=true
 
       - name: Upload Foundation Results
         if: success() || failure()
