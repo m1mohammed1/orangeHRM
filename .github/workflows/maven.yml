@@ -70,26 +70,26 @@ jobs:
       fail-fast: false
       matrix:
         shard_name: [
-          # Admin
+
           "Reg_Admin_Job", "Reg_Admin_Org", "Reg_Admin_Qual",
           "Reg_Admin_Config", "Reg_Admin_Nat", "Reg_Admin_Users",
-          # PIM
+
           "Reg_PIM_Config", "Reg_PIM_Emp", "Reg_PIM_Details", "Reg_PIM_Reports",
-          # Recruitment
+
           "Reg_Rec_Vacancies", "Reg_Rec_E2E", "Reg_Rec_Workflow",
           "Reg_Rec_Search", "Reg_Rec_Actions",
-          # Leave
+
           "Reg_Leave_Apply", "Reg_Leave_List", "Reg_Leave_Ops",
           "Reg_Leave_Reports", "Reg_Leave_Config", "Reg_Leave_Entitle",
-          # Time
+
           "Reg_Time_Attend", "Reg_Time_Sheets", "Reg_Time_Project",
           "Reg_Time_Logic", "Reg_Time_Reports", "Reg_Time_Config",
-          # Claim
+
           "Reg_Claim_Adv", "Reg_Claim_Emp", "Reg_Claim_Ops", "Reg_Claim_Config",
-          # Performance
+
           "Reg_Perf_Reviews", "Reg_Perf_MyRev", "Reg_Perf_Eval",
           "Reg_Perf_Reports", "Reg_Perf_Config",
-          # Dashboard, Buzz, Directory, Maint
+
           "Reg_Dash_Widgets", "Reg_Dash_Actions", "Reg_Dash_Adv",
           "Reg_Buzz_Feed", "Reg_Buzz_Feat", "Reg_Directory",
           "Reg_Maint_Auth", "Reg_Maint_Access", "Reg_Maint_Purge", "Reg_Maint_Safety"
