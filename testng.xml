@@ -29,7 +29,7 @@
         </classes>
     </test>
 
-    <test name="Reg_Admin_Job"><groups><run><include name="regression"/></run></groups><classes><class name="project_orangehrm.Test.LoginTest"/></classes></test>
+    <test name="Reg_Login"><groups><run><include name="regression"/></run></groups><classes><class name="project_orangehrm.Test.LoginTest"/></classes></test>
 
     <test name="Reg_Admin_Job"><groups><run><include name="regression"/></run></groups><classes><class name="project_orangehrm.Test.AdminJobTest"/></classes></test>
     <test name="Reg_Admin_Org"><groups><run><include name="regression"/></run></groups><classes><class name="project_orangehrm.Test.AdminOrganizationTest"/></classes></test>
