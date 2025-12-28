@@ -6,14 +6,13 @@
         <listener class-name="project_orangehrm.Listeners.SimpleListener"/>
     </listeners>
 
-    <parameter name="browser" value="edge"/>
+    <parameter name="browser" value="chrome"/>
 
     <test name="Foundation_Data_Seeding" preserve-order="true">
         <groups>
             <run><include name="foundation"/></run>
         </groups>
         <classes>
-            <class name="project_orangehrm.Test.LoginTest"/>
             <class name="project_orangehrm.Test.AdminJobTest"/>
             <class name="project_orangehrm.Test.AdminOrganizationTest"/>
             <class name="project_orangehrm.Test.Admin_Qualifications_Test"/>
@@ -22,12 +21,15 @@
             <class name="project_orangehrm.Test.Leave_Configuration_Test"/>
             <class name="project_orangehrm.Test.Leave_Entitlements_Test"/>
             <class name="project_orangehrm.Test.Claim_Configuration_Test"/>
+            <class name="project_orangehrm.Test.Claim_Advanced_Test"/>
             <class name="project_orangehrm.Test.Time_ProjectInfo_Test"/>
             <class name="project_orangehrm.Test.Time_Configuration_Test"/>
             <class name="project_orangehrm.Test.Performance_Configuration_Test"/>
             <class name="project_orangehrm.Test.Recruitment_Vacancies_Test"/>
         </classes>
     </test>
+
+    <test name="Reg_Admin_Job"><groups><run><include name="regression"/></run></groups><classes><class name="project_orangehrm.Test.LoginTest"/></classes></test>
 
     <test name="Reg_Admin_Job"><groups><run><include name="regression"/></run></groups><classes><class name="project_orangehrm.Test.AdminJobTest"/></classes></test>
     <test name="Reg_Admin_Org"><groups><run><include name="regression"/></run></groups><classes><class name="project_orangehrm.Test.AdminOrganizationTest"/></classes></test>

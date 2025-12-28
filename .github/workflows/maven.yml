@@ -68,6 +68,7 @@ jobs:
       fail-fast: false
       matrix:
         test_info:
+          - { name: "Login", class: "LoginTest" }
           - { name: "Admin_Job", class: "AdminJobTest" }
           - { name: "Admin_Org", class: "AdminOrganizationTest" }
           - { name: "Admin_Qual", class: "Admin_Qualifications_Test" }
