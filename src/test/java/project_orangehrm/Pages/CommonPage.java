@@ -8,7 +8,7 @@ public class CommonPage extends BasePage {
 
     private final By PAGE_HEADER = By.cssSelector(".oxd-topbar-header-title");
     private final By PAGE_TITLE = By.tagName("h6");
-    private final By SEARCH_FILTER = By.cssSelector(".oxd-table-filter");/
+    private final By SEARCH_FILTER = By.cssSelector(".oxd-table-filter");
     private final By SUBMIT_BTN = By.xpath("//button[normalize-space()='Submit']");
     private final By RESET_BTN = By.xpath("//button[normalize-space()='Reset']");
     private final By ADD_BTN = By.xpath("//button[normalize-space()='Add']");
