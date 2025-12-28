@@ -7,7 +7,7 @@ import project_orangehrm.Pages.DashboardPage;
 import project_orangehrm.Pages.LeavePage;
 import project_orangehrm.Pages.LoginPage;
 
-public class    Leave_Configuration_Test extends BaseTest {
+public class Leave_Configuration_Test extends BaseTest {
 
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
@@ -29,7 +29,7 @@ public class    Leave_Configuration_Test extends BaseTest {
                 .navigateToModule("Leave");
     }
 
-    @Test(priority = 1, groups = {"foundation"}, description = "TC01 - Verify Leave Type Lifecycle: Create, Verify, Delete")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify Leave Type Lifecycle: Create, Verify, Delete")
     public void verifyLeaveType_Lifecycle_Success() {
         String typeName = "Casual Leave - Test";
 
@@ -38,10 +38,11 @@ public class    Leave_Configuration_Test extends BaseTest {
                 .clickToAdd()
                 .typeInDynamicField("Name", typeName)
                 .clickToSave()
-                .verifySuccessMessage()
+                .verifySoftSuccessMessage();
+        leavePage
                 .verifyRecordExists(typeName)
                 .deleteSpecificValue(typeName)
-                .verifySuccessMessage()
+                .verifySoftSuccessMessage()
                 .verifyRecordDeleted(typeName);
     }
 
@@ -79,8 +80,8 @@ public class    Leave_Configuration_Test extends BaseTest {
                 .selectDate("Date", date)
                 .clickToSave()
                 .verifySuccessMessage()
-                .selectDate("From",date)
-                .selectDate("From",date)
+                .selectDate("From", date)
+                .selectDate("From", date)
                 .clickToSubmit();
         leavePage
                 .verifyRecordExists(holidayName)

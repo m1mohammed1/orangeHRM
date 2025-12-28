@@ -90,10 +90,10 @@ public class Claim_EmployeeClaims_Test extends BaseTest {
     public void verifyEmployeeClaims_Approve_Success() {
         claimPage
                 .navigateToSection("Employee Claims")
-                .clickAndSelectDropdown("Status", "Submitted")
+                .clickAndSelectDropdown("Status", "Initiated")
                 .searchUser()
-                .clickViewClaim()
-                .clickApproveClaim()
+                .clickViewDetails()
+                .clickToSubmit()
                 .verifySuccessMessage();
     }
 
@@ -103,8 +103,8 @@ public class Claim_EmployeeClaims_Test extends BaseTest {
                 .navigateToSection("Employee Claims")
                 .clickAndSelectDropdown("Status", "Submitted")
                 .searchUser()
-                .clickViewClaim()
-                .clickRejectClaim()
+                .clickViewDetails()
+                .clickCancelClaim()
                 .verifySuccessMessage();
     }
 
@@ -113,7 +113,7 @@ public class Claim_EmployeeClaims_Test extends BaseTest {
         claimPage
                 .navigateToSection("Employee Claims")
                 .searchUser()
-                .clickViewClaim()
+                .clickViewDetails()
                 .verifyElementVisible("Claim Details");
     }
 

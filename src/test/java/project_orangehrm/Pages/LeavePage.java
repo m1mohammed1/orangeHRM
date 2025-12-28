@@ -110,6 +110,11 @@ public class LeavePage extends CommonPage {
         return this;
     }
 
+    public LeavePage verifySoftSuccessMessage() {
+        verifySoftSuccessToast();
+        return this;
+    }
+
     public LeavePage verifyRecordExists(String recordName) {
         verifyRecordVisible(recordName);
         return this;

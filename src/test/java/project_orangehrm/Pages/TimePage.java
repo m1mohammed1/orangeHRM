@@ -136,6 +136,11 @@ public class TimePage extends CommonPage {
         return this;
     }
 
+    public TimePage verifySoftSuccessMessage() {
+        verifySoftSuccessToast();
+        return this;
+    }
+
     public TimePage verifyErrorMessage() {
         verifyErrorToast();
         return this;

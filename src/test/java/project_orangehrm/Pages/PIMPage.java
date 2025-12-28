@@ -154,6 +154,11 @@ public class PIMPage extends CommonPage {
         return this;
     }
 
+    public PIMPage verifySoftSuccessMessage() {
+        verifySoftSuccessToast();
+        return this;
+    }
+
     public PIMPage verifyRecordExists(String recordName) {
         verifyRecordVisible(recordName);
         return this;

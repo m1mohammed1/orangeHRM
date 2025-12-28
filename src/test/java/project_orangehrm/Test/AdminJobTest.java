@@ -43,7 +43,7 @@ public class AdminJobTest extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 2, groups = {"foundation"}, description = "TC02 - Verify validation error for empty Job Title")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify validation error for empty Job Title")
     public void verifyJobTitle_EmptyFields_ShowError() {
         adminPage
                 .navigateToSection("Job", "Job Titles")
@@ -70,14 +70,15 @@ public class AdminJobTest extends BaseTest {
                 .deleteSpecificValue("Duplicate Job Title");
     }
 
-    @Test(priority = 4, groups = {"regression"}, description = "TC04 - Verify Pay Grade Lifecycle with Currency: Create, Add Currency, Delete")
+    @Test(priority = 4, groups = {"foundation"}, description = "TC04 - Verify Pay Grade Lifecycle with Currency: Create, Add Currency")
     public void verifyPayGrade_WithCurrency_Success() {
         adminPage
                 .navigateToSection("Job", "Pay Grades")
                 .clickToAdd()
                 .typeInDynamicField("Name", "Grade 5 - Executive")
                 .clickToSave()
-                .verifyInfoMessage()
+                .verifyInfoMessage();
+        adminPage
                 .clickToAdd()
                 .clickAndSelectDropdown("Currency", "EUR - Euro")
                 .typeInDynamicField("Minimum Salary", "4000")

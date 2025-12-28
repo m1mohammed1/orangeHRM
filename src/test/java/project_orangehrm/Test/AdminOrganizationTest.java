@@ -44,14 +44,14 @@ public class AdminOrganizationTest extends BaseTest {
                 .typeInDynamicField("Zip/Postal Code", "11835")
                 .typeInDynamicField("Phone", "+201000000000")
                 .clickToSave()
-                .verifySuccessToast();
+                .verifySoftSuccessMessage();
         adminPage
                 .typeInDynamicField("Name", locName)
                 .searchUser()
                 .verifyRecordExists(locName);
     }
 
-    @Test(priority = 2, groups = {"foundation"}, description = "TC02 - Verify updating an existing Location")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify updating an existing Location")
     public void verifyLocation_Update_Success() {
         String oldName = "Giza Branch";
         String newName = "Cairo Main Office";

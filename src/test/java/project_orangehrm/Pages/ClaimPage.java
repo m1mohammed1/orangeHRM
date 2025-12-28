@@ -15,6 +15,7 @@ public class ClaimPage extends CommonPage {
     private final By PAY_BTN = By.xpath("//button[normalize-space()='Pay']");
     private final By CANCEL_BTN = By.xpath("//button[normalize-space()='Cancel']");
     private final By VIEW_BTN = By.xpath("//button[i[contains(@class, 'bi-eye')]]");
+    private final By VIEW_DETAILS_BTN = By.xpath("//button[normalize-space()='View Details']");
 
     private final String VIEW_CLAIM_BTN = "//div[contains(text(),'%s')]/ancestor::div[@role='row']//button[i[contains(@class, 'bi-eye')]]";
 
@@ -29,6 +30,11 @@ public class ClaimPage extends CommonPage {
 
     public ClaimPage navigateToSection(String mainCategory) {
         super.navigateToSection(mainCategory);
+        return this;
+    }
+
+    public ClaimPage waitInSeconds(int seconds) {
+        super.hardWait(seconds);
         return this;
     }
 
@@ -67,6 +73,11 @@ public class ClaimPage extends CommonPage {
         return this;
     }
 
+    public ClaimPage clickViewDetails() {
+        clickWhenReady(VIEW_DETAILS_BTN);
+        return this;
+    }
+
     public ClaimPage clickViewClaim() {
         clickWhenReady(VIEW_BTN);
         return this;
@@ -99,12 +110,6 @@ public class ClaimPage extends CommonPage {
 
     public ClaimPage clickOnEmployee(String firstName) {
         clickRecord(firstName);
-        return this;
-    }
-
-
-    public ClaimPage uploadReceipt(String filePath) {
-        upload(filePath);
         return this;
     }
 
@@ -183,6 +188,11 @@ public class ClaimPage extends CommonPage {
         return this;
     }
 
+    public ClaimPage verifySoftSuccessMessage() {
+        verifySoftSuccessToast();
+        return this;
+    }
+
     public ClaimPage verifyInfoMessage() {
         verifyInfoToast();
         return this;
@@ -209,7 +219,7 @@ public class ClaimPage extends CommonPage {
     }
 
     public ClaimPage verifyElementVisible(String elementText) {
-        verifyElementVisible(elementText);
+        super.verifyElementVisible(elementText);
         return this;
     }
 

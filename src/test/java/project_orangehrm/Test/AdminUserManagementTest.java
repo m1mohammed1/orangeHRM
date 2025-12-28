@@ -29,7 +29,7 @@ public class AdminUserManagementTest extends BaseTest {
                 .navigateToModule("Admin");
     }
 
-    @Test(priority = 1, groups = {"foundation"}, description = "TC01 - Positive: Verify Admin User Lifecycle: Create, Search, and Delete")
+    @Test(priority = 1, groups = {"foundation"}, description = "TC01 - Positive: Verify Admin User Lifecycle: Create, Search")
     public void verifyUserManagement_Lifecycle_Success() {
         adminPage
                 .verifyAdminPage("Admin")
@@ -49,7 +49,7 @@ public class AdminUserManagementTest extends BaseTest {
                 .verifyRecordExists("TestAdmin_QA");
     }
 
-    @Test(priority = 2, groups = {"foundation"}, description = "TC02 - Negative: Verify validation errors for all required fields in User Form")
+    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Negative: Verify validation errors for all required fields in User Form")
     public void verifyUserManagement_EmptyFields_ShowError() {
         adminPage
                 .clickToAdd()

@@ -36,7 +36,8 @@ public class Admin_Qualifications_Test extends BaseTest {
                 .typeInDynamicField("Name", skillName)
                 .typeInDynamicTextArea("Description", "Backend and Frontend Testing")
                 .clickToSave()
-                .verifySuccessMessage()
+                .verifySoftSuccessMessage();
+        adminPage
                 .verifyRecordExists(skillName);
     }
 

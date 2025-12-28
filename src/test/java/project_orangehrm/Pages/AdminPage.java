@@ -123,6 +123,11 @@ public class AdminPage extends CommonPage {
         return this;
     }
 
+    public AdminPage verifySoftSuccessMessage() {
+        verifySoftSuccessToast();
+        return this;
+    }
+
     public AdminPage verifyInfoMessage() {
         verifyInfoToast();
         return this;

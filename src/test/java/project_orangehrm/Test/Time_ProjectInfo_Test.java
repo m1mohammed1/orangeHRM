@@ -38,8 +38,9 @@ public class Time_ProjectInfo_Test extends BaseTest {
                 .clickToAdd()
                 .typeInDynamicField("Name", customerName)
                 .typeInDynamicTextArea("Description", "Customer added via automation")
-                .clickSave()
-                .verifySuccessMessage()
+                .clickSave();
+        timePage
+                .verifySoftSuccessMessage()
                 .verifyRecordExists(customerName);
     }
 

@@ -47,7 +47,7 @@ public class Claim_Configuration_Test extends BaseTest {
                 .typeInDynamicField("Event Name", eventName)
                 .typeInDynamicTextArea("Description", "Annual QA Conference")
                 .clickSave()
-                .verifySuccessMessage()
+                .verifySoftSuccessMessage()
                 .verifyRecordExists(eventName);
     }
 

@@ -30,7 +30,7 @@ public class Performance_MyReviews_Test extends BaseTest {
     @Test(priority = 1, groups = {"foundation"}, description = "TC01 - Verify Manage Reviews Add Reviews Life Cycle")
     public void verifyManageReviews_AddReview_Success() {
         String employeeName = "Dev Sec Ops";
-        String SupervisorName = "Script Automation Tester";
+        String SupervisorName = "Script";
 
         performancePage
                 .navigateToSection("Manage Reviews", "Manage Reviews")

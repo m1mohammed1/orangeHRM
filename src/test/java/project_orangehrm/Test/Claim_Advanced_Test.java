@@ -48,7 +48,7 @@ public class Claim_Advanced_Test extends BaseTest {
                 .verifySuccessMessage();
         claimPage
                 .clickAddExpense()
-                .clickAndSelectDropdown("Expense Type", "Team Lunch")
+                .clickAndSelectDropdown("Expense Type", "Accommodation")
                 .selectDate("Date", "2024-7-01")
                 .typeInDynamicField("Amount", "70.00")
                 .clickSave()

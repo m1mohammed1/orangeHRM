@@ -31,7 +31,7 @@ public class Admin_Nationalities_Test extends BaseTest {
 
     @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify Nationality Lifecycle: Create, Verify")
     public void verifyNationality_Lifecycle_Success() {
-        String nationalityName = "Automation Tester Nationality";
+        String nationalityName = "1-Automation Tester Nationality";
         adminPage
                 .navigateToSection("Nationalities")
                 .clickToAdd()

@@ -132,6 +132,6 @@ public class AdminTestCleaning extends BaseTest {
         adminPage
                 .verifyAdminPage("Admin")
                 .navigateToSection("Nationalities")
-                .deleteIfExists("Automation Tester Nationality");
+                .deleteIfExists("1-Automation Tester Nationality");
     }
 }
