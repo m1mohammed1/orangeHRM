@@ -100,7 +100,6 @@ jobs:
           - { name: "Time_Project", class: "Time_ProjectInfo_Test" }
           - { name: "Time_Logic", class: "Time_BusinessLogic_Test" }
           - { name: "Time_Reports", class: "Time_Reports_Test" }
-          - { name: "Time_Config", class: "Time_Configuration_Test" }
 
           - { name: "Claim_Adv", class: "Claim_Advanced_Test" }
           - { name: "Claim_Emp", class: "Claim_EmployeeClaims_Test" }

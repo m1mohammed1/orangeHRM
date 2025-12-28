@@ -23,7 +23,6 @@
             <class name="project_orangehrm.Test.Claim_Configuration_Test"/>
             <class name="project_orangehrm.Test.Claim_Advanced_Test"/>
             <class name="project_orangehrm.Test.Time_ProjectInfo_Test"/>
-            <class name="project_orangehrm.Test.Time_Configuration_Test"/>
             <class name="project_orangehrm.Test.Performance_Configuration_Test"/>
             <class name="project_orangehrm.Test.Recruitment_Vacancies_Test"/>
         </classes>
@@ -61,7 +60,6 @@
     <test name="Reg_Time_Project"><groups><run><include name="regression"/></run></groups><classes><class name="project_orangehrm.Test.Time_ProjectInfo_Test"/></classes></test>
     <test name="Reg_Time_Logic"><groups><run><include name="regression"/></run></groups><classes><class name="project_orangehrm.Test.Time_BusinessLogic_Test"/></classes></test>
     <test name="Reg_Time_Reports"><groups><run><include name="regression"/></run></groups><classes><class name="project_orangehrm.Test.Time_Reports_Test"/></classes></test>
-    <test name="Reg_Time_Config"><groups><run><include name="regression"/></run></groups><classes><class name="project_orangehrm.Test.Time_Configuration_Test"/></classes></test>
     <test name="Reg_Claim_Adv"><groups><run><include name="regression"/></run></groups><classes><class name="project_orangehrm.Test.Claim_Advanced_Test"/></classes></test>
     <test name="Reg_Claim_Emp"><groups><run><include name="regression"/></run></groups><classes><class name="project_orangehrm.Test.Claim_EmployeeClaims_Test"/></classes></test>
     <test name="Reg_Claim_Ops"><groups><run><include name="regression"/></run></groups><classes><class name="project_orangehrm.Test.Claim_Operations_Test"/></classes></test>

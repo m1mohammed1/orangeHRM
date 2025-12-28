@@ -114,13 +114,14 @@ public class Time_ProjectInfo_Test extends BaseTest {
     @Test(priority = 6, groups = {"foundation"}, description = "TC06 - Verify Project Add")
     public void verifyProject_Add_Success() {
         String projectName = "Automation Project";
-        String customerName = "Auto Test Customer";
+        String customerName = "ACME Ltd";
 
         timePage
                 .navigateToSection("Project Info", "Projects")
                 .clickToAdd()
                 .typeInDynamicField("Name", projectName)
-                .clickAndSelectDropdown("Customer Name", customerName)
+                .typeInDynamicField("Customer Name", customerName)
+                .selectFromList()
                 .typeInDynamicTextArea("Description", "Project for automation testing")
                 .clickSave()
                 .verifySuccessMessage();
@@ -129,14 +130,15 @@ public class Time_ProjectInfo_Test extends BaseTest {
     @Test(priority = 7, groups = {"foundation"}, description = "TC07 - Verify Project Add with Admin")
     public void verifyProject_AddWithAdmin_Success() {
         String projectName = "Project With Admin";
-        String customerName = "Auto Test Customer";
+        String customerName = "ACME Ltd";
         String adminName = "Script Automation Tester";
 
         timePage
                 .navigateToSection("Project Info", "Projects")
                 .clickToAdd()
                 .typeInDynamicField("Name", projectName)
-                .clickAndSelectDropdown("Customer Name", customerName)
+                .typeInDynamicField("Customer Name", customerName)
+                .selectFromList()
                 .typeInDynamicField("Project Admin", adminName)
                 .selectFromList()
                 .clickSave()

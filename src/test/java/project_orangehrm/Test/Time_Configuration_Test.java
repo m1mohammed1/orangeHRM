@@ -27,12 +27,12 @@ public class Time_Configuration_Test extends BaseTest {
                 .navigateToModule("Time");
     }
 
-    @Test(priority = 1, groups = {"foundation"}, description = "TC01 - Verify Attendance Configuration Updates")
+    @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify Attendance Configuration Updates")
     public void verifyAttendanceConfig_Update_Success() {
         timePage
                 .navigateToSection("Attendance", "Configuration")
-                .clickCheckbox("Employee can change current time when punching in/out")
-                .clickCheckbox("Employee can edit/delete their own attendance records")
+                .clickToDynamicToggle("Employee can change current time when punching in/out")
+                .clickToDynamicToggle("Employee can edit/delete their own attendance records")
                 .clickSave()
                 .verifySuccessMessage();
     }

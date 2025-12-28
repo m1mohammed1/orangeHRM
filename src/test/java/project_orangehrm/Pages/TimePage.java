@@ -166,6 +166,11 @@ public class TimePage extends CommonPage {
         return this;
     }
 
+    public TimePage clickToDynamicToggle(String value) {
+        dynamicToggle(value);
+        return this;
+    }
+
     public TimePage verifyTextContain(By locator, String expectedText) {
         super.verifyTextContain(locator, expectedText);
         return this;
