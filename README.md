@@ -28,7 +28,7 @@ A comprehensive end-to-end test automation framework for OrangeHRM application b
 This project is a robust test automation framework designed to validate the functionality of the **OrangeHRM** Human Resource Management System. The framework covers all major modules including Admin, PIM, Recruitment, Leave, Time, Performance, Claim, Buzz, Dashboard, Directory, and Maintenance.
 
 **Key Highlights:**
-- 200+ automated test cases
+- 300+ automated test cases
 - Page Object Model (POM) design pattern
 - Fluent Interface for readable test scripts
 - Allure reporting integration
@@ -142,7 +142,7 @@ orangeHRM/
 
 Before running the tests, ensure you have the following installed:
 
-- **Java JDK 11** or higher
+- **Java JDK 21** or higher
 - **Maven 3.6+**
 - **Git**
 - **Chrome/Firefox/Edge** browser
@@ -404,10 +404,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up JDK 11
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: '11'
+          java-version: '21'
           distribution: 'temurin'
       - name: Run Tests
         run: mvn clean test
