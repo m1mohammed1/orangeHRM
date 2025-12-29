@@ -47,6 +47,7 @@ public class Claim_Advanced_Test extends BaseTest {
                 .clickSave()
                 .verifySuccessMessage();
         claimPage
+                .waitInSeconds(3)
                 .clickAddExpense()
                 .clickAndSelectDropdown("Expense Type", "Accommodation")
                 .selectDate("Date", "2024-7-01")

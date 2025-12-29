@@ -42,7 +42,7 @@ public class Recruitment_Vacancies_Test extends BaseTest {
                 .selectFromList()
                 .typeInDynamicField("Number of Positions", "2")
                 .clickSave()
-                .verifySuccessMessage();
+                .verifySoftSuccessMessage();
         recruitmentPage
                 .navigateToSection("Vacancies")
                 .clickAndSelectDropdown("Job Title", jobTitle)

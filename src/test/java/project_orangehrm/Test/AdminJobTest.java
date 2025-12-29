@@ -28,7 +28,7 @@ public class AdminJobTest extends BaseTest {
                 .navigateToModule("Admin");
     }
 
-    @Test(priority = 1, groups = {"foundation"}, description = "TC01 - Verify Job Title Lifecycle: Create, Verify, and Delete")
+    @Test(priority = 1, groups = {"foundation"}, description = "TC01 - Verify Job Title Lifecycle: Create, Verify, Delete")
     public void verifyJobTitle_Lifecycle_Success() {
         adminPage
                 .navigateToSection("Job", "Job Titles")
@@ -37,7 +37,8 @@ public class AdminJobTest extends BaseTest {
                 .typeInDynamicTextArea("Job Description", "Responsible for Test Architecture")
                 .typeInDynamicTextArea("Note", "Created by Auto-Test")
                 .clickToSave()
-                .verifySuccessMessage()
+                .verifySuccessMessage();
+        adminPage
                 .verifyRecordExists("Principal SDET Engineer")
                 .deleteSpecificValue("Principal SDET Engineer")
                 .verifySuccessMessage();

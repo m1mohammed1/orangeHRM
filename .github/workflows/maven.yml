@@ -205,48 +205,82 @@ jobs:
 
   report:
     name: 4. Generate Final Report
-    needs: [foundation, regression_matrix, cleanup_matrix]
+    needs: [ foundation, regression_matrix, cleanup_matrix ]
     if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+
+      - name: Clean Current Results
+        run: |
+          rm -rf target/allure-results
+          rm -rf all-results
+          echo "Cleaned current results"
+
       - name: Download All Results
         uses: actions/download-artifact@v4
         with:
           path: all-results
           pattern: allure-results-*
-          merge-multiple: true
+
       - name: Download Allure History
         uses: actions/checkout@v4
         continue-on-error: true
         with:
           ref: gh-pages
           path: gh-pages
+
       - name: Prepare Results for Generation
         timeout-minutes: 5
         run: |
           mkdir -p target/allure-results
-          cp -r all-results/* target/allure-results/
+          
           if [ -d "gh-pages/history" ]; then
+            echo "Copying existing history for trend..."
             cp -r gh-pages/history target/allure-results/
+            echo "History files: $(find target/allure-results/history -type f | wc -l)"
+          else
+            echo "No history found (first run)"
           fi
+          
+          echo "Copying new test results..."
+          find all-results -name "*.json" -exec cp {} target/allure-results/ \;
+          
           rm -f target/allure-results/executor.json
+          
+          cat > target/allure-results/executor.json <<EOF
+          {
+            "name": "GitHub Actions",
+            "type": "github",
+            "buildOrder": ${{ github.run_number }},
+            "buildName": "Run #${{ github.run_number }}",
+            "buildUrl": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          }
+          EOF
+          
+          echo "Results Summary:"
+          echo "New result files: $(find target/allure-results -name "*-result.json" | wc -l)"
+          echo "History preserved: $([ -d "target/allure-results/history" ] && echo "YES" || echo "NO")"
+
       - name: Generate Allure Report
         uses: simple-elf/allure-report-action@master
         if: ${{ !cancelled() }}
         with:
           allure_results: target/allure-results
-          allure_history: gh-pages
+          allure_history: allure-history
           keep_reports: 30
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ !cancelled() }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: allure-report
+          publish_dir: allure-history
+
       - name: Job Summary
         if: success() || failure()
         run: |
@@ -258,4 +292,6 @@ jobs:
           echo "| Regression | ${{ needs.regression_matrix.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Cleanup | ${{ needs.cleanup_matrix.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Allure Report:** [View Report](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/)" >> $GITHUB_STEP_SUMMARY
+          echo "**Allure Report:** [View Report](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/)  " >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Run #${{ github.run_number }} - $(date)" >> $GITHUB_STEP_SUMMARY

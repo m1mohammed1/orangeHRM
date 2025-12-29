@@ -27,8 +27,6 @@ public class Time_ProjectInfo_Test extends BaseTest {
                 .navigateToModule("Time");
     }
 
-
-
     @Test(priority = 1, groups = {"foundation"}, description = "TC01 - Verify Customer Add")
     public void verifyCustomer_Add_Success() {
         String customerName = "Auto Test Customer";
@@ -44,7 +42,41 @@ public class Time_ProjectInfo_Test extends BaseTest {
                 .verifyRecordExists(customerName);
     }
 
-    @Test(priority = 2, groups = {"regression"}, description = "TC02 - Verify Customer Edit")
+    @Test(priority = 2, groups = {"foundation"}, description = "TC02 - Verify Project Add")
+    public void verifyProject_Add_Success() {
+        String projectName = "Automation Project";
+        String customerName = "Auto Test Customer";
+
+        timePage
+                .navigateToSection("Project Info", "Projects")
+                .clickToAdd()
+                .typeInDynamicField("Name", projectName)
+                .typeInDynamicField("Customer Name", customerName)
+                .selectFromList()
+                .typeInDynamicTextArea("Description", "Project for automation testing")
+                .clickSave()
+                .verifySuccessMessage();
+    }
+
+    @Test(priority = 3, groups = {"foundation"}, description = "TC03 - Verify Project Add with Admin")
+    public void verifyProject_AddWithAdmin_Success() {
+        String projectName = "Project With Admin";
+        String customerName = "Auto Test Customer";
+        String adminName = "Script Automation Tester";
+
+        timePage
+                .navigateToSection("Project Info", "Projects")
+                .clickToAdd()
+                .typeInDynamicField("Name", projectName)
+                .typeInDynamicField("Customer Name", customerName)
+                .selectFromList()
+                .typeInDynamicField("Project Admin", adminName)
+                .selectFromList()
+                .clickSave()
+                .verifySuccessMessage();
+    }
+
+    @Test(priority = 4, groups = {"regression"}, description = "TC04 - Verify Customer Edit")
     public void verifyCustomer_Edit_Success() {
         String customerName = "Edit Test Customer";
         String updatedName = "Updated Customer Name";
@@ -65,7 +97,7 @@ public class Time_ProjectInfo_Test extends BaseTest {
                 .verifySuccessMessage();
     }
 
-    @Test(priority = 3, groups = {"regression"}, description = "TC03 - Verify Customer Delete")
+    @Test(priority = 5, groups = {"regression"}, description = "TC05 - Verify Customer Delete")
     public void verifyCustomer_Delete_Success() {
         String customerName = "Delete Test Customer";
 
@@ -81,7 +113,7 @@ public class Time_ProjectInfo_Test extends BaseTest {
                 .verifyRecordDeleted(customerName);
     }
 
-    @Test(priority = 4, groups = {"regression"}, description = "TC04 - Verify Customer Validation")
+    @Test(priority = 6, groups = {"regression"}, description = "TC06 - Verify Customer Validation")
     public void verifyCustomer_Validation_Error() {
         timePage
                 .navigateToSection("Project Info", "Customers")
@@ -90,7 +122,7 @@ public class Time_ProjectInfo_Test extends BaseTest {
                 .verifyFieldErrorMessage("Name", "Required");
     }
 
-    @Test(priority = 5, groups = {"regression"}, description = "TC05 - Verify Customer Duplicate")
+    @Test(priority = 7, groups = {"regression"}, description = "TC07 - Verify Customer Duplicate")
     public void verifyCustomer_Duplicate_Error() {
         String customerName = "Duplicate Customer";
 
@@ -108,41 +140,6 @@ public class Time_ProjectInfo_Test extends BaseTest {
         timePage
                 .navigateToSection("Project Info", "Customers")
                 .deleteSpecificValue(customerName);
-    }
-
-
-    @Test(priority = 6, groups = {"foundation"}, description = "TC06 - Verify Project Add")
-    public void verifyProject_Add_Success() {
-        String projectName = "Automation Project";
-        String customerName = "ACME Ltd";
-
-        timePage
-                .navigateToSection("Project Info", "Projects")
-                .clickToAdd()
-                .typeInDynamicField("Name", projectName)
-                .typeInDynamicField("Customer Name", customerName)
-                .selectFromList()
-                .typeInDynamicTextArea("Description", "Project for automation testing")
-                .clickSave()
-                .verifySuccessMessage();
-    }
-
-    @Test(priority = 7, groups = {"foundation"}, description = "TC07 - Verify Project Add with Admin")
-    public void verifyProject_AddWithAdmin_Success() {
-        String projectName = "Project With Admin";
-        String customerName = "ACME Ltd";
-        String adminName = "Script Automation Tester";
-
-        timePage
-                .navigateToSection("Project Info", "Projects")
-                .clickToAdd()
-                .typeInDynamicField("Name", projectName)
-                .typeInDynamicField("Customer Name", customerName)
-                .selectFromList()
-                .typeInDynamicField("Project Admin", adminName)
-                .selectFromList()
-                .clickSave()
-                .verifySuccessMessage();
     }
 
     @Test(priority = 8, groups = {"regression"}, description = "TC08 - Verify Project Edit")

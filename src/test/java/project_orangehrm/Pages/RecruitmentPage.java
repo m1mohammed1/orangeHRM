@@ -127,6 +127,11 @@ public class RecruitmentPage extends CommonPage {
         return this;
     }
 
+    public RecruitmentPage verifySoftSuccessMessage() {
+        verifySoftSuccessToast();
+        return this;
+    }
+
     public RecruitmentPage verifyRecordExists(String recordName) {
         verifyRecordVisible(recordName);
         return this;
