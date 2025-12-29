@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Cleanup_Suite" verbose="1">
+
+    <listeners>
+        <listener class-name="project_orangehrm.Listeners.SimpleListener"/>
+    </listeners>
+
+    <parameter name="browser" value="chrome"/>
+
+    <test name="Clean_Admin"><classes><class name="project_orangehrm.TestCleaning.AdminTestCleaning"/></classes></test>
+    <test name="Clean_PIM"><classes><class name="project_orangehrm.TestCleaning.PIMTestCleaning"/></classes></test>
+    <test name="Clean_Recruit"><classes><class name="project_orangehrm.TestCleaning.RecruitmentTestCleaning"/></classes></test>
+    <test name="Clean_Time"><classes><class name="project_orangehrm.TestCleaning.TimeTestCleaning"/></classes></test>
+    <test name="Clean_Perf"><classes><class name="project_orangehrm.TestCleaning.PerformanceTestCleaning"/></classes></test>
+    <test name="Clean_Claim"><classes><class name="project_orangehrm.TestCleaning.ClaimTestCleaning"/></classes></test>
+    <test name="Clean_Buzz"><classes><class name="project_orangehrm.TestCleaning.BuzzTestCleaning"/></classes></test>
+
+</suite>

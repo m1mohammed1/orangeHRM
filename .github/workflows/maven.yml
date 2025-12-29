@@ -28,12 +28,14 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
+
       - name: Setup Xvfb
         run: |
           sudo apt-get update && sudo apt-get install -y xvfb
@@ -44,11 +46,23 @@ jobs:
       - name: Run Foundation Tests (Sequential Execution)
         run: |
           mvn test -B \
-            -DsuiteXmlFile=testng.xml \
-            -Dgroups="foundation" \
+            -DsuiteXmlFile=testng-foundation.xml \
             -Dbrowser=${{ env.BROWSER }} \
             -Dheadless=true \
             -Dmaven.test.failure.ignore=true
+
+      - name: Verify Foundation Results
+        if: always()
+        run: |
+          echo "=== Foundation Test Results ==="
+          if [ -d "target/allure-results" ]; then
+            echo "✓ Allure results directory exists"
+            echo "Total files: $(find target/allure-results -type f | wc -l)"
+            echo "JSON files: $(find target/allure-results -name "*.json" | wc -l)"
+            echo "Screenshots: $(find target/allure-results -name "*.png" -o -name "*-attachment*" | wc -l)"
+          else
+            echo "✗ No allure-results directory found"
+          fi
 
       - name: Upload Foundation Results
         if: success() || failure()
@@ -67,7 +81,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-
         test_info:
           - { name: "Login", class: "LoginTest" }
           - { name: "Admin_Job", class: "AdminJobTest" }
@@ -76,78 +89,85 @@ jobs:
           - { name: "Admin_Config", class: "Admin_Configuration_Test" }
           - { name: "Admin_Nat", class: "Admin_Nationalities_Test" }
           - { name: "Admin_Users", class: "AdminUserManagementTest" }
-
           - { name: "PIM_Config", class: "PIM_Configuration_Test" }
           - { name: "PIM_Emp", class: "PIM_Employee_Test" }
           - { name: "PIM_Details", class: "PIM_EmployeeDetails_Test" }
           - { name: "PIM_Reports", class: "PIM_Reports_Test" }
-
           - { name: "Rec_Vacancies", class: "Recruitment_Vacancies_Test" }
           - { name: "Rec_E2E", class: "Recruitment_Candidate_E2E_Test" }
           - { name: "Rec_Workflow", class: "Recruitment_CandidateWorkflow_Test" }
           - { name: "Rec_Search", class: "Recruitment_Search_And_Data_Test" }
           - { name: "Rec_Actions", class: "Recruitment_Actions_Test" }
-
           - { name: "Leave_Apply", class: "Leave_ApplyLeave_Test" }
           - { name: "Leave_List", class: "Leave_LeaveList_Test" }
           - { name: "Leave_Ops", class: "Leave_Operations_Test" }
           - { name: "Leave_Reports", class: "Leave_Reports_Test" }
           - { name: "Leave_Config", class: "Leave_Configuration_Test" }
           - { name: "Leave_Entitle", class: "Leave_Entitlements_Test" }
-
           - { name: "Time_Attend", class: "Time_Attendance_Test" }
           - { name: "Time_Sheets", class: "Time_Timesheets_Test" }
           - { name: "Time_Project", class: "Time_ProjectInfo_Test" }
           - { name: "Time_Logic", class: "Time_BusinessLogic_Test" }
           - { name: "Time_Reports", class: "Time_Reports_Test" }
-
           - { name: "Claim_Adv", class: "Claim_Advanced_Test" }
           - { name: "Claim_Emp", class: "Claim_EmployeeClaims_Test" }
           - { name: "Claim_Ops", class: "Claim_Operations_Test" }
           - { name: "Claim_Config", class: "Claim_Configuration_Test" }
-
           - { name: "Perf_Reviews", class: "Performance_Reviews_Test" }
           - { name: "Perf_MyRev", class: "Performance_MyReviews_Test" }
           - { name: "Perf_Eval", class: "Performance_Evaluation_Test" }
           - { name: "Perf_Reports", class: "Performance_Reports_Test" }
           - { name: "Perf_Config", class: "Performance_Configuration_Test" }
-
           - { name: "Dash_Widgets", class: "Dashboard_Widgets_Test" }
           - { name: "Dash_Actions", class: "Dashboard_UserActions_Test" }
           - { name: "Dash_Adv", class: "Dashboard_Advanced_Test" }
-
           - { name: "Buzz_Feed", class: "Buzz_Newsfeed_Test" }
           - { name: "Buzz_Feat", class: "Buzz_Features_Test" }
-
           - { name: "Directory", class: "Directory_Test" }
-
           - { name: "Maint_Auth", class: "Maintenance_Authentication_Test" }
           - { name: "Maint_Access", class: "Maintenance_AccessRecords_Test" }
           - { name: "Maint_Purge", class: "Maintenance_PurgeRecords_Test" }
           - { name: "Maint_Safety", class: "Maintenance_Safety_Test" }
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
+
       - name: Setup Xvfb
         run: |
           sudo apt-get update && sudo apt-get install -y xvfb
           Xvfb :99 -screen 0 1920x1080x24 > /dev/null 2>&1 &
           echo "XVFB_PID=$!" >> $GITHUB_ENV
           echo "DISPLAY=:99" >> $GITHUB_ENV
+
       - name: Run Regression - ${{ matrix.test_info.name }}
         run: |
           mvn test -B \
-            -Dtest="${{ matrix.test_info.class }}" \
+            -Dtest="project_orangehrm.Test.${{ matrix.test_info.class }}" \
             -Dgroups="regression" \
             -Dbrowser=${{ env.BROWSER }} \
             -Dheadless=true \
             -Dmaven.test.failure.ignore=true
+
+      - name: Verify Test Results
+        if: always()
+        run: |
+          echo "=== Test Results for ${{ matrix.test_info.name }} ==="
+          if [ -d "target/allure-results" ]; then
+            echo "✓ Results generated"
+            echo "Files: $(find target/allure-results -type f | wc -l)"
+            echo "Screenshots: $(find target/allure-results -name "*.png" 2>/dev/null | wc -l)"
+          else
+            echo "✗ No results generated"
+          fi
+
       - name: Upload Regression Results
         if: success() || failure()
         uses: actions/upload-artifact@v4
@@ -173,28 +193,33 @@ jobs:
           - { name: "Perf", class: "PerformanceTestCleaning" }
           - { name: "Claim", class: "ClaimTestCleaning" }
           - { name: "Buzz", class: "BuzzTestCleaning" }
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
+
       - name: Setup Xvfb
         run: |
           sudo apt-get update && sudo apt-get install -y xvfb
           Xvfb :99 -screen 0 1920x1080x24 > /dev/null 2>&1 &
           echo "XVFB_PID=$!" >> $GITHUB_ENV
           echo "DISPLAY=:99" >> $GITHUB_ENV
+
       - name: Run Cleanup - ${{ matrix.cleanup_info.name }}
         run: |
           mvn test -B \
-            -Dtest="${{ matrix.cleanup_info.class }}" \
+            -Dtest="project_orangehrm.TestCleaning.${{ matrix.cleanup_info.class }}" \
             -Dbrowser=${{ env.BROWSER }} \
             -Dheadless=true \
             -Dmaven.test.failure.ignore=true
+
       - name: Upload Cleanup Results
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
@@ -205,57 +230,103 @@ jobs:
 
   report:
     name: 4. Generate Final Report
-    needs: [foundation, regression_matrix, cleanup_matrix]
+    needs: [ foundation, regression_matrix, cleanup_matrix ]
     if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+
+      - name: Clean Current Results
+        run: |
+          rm -rf target/allure-results
+          rm -rf all-results
+          echo "✓ Cleaned current results"
+
       - name: Download All Results
         uses: actions/download-artifact@v4
         with:
           path: all-results
           pattern: allure-results-*
-          merge-multiple: true
+
       - name: Download Allure History
         uses: actions/checkout@v4
         continue-on-error: true
         with:
           ref: gh-pages
           path: gh-pages
+
       - name: Prepare Results for Generation
         timeout-minutes: 5
         run: |
           mkdir -p target/allure-results
-          cp -r all-results/* target/allure-results/
+
+          # Copy history if exists
           if [ -d "gh-pages/history" ]; then
+            echo "✓ Copying existing history for trend..."
             cp -r gh-pages/history target/allure-results/
+            echo "  History files: $(find target/allure-results/history -type f | wc -l)"
+          else
+            echo "ℹ No history found (first run)"
           fi
+
+          # Copy new test results
+          echo "✓ Copying new test results..."
+          find all-results -name "*.json" -exec cp {} target/allure-results/ \;
+          find all-results -name "*.txt" -exec cp {} target/allure-results/ \;
+          find all-results -name "*.png" -exec cp {} target/allure-results/ \;
+          find all-results -name "*.html" -exec cp {} target/allure-results/ \;
+
+          # Create executor info
           rm -f target/allure-results/executor.json
+          cat > target/allure-results/executor.json <<EOF
+          {
+            "name": "GitHub Actions",
+            "type": "github",
+            "url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+            "buildOrder": ${{ github.run_number }},
+            "buildName": "Run #${{ github.run_number }}",
+            "buildUrl": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+            "reportUrl": "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/",
+            "reportName": "Allure Report"
+          }
+          EOF
+
+          echo "✓ Results prepared successfully"
+          echo "  Total JSON files: $(find target/allure-results -name "*.json" | wc -l)"
+          echo "  Total PNG files: $(find target/allure-results -name "*.png" | wc -l)"
+
       - name: Generate Allure Report
         uses: simple-elf/allure-report-action@master
-        if: ${{ !cancelled() }}
+        if: always()
         with:
           allure_results: target/allure-results
-          allure_history: gh-pages
-          keep_reports: 30
+          allure_history: allure-history
+          keep_reports: 20
+
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        if: ${{ !cancelled() }}
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: allure-history
           publish_branch: gh-pages
-          publish_dir: allure-report
-      - name: Job Summary
-        if: success() || failure()
+          keep_files: false
+
+      - name: Add Job Summary
+        if: always()
         run: |
-          echo "## Test Execution Summary" >> $GITHUB_STEP_SUMMARY
+          echo "## 📊 OrangeHRM Test Execution Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "| Step | Status |" >> $GITHUB_STEP_SUMMARY
-          echo "|------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Stage | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
           echo "| Foundation | ${{ needs.foundation.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Regression | ${{ needs.regression_matrix.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Cleanup | ${{ needs.cleanup_matrix.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Allure Report:** [View Report](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/)" >> $GITHUB_STEP_SUMMARY
+          echo "### 📈 Allure Report" >> $GITHUB_STEP_SUMMARY
+          echo "**[🔗 View Full Report](https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/)** " >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "**Run #${{ github.run_number }}** | Browser: ${{ env.BROWSER }} | $(date)" >> $GITHUB_STEP_SUMMARY
