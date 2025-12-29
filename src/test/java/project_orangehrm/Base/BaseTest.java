@@ -8,13 +8,14 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import project_orangehrm.Utils.AllureAttachment;
 import java.time.Duration;
 
+
+
+
+@Listeners(project_orangehrm.Listeners.SimpleListener.class)
 public class BaseTest {
 
     private static final ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
