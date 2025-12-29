@@ -74,14 +74,19 @@ public class BaseTest {
 
         } else if (browser.equalsIgnoreCase("firefox")) {
             FirefoxOptions options = new FirefoxOptions();
+            options.addArguments("--remote-allow-origins=*");
 
             if (isLinux) {
-                options.addArguments("--width=1920");
-                options.addArguments("--height=1080");
+                options.addArguments("--no-sandbox");
+                options.addArguments("--disable-dev-shm-usage");
+                options.addArguments("--window-size=1920,1080");
             }
 
             if (isHeadless) {
-                options.addArguments("-headless");
+                options.addArguments("--headless=new");
+                if (!isLinux) {
+                    options.addArguments("--window-size=1920,1080");
+                }
             }
             currentDriver = new FirefoxDriver(options);
 
@@ -108,14 +113,23 @@ public class BaseTest {
     @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult result) {
         WebDriver driver = tlDriver.get();
-        if (ITestResult.FAILURE == result.getStatus()) {
-            if (driver != null) {
+
+        if (result.getStatus() == ITestResult.FAILURE && driver != null) {
+            try {
                 AllureAttachment.addScreenshot("Screenshot Failure - " + result.getName());
+            } catch (Exception e) {
+                System.err.println("Failed to capture screenshot: " + e.getMessage());
             }
         }
+
         if (driver != null) {
-            driver.quit();
+            try {
+                driver.quit();
+            } catch (Exception e) {
+                System.err.println("Failed to quit driver: " + e.getMessage());
+            }
         }
+
         tlDriver.remove();
     }
 }

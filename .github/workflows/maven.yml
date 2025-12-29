@@ -7,7 +7,7 @@ on:
     inputs:
       browser:
         description: 'Select Browser'
-        default: 'edge'
+        default: 'chrome'
         type: choice
         options: [chrome, edge, firefox]
 
