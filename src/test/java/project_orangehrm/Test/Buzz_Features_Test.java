@@ -13,7 +13,7 @@ public class Buzz_Features_Test extends BaseTest {
     private DashboardPage dashboardPage;
     private BuzzPage buzzPage;
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(groups = {"foundation", "regression"})
     public void setup() {
         loginPage = new LoginPage(driver);
         dashboardPage = new DashboardPage(driver);

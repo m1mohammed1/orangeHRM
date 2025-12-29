@@ -13,7 +13,7 @@ public class Claim_Configuration_Test extends BaseTest {
     private DashboardPage dashboardPage;
     private ClaimPage claimPage;
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(groups = {"foundation", "regression"})
     public void setup() {
         loginPage = new LoginPage(driver);
         dashboardPage = new DashboardPage(driver);

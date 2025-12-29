@@ -13,7 +13,7 @@ public class Admin_Configuration_Test extends BaseTest {
     private DashboardPage dashboardPage;
     private AdminPage adminPage;
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(groups = {"foundation", "regression"})
     public void setup() {
         loginPage = new LoginPage(driver);
         dashboardPage = new DashboardPage(driver);
@@ -27,7 +27,7 @@ public class Admin_Configuration_Test extends BaseTest {
         dashboardPage
                 .navigateToModule("Admin");
     }
-//
+
     @Test(priority = 1, groups = {"regression"}, description = "TC01 - Verify Email Subscription Lifecycle: Add, Verify")
     public void verifyEmailSubscription_Lifecycle_Success() {
         String subscriberName = "Automation Subscriber";

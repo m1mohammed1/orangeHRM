@@ -13,7 +13,7 @@ public class PIM_Configuration_Test extends BaseTest {
     private DashboardPage dashboardPage;
     private PIMPage pimPage;
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(groups = {"foundation", "regression"})
     public void setup() {
         loginPage = new LoginPage(driver);
         dashboardPage = new DashboardPage(driver);

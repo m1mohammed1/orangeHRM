@@ -13,7 +13,7 @@ public class Performance_Reviews_Test extends BaseTest {
     private DashboardPage dashboardPage;
     private PerformancePage performancePage;
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(groups = {"foundation", "regression"})
     public void setup() {
         loginPage = new LoginPage(driver);
         dashboardPage = new DashboardPage(driver);

@@ -13,7 +13,7 @@ public class Maintenance_Safety_Test extends BaseTest {
     private DashboardPage dashboardPage;
     private MaintenancePage maintenancePage;
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(groups = {"foundation", "regression"})
     public void setup() {
         loginPage = new LoginPage(driver);
         dashboardPage = new DashboardPage(driver);

@@ -11,7 +11,7 @@ public class Dashboard_UserActions_Test extends BaseTest {
     private LoginPage loginPage;
     private DashboardPage dashboardPage;
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(groups = {"foundation", "regression"})
     public void setup() {
         loginPage = new LoginPage(driver);
         dashboardPage = new DashboardPage(driver);

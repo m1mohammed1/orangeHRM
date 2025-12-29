@@ -13,7 +13,7 @@ public class PIMTestCleaning extends BaseTest {
     private DashboardPage dashboardPage;
     private PIMPage pimPage;
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod
     public void setUP() {
 
         loginPage = new LoginPage(driver);

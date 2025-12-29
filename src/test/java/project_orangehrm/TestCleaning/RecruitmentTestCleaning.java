@@ -13,7 +13,7 @@ public class RecruitmentTestCleaning extends BaseTest {
     private DashboardPage dashboardPage;
     private RecruitmentPage recruitmentPage;
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(groups = {"foundation", "regression"})
     public void setUP() {
         loginPage = new LoginPage(driver);
         dashboardPage = new DashboardPage(driver);
