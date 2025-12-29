@@ -20,30 +20,11 @@ env:
   MAVEN_OPTS: "-Xmx3072m -Djava.awt.headless=true"
 
 jobs:
-  foundation_matrix:
-    name: 1. Foundation - ${{ matrix.foundation_info.name }}
+  foundation:
+    name: 1. Foundation Setup
     if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
-    timeout-minutes: 15
-    strategy:
-      fail-fast: false
-      max-parallel: 1
-      matrix:
-        foundation_info:
-          - { name: "Admin_Job", class: "AdminJobTest" }
-          - { name: "Admin_Org", class: "AdminOrganizationTest" }
-          - { name: "Admin_Qual", class: "Admin_Qualifications_Test" }
-          - { name: "PIM_Config", class: "PIM_Configuration_Test" }
-          - { name: "PIM_Emp", class: "PIM_Employee_Test" }
-          - { name: "Admin_Users", class: "AdminUserManagementTest" }
-          - { name: "Leave_Config", class: "Leave_Configuration_Test" }
-          - { name: "Leave_Entitle", class: "Leave_Entitlements_Test" }
-          - { name: "Claim_Config", class: "Claim_Configuration_Test" }
-          - { name: "Claim_Adv", class: "Claim_Advanced_Test" }
-          - { name: "Time_Project", class: "Time_ProjectInfo_Test" }
-          - { name: "Perf_Config", class: "Performance_Configuration_Test" }
-          - { name: "Rec_Vacancies", class: "Recruitment_Vacancies_Test" }
-
+    timeout-minutes: 60
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -62,11 +43,10 @@ jobs:
           echo "XVFB_PID=$!" >> $GITHUB_ENV
           echo "DISPLAY=:99" >> $GITHUB_ENV
 
-      - name: Run Foundation - ${{ matrix.foundation_info.name }}
+      - name: Run Foundation Tests
         run: |
           mvn test -B \
-            -Dtest="project_orangehrm.Test.${{ matrix.foundation_info.class }}" \
-            -Dgroups="foundation" \
+            -DsuiteXmlFile=testng-foundation.xml \
             -Dbrowser=${{ env.BROWSER }} \
             -Dheadless=true \
             -Dmaven.test.failure.ignore=true
@@ -75,13 +55,13 @@ jobs:
         if: success() || failure()
         uses: actions/upload-artifact@v4
         with:
-          name: allure-results-foundation-${{ matrix.foundation_info.name }}
+          name: allure-results-foundation
           path: target/allure-results
           retention-days: 3
 
   regression_matrix:
     name: 2. Regression - ${{ matrix.test_info.name }}
-    needs: foundation_matrix
+    needs: foundation
     if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -225,7 +205,7 @@ jobs:
 
   report:
     name: 4. Generate Final Report
-    needs: [ foundation_matrix, regression_matrix, cleanup_matrix ]
+    needs: [ foundation, regression_matrix, cleanup_matrix ]
     if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -289,9 +269,9 @@ jobs:
       - name: Job Summary
         if: always()
         run: |
-          echo "## 📊 Test Summary" >> $GITHUB_STEP_SUMMARY
+          echo "Test Summary" >> $GITHUB_STEP_SUMMARY
           echo "| Stage | Status |" >> $GITHUB_STEP_SUMMARY
           echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
-          echo "| Foundation | ${{ needs.foundation_matrix.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Foundation | ${{ needs.foundation.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Regression | ${{ needs.regression_matrix.result }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Cleanup | ${{ needs.cleanup_matrix.result }} |" >> $GITHUB_STEP_SUMMARY
