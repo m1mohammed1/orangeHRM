@@ -49,6 +49,7 @@ jobs:
             -DsuiteXmlFile=testng-foundation.xml \
             -Dbrowser=${{ env.BROWSER }} \
             -Dheadless=true \
+            -Dgroups=foundation \
             -Dmaven.test.failure.ignore=true
 
       - name: Upload Foundation Results
