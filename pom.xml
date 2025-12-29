@@ -14,7 +14,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <aspectj.version>1.9.22</aspectj.version>
         <groups></groups>
-        <suiteXmlFile></suiteXmlFile>
         <skipTests>false</skipTests>
     </properties>
 
@@ -66,9 +65,6 @@
                     <systemPropertyVariables>
                         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
                     </systemPropertyVariables>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
-                    </suiteXmlFiles>
                     <groups>${groups}</groups>
                     <skipTests>${skipTests}</skipTests>
                 </configuration>
@@ -90,4 +86,24 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>suite</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.5.2</version>
+                        <configuration>
+                            <suiteXmlFiles>
+                                <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                            </suiteXmlFiles>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

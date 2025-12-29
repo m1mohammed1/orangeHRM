@@ -45,7 +45,7 @@ jobs:
 
       - name: Run Foundation Tests
         run: |
-          mvn test -B \
+          mvn test -B -Psuite \
             -DsuiteXmlFile=testng-foundation.xml \
             -Dbrowser=${{ env.BROWSER }} \
             -Dheadless=true \
