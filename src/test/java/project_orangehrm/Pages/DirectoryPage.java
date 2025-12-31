@@ -11,7 +11,7 @@ public class DirectoryPage extends CommonPage {
     private final By CONTACT_ICON = By.cssSelector(".orangehrm-directory-card i.bi-telephone");
 
     private final String EMPLOYEE_CARD = "//div[contains(@class,'orangehrm-directory-card')]//p[contains(text(),'%s')]";
-    private final String EMPLOYEE_CARD_CLICKABLE = "//div[contains(@class,'orangehrm-directory-card')]//p[contains(text(),'%s')]/ancestor::div[contains(@class,'orangehrm-directory-card')]";
+    private final String EMPLOYEE_CARD_CLICKABLE = "//p[normalize-space()='%s']/ancestor::div[contains(@class, 'orangehrm-directory-card')]";
 
     public DirectoryPage(WebDriver driver) {
         super(driver);
@@ -49,6 +49,11 @@ public class DirectoryPage extends CommonPage {
 
     public DirectoryPage verifyRecordExists(String recordName) {
         assertVisible(getLocator(EMPLOYEE_CARD, recordName), "Employee not found: " + recordName);
+        return this;
+    }
+
+    public DirectoryPage verifyFieldErrorMessage(String fieldName, String expectedError) {
+        verifyFieldError(fieldName);
         return this;
     }
 

@@ -188,7 +188,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
                 .typeInDynamicField("Salary Component", "Basic Salary")
                 .clickAndSelectDropdown("Pay Frequency", "Monthly")
                 .clickAndSelectDropdown("Currency", "United States Dollar")
-                .typeInDynamicField("Amount", "5000")
+                .typeInDynamicField("Amount", "53000")
                 .clickSave()
                 .verifySuccessMessage();
     }
@@ -230,7 +230,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
                 .typeInDynamicField("Major/Specialization", "Computer Science")
                 .typeInDynamicField("Year", "2019")
                 .typeInDynamicField("GPA/Score", "3.8")
-                .clickSave()
+                .clickSelectSave("Add Education")
                 .verifySuccessMessage();
     }
 
@@ -248,7 +248,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
                 .clickToAdd()
                 .clickAndSelectDropdown("Skill", "Java")
                 .typeInDynamicField("Years of Experience", "5")
-                .clickSave()
+                .clickSelectSave("Add Skill")
                 .verifySuccessMessage();
     }
 
@@ -267,7 +267,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
                 .clickAndSelectDropdown("Language", "English")
                 .clickAndSelectDropdown("Fluency", "Writing")
                 .clickAndSelectDropdown("Competency", "Good")
-                .clickSave()
+                .clickSelectSave("Add Language")
                 .verifySuccessMessage();
     }
 
@@ -287,7 +287,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
                 .typeInDynamicField("License Number", "ISTQB-2024-001")
                 .selectDate("Issued Date", "2024-01-01")
                 .selectDate("Expiry Date", "2027-01-01")
-                .clickSave()
+                .clickSelectSave("Add License")
                 .verifySuccessMessage();
     }
 
@@ -302,7 +302,7 @@ public class PIM_EmployeeDetails_Test extends BaseTest {
         pimPage
                 .clickSideBarEmp("Memberships")
                 .clickToAdd()
-                .clickAndSelectDropdown("Membership", "IEEE")
+                .clickAndSelectDropdown("Membership", "ACCA")
                 .clickAndSelectDropdown("Subscription Paid By", "Company")
                 .typeInDynamicField("Subscription Amount", "100")
                 .clickAndSelectDropdown("Currency", "United States Dollar")

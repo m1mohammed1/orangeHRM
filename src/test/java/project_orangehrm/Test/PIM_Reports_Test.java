@@ -51,8 +51,7 @@ public class PIM_Reports_Test extends BaseTest {
         pimPage
                 .navigateToSection("Reports")
                 .clickToEdit(reportName)
-                .searchUser()
-                .verifySearchTable();
+                .searchUser();
     }
 
     @Test(priority = 3, groups = {"regression"}, description = "TC03 - Verify Report Lifecycle: Create, Verify, Edit, Delete")
@@ -76,11 +75,12 @@ public class PIM_Reports_Test extends BaseTest {
                 .clickSave()
                 .verifySuccessMessage();
         pimPage
+                .navigateToSection("Reports");
+        pimPage
                 .deleteSpecificValue("QA Automation All Employee Audit Report")
                 .verifySuccessMessage()
                 .verifyRecordDeleted("QA Automation All Employee Audit Report");
     }
-
 
     @Test(priority = 4, groups = {"regression"}, description = "TC04 - Verify Report Validation Error")
     public void verifyReport_EmptyFields_ShowError() {

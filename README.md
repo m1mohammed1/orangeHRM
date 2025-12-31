@@ -1,53 +1,93 @@
 # OrangeHRM Test Automation Framework
 
-A comprehensive end-to-end test automation framework for OrangeHRM application built with **Selenium WebDriver**, **Java**, and **TestNG**.
+A comprehensive enterprise-grade test automation framework for OrangeHRM Human Resource Management System. Built with Selenium WebDriver 4, Java 21, and TestNG 7, following industry best practices and design patterns.
 
 ---
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [Tech Stack](#tech-stack)
+- [Project Overview](#project-overview)
+- [Technology Stack](#technology-stack)
+- [Architecture](#architecture)
 - [Project Structure](#project-structure)
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Running Tests](#running-tests)
+- [Test Suites](#test-suites)
 - [Test Reports](#test-reports)
 - [Modules Covered](#modules-covered)
 - [Design Patterns](#design-patterns)
 - [CI/CD Integration](#cicd-integration)
+- [Best Practices](#best-practices)
+- [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
+- [License](#license)
 - [Author](#author)
 
 ---
 
-## Overview
+## Project Overview
 
-This project is a robust test automation framework designed to validate the functionality of the **OrangeHRM** Human Resource Management System. The framework covers all major modules including Admin, PIM, Recruitment, Leave, Time, Performance, Claim, Buzz, Dashboard, Directory, and Maintenance.
+This framework provides automated end-to-end testing coverage for OrangeHRM, an open-source Human Resource Management System. The framework is designed to be maintainable, scalable, and easily integrated into CI/CD pipelines.
 
-**Key Highlights:**
-- 300+ automated test cases
-- Page Object Model (POM) design pattern
-- Fluent Interface for readable test scripts
-- Allure reporting integration
-- Cross-browser testing support
-- CI/CD ready with GitHub Actions
+### Key Highlights
+
+- 47 Test Classes covering all major OrangeHRM modules
+- Page Object Model (POM) with Fluent Interface design
+- Thread-safe parallel test execution support
+- Allure reporting with automatic screenshot capture on failure
+- Cross-browser testing (Chrome, Firefox, Edge)
+- Headless execution support for CI/CD environments
+- Data cleanup utilities for test isolation
+- Foundation and Regression test suite separation
 
 ---
 
-## Tech Stack
+## Technology Stack
 
-| Technology | Purpose |
-|------------|---------|
-| Java 11+ | Programming Language |
-| Selenium WebDriver 4.x | Browser Automation |
-| TestNG 7.x | Test Framework |
-| Maven | Build & Dependency Management |
-| Allure | Test Reporting |
-| WebDriverManager | Browser Driver Management |
-| GitHub Actions | CI/CD Pipeline |
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| Java | 21 | Programming Language |
+| Selenium WebDriver | 4.39.0 | Browser Automation |
+| TestNG | 7.11.0 | Test Framework |
+| Maven | 3.x | Build and Dependency Management |
+| Allure | 2.30.0 | Test Reporting |
+| AspectJ | 1.9.22 | AOP for Allure Integration |
+| SLF4J | 2.0.13 | Logging Framework |
+
+---
+
+## Architecture
+
+```
+                    +-------------------+
+                    |    TestNG XML     |
+                    |    Suite Files    |
+                    +--------+----------+
+                             |
+                    +--------v----------+
+                    |    Test Classes   |
+                    |  (Test Layer)     |
+                    +--------+----------+
+                             |
+                    +--------v----------+
+                    |   Page Classes    |
+                    |  (Page Layer)     |
+                    +--------+----------+
+                             |
+                    +--------v----------+
+                    |    Base Classes   |
+                    | (Framework Core)  |
+                    +--------+----------+
+                             |
+              +--------------+--------------+
+              |              |              |
+     +--------v----+  +------v------+  +---v--------+
+     |  Listeners  |  |   Utils     |  | WebDriver  |
+     +-------------+  +-------------+  +------------+
+```
 
 ---
 
@@ -55,137 +95,212 @@ This project is a robust test automation framework designed to validate the func
 
 ```
 orangeHRM/
-├── src/
-│   └── test/
-│       └── java/
-│           └── project_orangehrm/
-│               ├── Base/
-│               │   ├── BasePage.java
-│               │   └── BaseTest.java
-│               ├── Listeners/
-│               │   └── SimpleListeners.java
-│               ├── Pages/
-│               │   ├── CommonPage.java
-│               │   ├── LoginPage.java
-│               │   ├── DashboardPage.java
-│               │   ├── AdminPage.java
-│               │   ├── PIMPage.java
-│               │   ├── RecruitmentPage.java
-│               │   ├── LeavePage.java
-│               │   ├── TimePage.java
-│               │   ├── PerformancePage.java
-│               │   ├── ClaimPage.java
-│               │   ├── BuzzPage.java
-│               │   ├── DirectoryPage.java
-│               │   ├── MaintenancePage.java
-│               │   └── MyInfoPage.java
-│               ├── Test/
-│               │   ├── LoginTest.java
-│               │   ├── AdminJobTest.java
-│               │   ├── AdminUserManagementTest.java
-│               │   ├── AdminOrganizationTest.java
-│               │   ├── PIM_Employee_Test.java
-│               │   ├── PIM_EmployeeDetails_Test.java
-│               │   ├── Recruitment_CandidateWorkflow_Test.java
-│               │   ├── Leave_ApplyLeave_Test.java
-│               │   ├── Time_Attendance_Test.java
-│               │   ├── Performance_Configuration_Test.java
-│               │   ├── Claim_Operations_Test.java
-│               │   ├── Buzz_Newsfeed_Test.java
-│               │   ├── Dashboard_Widgets_Test.java
-│               │   ├── Directory_Test.java
-│               │   ├── Maintenance_PurgeRecords_Test.java
-│               │   └── ... (47 test files)
-│               ├── TestCleaning/
-│               │   ├── AdminTestCleaning.java
-│               │   ├── PIMTestCleaning.java
-│               │   ├── RecruitmentTestCleaning.java
-│               │   ├── PerformanceTestCleaning.java
-│               │   ├── ClaimTestCleaning.java
-│               │   ├── TimeTestCleaning.java
-│               │   └── BuzzTestCleaning.java
-│               └── Utils/
-│                   └── AllureAttachment.java
-├── .github/
-│   └── workflows/
-│       └── maven.yml
-├── target/
-│   └── allure-results/
-├── testng.xml
-├── pom.xml
-└── README.md
+|-- pom.xml                          # Maven configuration
+|-- testng-foundation.xml            # Foundation/Setup test suite
+|-- testng-regression.xml            # Full regression test suite
+|-- testng-cleanup.xml               # Data cleanup test suite
+|-- README.md                        # Project documentation
+|-- src/
+|   +-- test/
+|       +-- java/
+|           +-- project_orangehrm/
+|               |-- Base/
+|               |   |-- BasePage.java        # Common page methods and utilities
+|               |   +-- BaseTest.java        # Test setup/teardown, driver management
+|               |-- Listeners/
+|               |   +-- SimpleListener.java  # TestNG listener for logging
+|               |-- Pages/
+|               |   |-- CommonPage.java      # Shared page operations
+|               |   |-- LoginPage.java       # Login functionality
+|               |   |-- DashboardPage.java   # Dashboard operations
+|               |   |-- AdminPage.java       # Admin module
+|               |   |-- PIMPage.java         # PIM module
+|               |   |-- RecruitmentPage.java # Recruitment module
+|               |   |-- LeavePage.java       # Leave module
+|               |   |-- TimePage.java        # Time module
+|               |   |-- PerformancePage.java # Performance module
+|               |   |-- ClaimPage.java       # Claim module
+|               |   |-- BuzzPage.java        # Buzz module
+|               |   |-- DirectoryPage.java   # Directory module
+|               |   |-- MaintenancePage.java # Maintenance module
+|               |   +-- MyInfoPage.java      # My Info module
+|               |-- Test/
+|               |   |-- LoginTest.java
+|               |   |-- AdminJobTest.java
+|               |   |-- AdminOrganizationTest.java
+|               |   |-- AdminUserManagementTest.java
+|               |   |-- Admin_Configuration_Test.java
+|               |   |-- Admin_Nationalities_Test.java
+|               |   |-- Admin_Qualifications_Test.java
+|               |   |-- PIM_Employee_Test.java
+|               |   |-- PIM_EmployeeDetails_Test.java
+|               |   |-- PIM_Configuration_Test.java
+|               |   |-- PIM_Reports_Test.java
+|               |   |-- Recruitment_Vacancies_Test.java
+|               |   |-- Recruitment_Candidate_E2E_Test.java
+|               |   |-- Recruitment_CandidateWorkflow_Test.java
+|               |   |-- Recruitment_Search_And_Data_Test.java
+|               |   |-- Recruitment_Actions_Test.java
+|               |   |-- Leave_ApplyLeave_Test.java
+|               |   |-- Leave_Configuration_Test.java
+|               |   |-- Leave_Entitlements_Test.java
+|               |   |-- Leave_LeaveList_Test.java
+|               |   |-- Leave_Operations_Test.java
+|               |   |-- Leave_Reports_Test.java
+|               |   |-- Time_Attendance_Test.java
+|               |   |-- Time_Timesheets_Test.java
+|               |   |-- Time_ProjectInfo_Test.java
+|               |   |-- Time_BusinessLogic_Test.java
+|               |   |-- Time_Reports_Test.java
+|               |   |-- Time_Configuration_Test.java
+|               |   |-- Claim_Configuration_Test.java
+|               |   |-- Claim_Advanced_Test.java
+|               |   |-- Claim_EmployeeClaims_Test.java
+|               |   |-- Claim_Operations_Test.java
+|               |   |-- Performance_Configuration_Test.java
+|               |   |-- Performance_Reviews_Test.java
+|               |   |-- Performance_MyReviews_Test.java
+|               |   |-- Performance_Evaluation_Test.java
+|               |   |-- Performance_Reports_Test.java
+|               |   |-- Dashboard_Widgets_Test.java
+|               |   |-- Dashboard_UserActions_Test.java
+|               |   |-- Dashboard_Advanced_Test.java
+|               |   |-- Buzz_Newsfeed_Test.java
+|               |   |-- Buzz_Features_Test.java
+|               |   |-- Directory_Test.java
+|               |   |-- Maintenance_Authentication_Test.java
+|               |   |-- Maintenance_AccessRecords_Test.java
+|               |   |-- Maintenance_PurgeRecords_Test.java
+|               |   +-- Maintenance_Safety_Test.java
+|               |-- TestCleaning/
+|               |   |-- AdminTestCleaning.java
+|               |   |-- PIMTestCleaning.java
+|               |   |-- RecruitmentTestCleaning.java
+|               |   |-- TimeTestCleaning.java
+|               |   |-- PerformanceTestCleaning.java
+|               |   |-- ClaimTestCleaning.java
+|               |   +-- BuzzTestCleaning.java
+|               +-- Utils/
+|                   +-- AllureAttachment.java  # Screenshot and attachment utilities
++-- target/
+    +-- allure-results/              # Allure report data
 ```
 
 ---
 
 ## Features
 
-### Framework Features
-- **Page Object Model (POM)** - Clean separation between test logic and page interactions
-- **Fluent Interface** - Method chaining for readable and maintainable tests
-- **Smart Wait Mechanism** - FluentWait with configurable timeout and polling
-- **Dynamic Locators** - Flexible XPath patterns for dynamic elements
-- **Safe Delete** - Handles cleanup gracefully even if data doesn't exist
-- **Screenshot on Failure** - Automatic screenshot capture on test failures
-- **Allure Reporting** - Detailed and interactive test reports
+### Core Framework Features
 
-### Test Features
-- **Data-Driven Testing** - Parameterized tests for multiple data sets
-- **Test Dependencies** - Proper test execution order with priorities
-- **Cleanup Tests** - Dedicated test cleaning module for data cleanup
-- **Cross-Browser Support** - Chrome, Firefox, Edge support
-- **Parallel Execution** - Configurable parallel test execution
+- **Page Object Model (POM)**: Encapsulates page elements and actions for maintainability
+- **Fluent Interface**: Method chaining for readable and concise test scripts
+- **FluentWait Implementation**: Intelligent waiting with configurable timeout and polling
+- **Exception Handling**: Graceful handling of common Selenium exceptions
+- **Thread-Safe Design**: ThreadLocal WebDriver for parallel execution
+
+### Test Execution Features
+
+- **Cross-Browser Support**: Chrome, Firefox, Edge
+- **Headless Mode**: Configurable via system property for CI/CD
+- **Parallel Execution**: Thread-safe architecture supports concurrent test runs
+- **Test Groups**: Foundation, Regression, and Cleanup groups for organized execution
+
+### Reporting Features
+
+- **Allure Reports**: Rich HTML reports with screenshots and attachments
+- **Automatic Screenshots**: Captures screenshots on test failure
+- **Test Listener**: Real-time console logging of test execution status
+- **Soft Assertions**: Continue test execution while collecting multiple failures
+
+### Utility Features
+
+- **Dynamic Locators**: Parameterized locators for flexible element identification
+- **JavaScript Executor**: Fallback click mechanisms for stubborn elements
+- **Scroll and Click**: Automatic scrolling to elements before interaction
+- **Data Cleanup**: Dedicated cleanup suite for test data management
 
 ---
 
 ## Prerequisites
 
-Before running the tests, ensure you have the following installed:
+Before setting up the project, ensure you have the following installed:
 
-- **Java JDK 21** or higher
-- **Maven 3.6+**
-- **Git**
-- **Chrome/Firefox/Edge** browser
+1. **Java Development Kit (JDK) 21 or higher**
+   ```bash
+   java -version
+   ```
+
+2. **Apache Maven 3.6 or higher**
+   ```bash
+   mvn -version
+   ```
+
+3. **Web Browser** (Chrome, Firefox, or Edge)
+
+4. **Allure Command Line** (for report generation)
+   ```bash
+   # Windows (using Scoop)
+   scoop install allure
+   
+   # macOS (using Homebrew)
+   brew install allure
+   
+   # Linux
+   sudo apt-add-repository ppa:qameta/allure
+   sudo apt-get update
+   sudo apt-get install allure
+   ```
 
 ---
 
 ## Installation
 
-1. **Clone the repository:**
-```bash
-git clone https://github.com/your-username/orangeHRM.git
-cd orangeHRM
-```
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd orangeHRM
+   ```
 
-2. **Install dependencies:**
-```bash
-mvn clean install -DskipTests
-```
+2. **Install dependencies**
+   ```bash
+   mvn clean install -DskipTests
+   ```
 
-3. **Verify installation:**
-```bash
-mvn -version
-java -version
-```
+3. **Verify installation**
+   ```bash
+   mvn test-compile
+   ```
 
 ---
 
 ## Configuration
 
 ### Browser Configuration
-Edit `BaseTest.java` to change the default browser:
 
-```java
-// Options: chrome, firefox, edge
-String browser = System.getProperty("browser", "chrome");
+The default browser is Chrome. To change the browser, modify the `testng-*.xml` files:
+
+```xml
+<parameter name="browser" value="chrome"/>  <!-- chrome, firefox, edge -->
 ```
 
-### Test Environment
-The framework is configured to run against:
+### Headless Mode
+
+Enable headless mode for CI/CD environments:
+
+```bash
+mvn test -Dheadless=true
 ```
-URL: https://opensource-demo.orangehrmlive.com/
-Username: Admin
-Password: admin123
+
+### Test Groups
+
+Run specific test groups:
+
+```bash
+# Run only foundation tests
+mvn test -Dgroups=foundation
+
+# Run only regression tests
+mvn test -Dgroups=regression
 ```
 
 ---
@@ -193,319 +308,299 @@ Password: admin123
 ## Running Tests
 
 ### Run All Tests
+
 ```bash
 mvn clean test
 ```
 
 ### Run Specific Test Suite
+
 ```bash
-mvn clean test -DsuiteXmlFile=testng.xml
+# Foundation Suite (Data Seeding)
+mvn test -Psuite -DsuiteXmlFile=testng-foundation.xml
+
+# Regression Suite (Full Test Suite)
+mvn test -Psuite -DsuiteXmlFile=testng-regression.xml
+
+# Cleanup Suite (Data Cleanup)
+mvn test -Psuite -DsuiteXmlFile=testng-cleanup.xml
 ```
 
-### Run Specific Test Class
+### Run Single Test Class
+
 ```bash
-mvn clean test -Dtest=LoginTest
+mvn test -Dtest=LoginTest
 ```
 
-### Run with Browser Selection
+### Run with Headless Browser
+
 ```bash
-mvn clean test -Dbrowser=chrome
-mvn clean test -Dbrowser=firefox
-mvn clean test -Dbrowser=edge
+mvn test -Dheadless=true -Psuite -DsuiteXmlFile=testng-regression.xml
 ```
 
-### Run Tests in Parallel
+### Run on Different Browser
+
 ```bash
-mvn clean test -Dparallel=methods -DthreadCount=4
+# Edit testng-regression.xml or pass parameter
+mvn test -Dbrowser=firefox
 ```
+
+---
+
+## Test Suites
+
+### Foundation Suite (testng-foundation.xml)
+
+Purpose: Creates essential test data required by other tests.
+
+**Execution Order:**
+1. Admin Job Configuration
+2. Admin Organization Setup
+3. Admin Qualifications
+4. PIM Employee Creation
+5. PIM Configuration
+6. User Management
+7. Leave Configuration
+8. Leave Entitlements
+9. Claim Configuration
+10. Time Project Info
+11. Performance Configuration
+12. Recruitment Vacancies
+
+### Regression Suite (testng-regression.xml)
+
+Purpose: Comprehensive test coverage for all modules.
+
+**Included Modules:**
+- Login (3 tests)
+- Admin - Job, Organization, Qualifications, Configuration, Nationalities, Users
+- PIM - Configuration, Employees, Details, Reports
+- Recruitment - Vacancies, E2E, Workflow, Search, Actions
+- Leave - Apply, List, Operations, Reports, Configuration, Entitlements
+- Time - Attendance, Timesheets, Project, Business Logic, Reports
+- Claim - Advanced, Employee Claims, Operations, Configuration
+- Performance - Reviews, My Reviews, Evaluation, Reports, Configuration
+- Dashboard - Widgets, User Actions, Advanced
+- Buzz - Newsfeed, Features
+- Directory
+- Maintenance - Authentication, Access Records, Purge, Safety
+
+### Cleanup Suite (testng-cleanup.xml)
+
+Purpose: Removes test data created during test execution.
+
+**Cleanup Order:**
+1. Admin data cleanup
+2. PIM data cleanup
+3. Recruitment data cleanup
+4. Time data cleanup
+5. Performance data cleanup
+6. Claim data cleanup
+7. Buzz data cleanup
 
 ---
 
 ## Test Reports
 
 ### Generate Allure Report
-```bash
-# Run tests first
-mvn clean test
 
+```bash
 # Generate and open report
 mvn allure:serve
+
+# Generate report only (output to target/site/allure-maven-plugin)
+mvn allure:report
 ```
 
-### View Report
-After running `mvn allure:serve`, the report will automatically open in your browser at `http://localhost:port`
+### Report Location
+
+- **Allure Results**: `target/allure-results/`
+- **Generated Report**: `target/site/allure-maven-plugin/`
+- **Surefire Reports**: `target/surefire-reports/`
 
 ### Report Features
-- Test execution summary
-- Pass/Fail/Skip statistics
-- Execution timeline
-- Test case details with steps
+
+- Test execution timeline
+- Test categorization by module
 - Screenshots on failure
-- Environment information
+- Step-by-step execution logs
+- Trend analysis across runs
 
 ---
 
 ## Modules Covered
 
-### 1. Admin Module
-| Sub-Module | Test Coverage |
-|------------|---------------|
-| User Management | Add, Edit, Delete, Search Users |
-| Job | Job Titles, Pay Grades, Employment Status, Job Categories, Work Shifts |
-| Organization | General Info, Locations, Structure |
-| Qualifications | Skills, Education, Licenses, Languages, Memberships |
-| Nationalities | Add, Edit, Delete Nationalities |
-| Configuration | Email Subscriptions, Localization |
-
-### 2. PIM Module
-| Sub-Module | Test Coverage |
-|------------|---------------|
-| Employee List | Add, Edit, Delete, Search Employees |
-| Add Employee | Create with Login Details |
-| Employee Details | Personal, Contact, Emergency, Dependents, Immigration, Job, Salary, Qualifications |
-| Configuration | Custom Fields, Reporting Methods, Termination Reasons |
-| Reports | Employee Reports |
-
-### 3. Recruitment Module
-| Sub-Module | Test Coverage |
-|------------|---------------|
-| Vacancies | Create, Edit, Delete Vacancies |
-| Candidates | Add, Search, Filter Candidates |
-| Candidate Workflow | Shortlist, Interview, Offer, Hire, Reject |
-
-### 4. Leave Module
-| Sub-Module | Test Coverage |
-|------------|---------------|
-| Apply Leave | Submit Leave Requests |
-| My Leave | View Leave History |
-| Entitlements | Add, View Entitlements |
-| Leave List | Admin Leave Management |
-| Configuration | Leave Types, Work Week, Holidays |
-
-### 5. Time Module
-| Sub-Module | Test Coverage |
-|------------|---------------|
-| Timesheets | My Timesheets, Employee Timesheets |
-| Attendance | Punch In/Out, My Records, Employee Records |
-| Project Info | Customers, Projects |
-| Reports | Project Reports, Attendance Reports |
-
-### 6. Performance Module
-| Sub-Module | Test Coverage |
-|------------|---------------|
-| Configure | KPIs, Trackers |
-| Manage Reviews | Create, Activate Reviews |
-| My Reviews | Self Evaluation |
-| Employee Tracker | Track Employee Performance |
-
-### 7. Claim Module
-| Sub-Module | Test Coverage |
-|------------|---------------|
-| Submit Claim | Create, Edit Claims |
-| My Claims | View Claim History |
-| Employee Claims | Admin Claim Management |
-| Configuration | Events, Expense Types |
-
-### 8. Buzz Module
-| Feature | Test Coverage |
-|---------|---------------|
-| Newsfeed | Create Posts, Like, Comment |
-| Post Management | Edit, Delete Posts |
-
-### 9. Dashboard Module
-| Feature | Test Coverage |
-|---------|---------------|
-| Widgets | Quick Launch, Employees on Leave |
-| User Actions | Logout, Profile |
-
-### 10. Directory Module
-| Feature | Test Coverage |
-|---------|---------------|
-| Search | Search by Name, Job Title, Location |
-| View | Employee Directory Cards |
-
-### 11. Maintenance Module
-| Sub-Module | Test Coverage |
-|------------|---------------|
-| Purge Records | Employee Records, Candidate Records |
-| Access Records | Download Employee Data |
-| Authentication | Password Verification |
+| Module | Sub-Modules | Test Coverage |
+|--------|-------------|---------------|
+| Login | Authentication, Validation | Positive and Negative scenarios |
+| Admin | Job Titles, Pay Grades, Employment Status, Work Shifts, Organization, Locations, Qualifications, Nationalities, Users | CRUD operations, Validation |
+| PIM | Employee List, Add Employee, Configuration, Reports | Employee lifecycle, Filters |
+| Recruitment | Vacancies, Candidates, Workflow | E2E candidate journey |
+| Leave | Apply, Entitlements, Reports, Configuration | Leave request lifecycle |
+| Time | Attendance, Timesheets, Projects, Reports | Time tracking, Punch In/Out |
+| Performance | KPIs, Reviews, My Reviews, Configuration | Review workflow |
+| Claim | Configuration, Claims, Expenses | Claim submission and approval |
+| Buzz | Newsfeed, Posts, Comments | Social features |
+| Dashboard | Widgets, Quick Launch, Actions | Dashboard components |
+| Directory | Employee Search, Contact Info | Directory search |
+| Maintenance | Purge Records, Access Records | Data maintenance |
 
 ---
 
 ## Design Patterns
 
 ### Page Object Model (POM)
-Each page in the application has a corresponding Page class:
+
+Each page in the application is represented by a class containing:
+- Page element locators
+- Page-specific methods
+- Inherited common functionality
 
 ```java
-public class AdminPage extends CommonPage {
+public class LoginPage extends CommonPage {
+    private final By USERNAME_FIELD = By.cssSelector("input[placeholder='Username']");
     
-    public AdminPage navigateToSection(String section) {
-        // Implementation
-        return this;
-    }
-    
-    public AdminPage clickToAdd() {
-        add();
+    public LoginPage enterUsername(String username) {
+        typeText(USERNAME_FIELD, username);
         return this;
     }
 }
 ```
 
 ### Fluent Interface
-Methods return `this` for chaining:
+
+Method chaining enables readable test scripts:
 
 ```java
-adminPage
-    .navigateToSection("Job", "Job Titles")
-    .clickToAdd()
-    .typeInDynamicField("Job Title", "QA Engineer")
-    .clickSave()
-    .verifySuccessMessage();
+loginPage
+    .enterUsername("Admin")
+    .enterPassword("admin123")
+    .clickLogin();
 ```
 
-### Base Page Pattern
-Common functionality in `BasePage.java`:
-- Wait mechanisms
-- Click methods
-- Type methods
-- Assertion methods
-
 ### Factory Pattern
-Dynamic locator generation:
+
+WebDriver instantiation based on browser configuration:
 
 ```java
-public By getLocator(String pattern, String value) {
-    return By.xpath(String.format(pattern, value));
+if (browser.equalsIgnoreCase("chrome")) {
+    currentDriver = new ChromeDriver(options);
+} else if (browser.equalsIgnoreCase("firefox")) {
+    currentDriver = new FirefoxDriver(options);
 }
+```
+
+### Template Method Pattern
+
+BaseTest provides hooks for setup and teardown:
+
+```java
+@BeforeMethod
+public void setUp(String browser) { /* Driver setup */ }
+
+@AfterMethod
+public void tearDown(ITestResult result) { /* Cleanup and screenshot */ }
 ```
 
 ---
 
 ## CI/CD Integration
 
-### GitHub Actions
-The project includes a GitHub Actions workflow (`.github/workflows/maven.yml`):
+### GitHub Actions Example
 
 ```yaml
-name: OrangeHRM E2E Tests
+name: Selenium Tests
 
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-  schedule:
-    - cron: '0 6 * * *'
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v4
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
-      - name: Run Tests
-        run: mvn clean test
-      - name: Generate Allure Report
-        run: mvn allure:report
-      - name: Upload Allure Results
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-results
-          path: target/allure-results
+    - uses: actions/checkout@v3
+    
+    - name: Set up JDK 21
+      uses: actions/setup-java@v3
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+    
+    - name: Run Tests
+      run: mvn test -Dheadless=true -Psuite -DsuiteXmlFile=testng-regression.xml
+    
+    - name: Generate Allure Report
+      if: always()
+      run: mvn allure:report
+    
+    - name: Upload Allure Results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: allure-results
+        path: target/allure-results
 ```
 
-### Pipeline Stages
-1. **Build** - Compile and resolve dependencies
-2. **Test** - Execute test suite
-3. **Report** - Generate Allure report
-4. **Artifact** - Upload test results
+### Jenkins Pipeline Example
 
----
-
-## Test Execution Order
-
-The `testng.xml` is organized for proper test execution:
-
-```xml
-<suite name="OrangeHRM_E2E_Suite">
-    <!-- Step 1: Admin Foundation -->
-    <test name="Step1_Admin_Foundation">
-        <classes>
-            <class name="project_orangehrm.Test.LoginTest"/>
-            <class name="project_orangehrm.Test.AdminJobTest"/>
-            <!-- More admin tests -->
-        </classes>
-    </test>
+```groovy
+pipeline {
+    agent any
     
-    <!-- Step 2: PIM Foundation -->
-    <test name="Step2_PIM_Foundation">
-        <!-- PIM tests -->
-    </test>
+    tools {
+        maven 'Maven-3.9'
+        jdk 'JDK-21'
+    }
     
-    <!-- Step 3-6: Other modules -->
-    
-    <!-- Step 7: Cleanup -->
-    <test name="Step7_Cleanup">
-        <classes>
-            <class name="project_orangehrm.TestCleaning.AdminTestCleaning"/>
-            <!-- More cleanup tests -->
-        </classes>
-    </test>
-</suite>
-```
-
----
-
-## Key Methods
-
-### Safe Delete (Handles Missing Data)
-```java
-public void safeDelete(By deleteButton, By confirmButton) {
-    try {
-        clickWhenReady(deleteButton);
-        clickWhenReady(confirmButton);
-    } catch (TimeoutException | NoSuchElementException e) {
-        // Element not found - already deleted
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn clean compile'
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                sh 'mvn test -Dheadless=true -Psuite -DsuiteXmlFile=testng-regression.xml'
+            }
+        }
+        
+        stage('Report') {
+            steps {
+                allure results: [[path: 'target/allure-results']]
+            }
+        }
     }
 }
 ```
 
-### Conditional Actions
-```java
-public void conditionalTypeAndClick(By field, String text, By button) {
-    if (driver.findElements(field).size() > 0) {
-        typeText(field, text);
-        clickWhenReady(button);
-    }
-}
-```
-
-### Dynamic Dropdown Selection
-```java
-public void selectDropdownOption(String dropdownName, String option) {
-    clickWhenReady(getLocator(DROPDOWN_PATTERN, dropdownName));
-    clickWhenReady(getLocator(OPTION_PATTERN, option));
-}
-```
-
 ---
 
-## Best Practices Implemented
+## Best Practices
 
-1. **DRY Principle** - Reusable methods in BasePage and CommonPage
-2. **Single Responsibility** - Each page class handles one page
-3. **Explicit Waits** - FluentWait for reliable element interactions
-4. **Descriptive Naming** - Clear method and variable names
-5. **Test Independence** - Each test can run independently
-6. **Data Cleanup** - Dedicated cleanup tests prevent data pollution
-7. **Error Handling** - Graceful handling of missing elements
-8. **Logging** - Console output for debugging
+### Test Organization
+
+1. **Group tests by functionality**: Use TestNG groups (foundation, regression)
+2. **Independent tests**: Each test should be able to run in isolation
+3. **Descriptive names**: Method names should describe the test scenario
+4. **Clean data**: Use cleanup suite to maintain test environment
+
+### Code Quality
+
+1. **DRY Principle**: Common methods in BasePage/CommonPage
+2. **Single Responsibility**: Each page class handles one page
+3. **Meaningful locators**: Use stable selectors (IDs, data attributes)
+4. **Explicit waits**: Avoid Thread.sleep, use FluentWait
+
+### Reporting
+
+1. **Descriptive assertions**: Include meaningful error messages
+2. **Screenshots**: Automatic capture on failure
+3. **Test descriptions**: Use @Test description attribute
 
 ---
 
@@ -513,24 +608,36 @@ public void selectDropdownOption(String dropdownName, String option) {
 
 ### Common Issues
 
-**Issue: Tests fail with timeout**
-```
-Solution: Increase wait timeout in BasePage.java
-```
-
-**Issue: Element not clickable**
-```
-Solution: Use clickJS() method for JavaScript click
+**1. WebDriver not found**
+```bash
+# Solution: WebDriverManager handles this automatically
+# Ensure internet connectivity for driver download
 ```
 
-**Issue: Stale element reference**
-```
-Solution: FluentWait is configured to handle this automatically
+**2. Element not clickable**
+```java
+// Framework handles this with fallback to JavaScript click
+clickWhenReady(locator);  // Tries normal click, falls back to JS
 ```
 
-**Issue: Browser not launching**
+**3. Stale Element Exception**
+```java
+// FluentWait is configured to handle this
+fluentWait.ignoring(StaleElementReferenceException.class);
 ```
-Solution: Ensure WebDriverManager has internet access
+
+**4. Tests failing in headless mode**
+```bash
+# Ensure window size is set
+mvn test -Dheadless=true
+# Window size is automatically set to 1920x1080 in headless mode
+```
+
+**5. Allure report not generating**
+```bash
+# Ensure AspectJ weaver is properly configured
+mvn clean test
+mvn allure:serve
 ```
 
 ---
@@ -538,33 +645,56 @@ Solution: Ensure WebDriverManager has internet access
 ## Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/new-test`)
-3. Commit changes (`git commit -m 'Add new test'`)
-4. Push to branch (`git push origin feature/new-test`)
-5. Open a Pull Request
+2. Create a feature branch (`git checkout -b feature/new-feature`)
+3. Commit changes (`git commit -m 'Add new feature'`)
+4. Push to branch (`git push origin feature/new-feature`)
+5. Create Pull Request
 
----
+### Coding Standards
 
-## Author
-
-- GitHub: https://github.com/m1mohammed1
-- LinkedIn: https://www.linkedin.com/in/mohammed-hesham-57a3533a1/
+- Follow Java naming conventions
+- Add Javadoc for public methods
+- Write unit tests for utilities
+- Update README for new features
 
 ---
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License.
+
+---
+
+## Author
+
+**Automation Test Engineer**
+
+- Framework Design and Implementation
+- Test Case Development
+- CI/CD Integration
+
+---
+
+## Version History
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 1.0.0 | 2025 | Initial release with full module coverage |
+
+---
+
+## Support
+
+For issues and questions:
+1. Check the Troubleshooting section
+2. Review existing issues in the repository
+3. Create a new issue with detailed description
 
 ---
 
 ## Acknowledgments
 
-- OrangeHRM for providing the demo application
-- Selenium community for excellent documentation
-- TestNG team for the powerful test framework
-- Allure for beautiful reporting
-
----
-
-**Happy Testing!** 🚀
+- OrangeHRM Demo Environment: https://opensource-demo.orangehrmlive.com/
+- Selenium WebDriver Documentation
+- TestNG Framework
+- Allure Framework
