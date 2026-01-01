@@ -1,0 +1,1 @@
+{"total":2,"items":[{"uid":"940a09faf31371a51747026c9d178f0a","name":"Surefire suite","statistic":{"failed":35,"broken":74,"skipped":83,"passed":126,"unknown":0,"total":318}},{"uid":"0babab1c208101180a25bafeca6171a0","name":"Foundation_Suite","statistic":{"failed":0,"broken":0,"skipped":0,"passed":20,"unknown":0,"total":20}}]}
