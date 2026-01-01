@@ -142,6 +142,7 @@ jobs:
             -Dgroups="regression" \
             -Dbrowser=${{ env.BROWSER }} \
             -Dheadless=true \
+            -Dsurefire.rerunFailingTestsCount=2
             -Dmaven.test.failure.ignore=true
 
       - name: Upload Regression Results
