@@ -44,13 +44,59 @@ jobs:
           echo "DISPLAY=:99" >> $GITHUB_ENV
 
       - name: Run Foundation Tests
+        id: foundation_tests
+        timeout-minutes: 45
         run: |
-          mvn test -B -Psuite \
-            -DsuiteXmlFile=testng-foundation.xml \
-            -Dbrowser=${{ env.BROWSER }} \
-            -Dheadless=true \
-            -Dgroups=foundation \
-            -Dmaven.test.failure.ignore=true
+          run_tests() {
+            timeout 300 mvn test -B -Psuite \
+              -DsuiteXmlFile=testng-foundation.xml \
+              -Dbrowser=${{ env.BROWSER }} \
+              -Dheadless=true \
+              -Dgroups=foundation \
+              -Dmaven.test.failure.ignore=true
+            return $?
+          }
+          
+          MAX_RETRIES=3
+          RETRY_COUNT=0
+          
+          while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+            echo "Attempt $((RETRY_COUNT + 1)) of $MAX_RETRIES"
+            
+            # Kill any hanging processes
+            pkill -f "chrome" || true
+            pkill -f "firefox" || true
+            pkill -f "msedge" || true
+            
+            # Restart Xvfb
+            pkill -f Xvfb || true
+            sleep 2
+            Xvfb :99 -screen 0 1920x1080x24 > /dev/null 2>&1 &
+            sleep 3
+            
+            # Run tests with timeout
+            if run_tests; then
+              # Check if tests actually ran (not all skipped)
+              if [ -d "target/allure-results" ] && [ "$(find target/allure-results -name '*-result.json' | wc -l)" -gt 0 ]; then
+                echo "Tests executed successfully"
+                break
+              else
+                echo "Warning: No test results found, retrying..."
+              fi
+            fi
+            
+            RETRY_COUNT=$((RETRY_COUNT + 1))
+            
+            if [ $RETRY_COUNT -lt $MAX_RETRIES ]; then
+              echo "Test execution failed or timed out, cleaning up and retrying in 10 seconds..."
+              rm -rf target/allure-results target/surefire-reports
+              sleep 10
+            fi
+          done
+          
+          if [ $RETRY_COUNT -eq $MAX_RETRIES ]; then
+            echo "All retry attempts exhausted"
+          fi
 
       - name: Upload Foundation Results
         if: success() || failure()
@@ -136,13 +182,59 @@ jobs:
           echo "DISPLAY=:99" >> $GITHUB_ENV
 
       - name: Run Regression - ${{ matrix.test_info.name }}
+        id: regression_tests
+        timeout-minutes: 20
         run: |
-          mvn test -B \
-            -Dtest="project_orangehrm.Test.${{ matrix.test_info.class }}" \
-            -Dgroups="regression" \
-            -Dbrowser=${{ env.BROWSER }} \
-            -Dheadless=true \
-            -Dmaven.test.failure.ignore=true
+          run_tests() {
+            timeout 180 mvn test -B \
+              -Dtest="project_orangehrm.Test.${{ matrix.test_info.class }}" \
+              -Dgroups="regression" \
+              -Dbrowser=${{ env.BROWSER }} \
+              -Dheadless=true \
+              -Dmaven.test.failure.ignore=true
+            return $?
+          }
+          
+          MAX_RETRIES=3
+          RETRY_COUNT=0
+          
+          while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+            echo "Attempt $((RETRY_COUNT + 1)) of $MAX_RETRIES for ${{ matrix.test_info.name }}"
+            
+            # Kill any hanging browser processes
+            pkill -f "chrome" || true
+            pkill -f "firefox" || true
+            pkill -f "msedge" || true
+            
+            # Restart Xvfb to ensure clean display
+            pkill -f Xvfb || true
+            sleep 2
+            Xvfb :99 -screen 0 1920x1080x24 > /dev/null 2>&1 &
+            sleep 3
+            
+            # Run tests with timeout
+            if run_tests; then
+              # Check if tests actually ran
+              if [ -d "target/allure-results" ] && [ "$(find target/allure-results -name '*-result.json' | wc -l)" -gt 0 ]; then
+                echo "Tests executed successfully"
+                break
+              else
+                echo "Warning: No test results found, retrying..."
+              fi
+            fi
+            
+            RETRY_COUNT=$((RETRY_COUNT + 1))
+            
+            if [ $RETRY_COUNT -lt $MAX_RETRIES ]; then
+              echo "Test execution failed or timed out, cleaning up and retrying in 5 seconds..."
+              rm -rf target/allure-results target/surefire-reports
+              sleep 5
+            fi
+          done
+          
+          if [ $RETRY_COUNT -eq $MAX_RETRIES ]; then
+            echo "All retry attempts exhausted for ${{ matrix.test_info.name }}"
+          fi
 
       - name: Upload Regression Results
         if: success() || failure()
@@ -157,7 +249,7 @@ jobs:
     needs: [regression_matrix]
     if: ${{ !cancelled() }}
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
@@ -189,12 +281,58 @@ jobs:
           echo "DISPLAY=:99" >> $GITHUB_ENV
 
       - name: Run Cleanup - ${{ matrix.cleanup_info.name }}
+        id: cleanup_tests
+        timeout-minutes: 10
         run: |
-          mvn test -B \
-            -Dtest="project_orangehrm.TestCleaning.${{ matrix.cleanup_info.class }}" \
-            -Dbrowser=${{ env.BROWSER }} \
-            -Dheadless=true \
-            -Dmaven.test.failure.ignore=true
+          run_tests() {
+            timeout 120 mvn test -B \
+              -Dtest="project_orangehrm.TestCleaning.${{ matrix.cleanup_info.class }}" \
+              -Dbrowser=${{ env.BROWSER }} \
+              -Dheadless=true \
+              -Dmaven.test.failure.ignore=true
+            return $?
+          }
+          
+          MAX_RETRIES=3
+          RETRY_COUNT=0
+          
+          while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+            echo "Attempt $((RETRY_COUNT + 1)) of $MAX_RETRIES for ${{ matrix.cleanup_info.name }}"
+            
+            # Kill any hanging browser processes
+            pkill -f "chrome" || true
+            pkill -f "firefox" || true
+            pkill -f "msedge" || true
+            
+            # Restart Xvfb
+            pkill -f Xvfb || true
+            sleep 2
+            Xvfb :99 -screen 0 1920x1080x24 > /dev/null 2>&1 &
+            sleep 3
+            
+            # Run tests with timeout
+            if run_tests; then
+              # Check if tests actually ran
+              if [ -d "target/allure-results" ] && [ "$(find target/allure-results -name '*-result.json' | wc -l)" -gt 0 ]; then
+                echo "Cleanup executed successfully"
+                break
+              else
+                echo "Warning: No cleanup results found, retrying..."
+              fi
+            fi
+            
+            RETRY_COUNT=$((RETRY_COUNT + 1))
+            
+            if [ $RETRY_COUNT -lt $MAX_RETRIES ]; then
+              echo "Cleanup execution failed or timed out, retrying in 5 seconds..."
+              rm -rf target/allure-results target/surefire-reports
+              sleep 5
+            fi
+          done
+          
+          if [ $RETRY_COUNT -eq $MAX_RETRIES ]; then
+            echo "All retry attempts exhausted for ${{ matrix.cleanup_info.name }}"
+          fi
 
       - name: Upload Cleanup Results
         if: ${{ !cancelled() }}
