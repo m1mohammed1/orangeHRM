@@ -10,7 +10,7 @@ on:
         default: 'chrome'
         type: choice
         options: [chrome, edge, firefox]
-#
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true

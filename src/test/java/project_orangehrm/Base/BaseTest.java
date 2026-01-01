@@ -43,8 +43,10 @@ public class BaseTest {
 
             if (isLinux) {
                 options.addArguments("--no-sandbox");
+                options.addArguments("--disable-gpu");
                 options.addArguments("--disable-dev-shm-usage");
                 options.addArguments("--window-size=1920,1080");
+                options.addArguments("--force-device-scale-factor=1");
             }
 
             if (isHeadless) {
@@ -61,8 +63,10 @@ public class BaseTest {
 
             if (isLinux) {
                 options.addArguments("--no-sandbox");
+                options.addArguments("--disable-gpu");
                 options.addArguments("--disable-dev-shm-usage");
                 options.addArguments("--window-size=1920,1080");
+                options.addArguments("--force-device-scale-factor=1");
             }
 
             if (isHeadless) {
@@ -79,8 +83,10 @@ public class BaseTest {
 
             if (isLinux) {
                 options.addArguments("--no-sandbox");
+                options.addArguments("--disable-gpu");
                 options.addArguments("--disable-dev-shm-usage");
                 options.addArguments("--window-size=1920,1080");
+                options.addArguments("--force-device-scale-factor=1");
             }
 
             if (isHeadless) {
